@@ -14,8 +14,8 @@
         /* Base body styles for font and background color */
         body {
             font-family: 'Poppins', sans-serif;
-            background-color: #fdfaf6; /* Light Cream */
-            color: #4a4a4a; /* Dark Gray */
+            background-color: #fafaf9; /* Stone-50 - A warm, light background */
+            color: #292524; /* Stone-800 for main text, darker for readability */
             font-size: 1rem; /* Base font size for readability */
         }
         /* Specific font for original Urdu title, remaining content will be Poppins or Noto Naskh Arabic as needed */
@@ -44,13 +44,13 @@
             transition: color 0.3s;
         }
         .nav-link:hover {
-            color: #d97706; /* Amber-600 */
+            color: #0d9488; /* Teal-600 */
         }
         /* Active state styling for filter buttons */
         .active-filter {
-            background-color: #c2410c; /* Amber-700 */
-            color: white;
-            border-color: #c2410c;
+            background-color: #fbbf24; /* Amber-400 */
+            color: #78350f; /* Amber-900 */
+            border-color: #fbbf24;
         }
         /* Modal transitions for smooth appearance/disappearance */
         .modal {
@@ -103,38 +103,42 @@
         }
     </style>
 </head>
-<body class="bg-[#fdfaf6]">
+<body class="bg-stone-50">
 
     <!-- Header Section: Sticky navigation, language selection, and mobile menu toggle -->
-    <header class="bg-[#fdfaf6]/80 backdrop-blur-md sticky top-0 z-50 shadow-sm">
+    <header class="bg-stone-100/80 backdrop-blur-md sticky top-0 z-50 shadow-sm">
         <div class="container mx-auto px-6 py-4 flex justify-between items-center">
-            <h1 class="text-2xl md:text-3xl font-bold text-amber-800">
-                <span class="urdu-font">مستقبل نما</span> <span class="text-gray-700">| Future Compass</span>
+            <h1 class="text-2xl md:text-3xl font-bold text-teal-800">
+                <span class="urdu-font">مستقبل نما</span> <span class="text-orange-700">| Future Compass</span>
             </h1>
             <!-- Desktop Navigation -->
             <nav class="hidden md:flex space-x-8">
-                <a href="#home" class="text-gray-600 nav-link font-medium" data-lang-key="nav_home"></a>
-                <a href="#challenges" class="text-gray-600 nav-link font-medium" data-lang-key="nav_challenges"></a>
-                <a href="#careers" class="text-gray-600 nav-link font-medium" data-lang-key="nav_careers"></a>
-                <a href="#english-resources" class="text-gray-600 nav-link font-medium" data-lang-key="nav_english_resources"></a>
-                <a href="#about" class="text-gray-600 nav-link font-medium" data-lang-key="nav_about"></a>
+                <a href="#home" class="text-stone-700 nav-link font-medium" data-lang-key="nav_home"></a>
+                <a href="#challenges" class="text-stone-700 nav-link font-medium" data-lang-key="nav_challenges"></a>
+                <a href="#careers" class="text-stone-700 nav-link font-medium" data-lang-key="nav_careers"></a>
+                <a href="#english-resources" class="text-stone-700 nav-link font-medium" data-lang-key="nav_english_resources"></a>
+                <a href="#consistency-time" class="text-stone-700 nav-link font-medium" data-lang-key="nav_consistency_time"></a>
+                <a href="#parents-emotions" class="text-stone-700 nav-link font-medium" data-lang-key="nav_parents_emotions"></a>
+                <a href="#about" class="text-stone-700 nav-link font-medium" data-lang-key="nav_about"></a>
             </nav>
             <!-- Language Buttons and Mobile Menu Button -->
             <div class="flex items-center space-x-2">
-                <button id="lang-en" class="lang-btn px-3 py-1 rounded-full text-sm font-semibold bg-amber-700 text-white transition">EN</button>
-                <button id="lang-ur" class="lang-btn px-3 py-1 rounded-full text-sm font-semibold bg-gray-200 text-gray-700 hover:bg-gray-300 transition">UR (Roman)</button>
-                <button id="mobile-menu-button" class="md:hidden text-gray-700 focus:outline-none">
+                <button id="lang-en" class="lang-btn px-3 py-1 rounded-full text-sm font-semibold bg-orange-600 text-white transition">EN</button>
+                <button id="lang-ur" class="lang-btn px-3 py-1 rounded-full text-sm font-semibold bg-stone-200 text-stone-700 hover:bg-stone-300 transition">UR (Roman)</button>
+                <button id="mobile-menu-button" class="md:hidden text-stone-700 focus:outline-none">
                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
                 </button>
             </div>
         </div>
         <!-- Mobile Menu (initially hidden) -->
         <div id="mobile-menu" class="hidden md:hidden bg-white shadow-lg">
-            <a href="#home" class="block text-center py-3 px-4 text-gray-700 hover:bg-amber-50" data-lang-key="nav_home"></a>
-            <a href="#challenges" class="block text-center py-3 px-4 text-gray-700 hover:bg-amber-50" data-lang-key="nav_challenges"></a>
-            <a href="#careers" class="block text-center py-3 px-4 text-gray-700 hover:bg-amber-50" data-lang-key="nav_careers"></a>
-            <a href="#english-resources" class="block text-center py-3 px-4 text-gray-700 hover:bg-amber-50" data-lang-key="nav_english_resources"></a>
-            <a href="#about" class="block text-center py-3 px-4 text-gray-700 hover:bg-amber-50" data-lang-key="nav_about"></a>
+            <a href="#home" class="block text-center py-3 px-4 text-stone-700 hover:bg-stone-50" data-lang-key="nav_home"></a>
+            <a href="#challenges" class="block text-center py-3 px-4 text-stone-700 hover:bg-stone-50" data-lang-key="nav_challenges"></a>
+            <a href="#careers" class="block text-center py-3 px-4 text-stone-700 hover:bg-stone-50" data-lang-key="nav_careers"></a>
+            <a href="#english-resources" class="block text-center py-3 px-4 text-stone-700 hover:bg-stone-50" data-lang-key="nav_english_resources"></a>
+            <a href="#consistency-time" class="block text-center py-3 px-4 text-stone-700 hover:bg-stone-50" data-lang-key="nav_consistency_time"></a>
+            <a href="#parents-emotions" class="block text-center py-3 px-4 text-stone-700 hover:bg-stone-50" data-lang-key="nav_parents_emotions"></a>
+            <a href="#about" class="block text-center py-3 px-4 text-stone-700 hover:bg-stone-50" data-lang-key="nav_about"></a>
         </div>
     </header>
 
@@ -142,101 +146,101 @@
 
         <!-- Home Section: Welcoming message for students -->
         <section id="home" class="text-center min-h-[60vh] flex flex-col justify-center items-center">
-            <h2 class="text-3xl md:text-5xl font-bold text-gray-800 mb-4" data-lang-key="home_title"></h2>
-            <p class="urdu-font text-2xl md:text-4xl text-amber-700 mb-6" data-lang-key="home_subtitle"></p>
-            <p class="max-w-3xl mx-auto text-gray-600 text-lg md:text-xl leading-relaxed" data-lang-key="home_description"></p>
+            <h2 class="text-3xl md:text-5xl font-bold text-stone-800 mb-4" data-lang-key="home_title"></h2>
+            <p class="urdu-font text-2xl md:text-4xl text-teal-700 mb-6" data-lang-key="home_subtitle"></p>
+            <p class="max-w-3xl mx-auto text-stone-700 text-lg md:text-xl leading-relaxed" data-lang-key="home_description"></p>
         </section>
 
-        <hr class="my-12 border-t-2 border-gray-200">
+        <hr class="my-12 border-t-2 border-stone-200">
 
         <!-- Challenges Section: Addressing common hurdles for language transition -->
         <section id="challenges" class="py-16 md:py-24">
             <div class="text-center mb-12">
-                <h2 class="text-3xl md:text-4xl font-bold text-gray-800" data-lang-key="challenges_title"></h2>
-                <p class="urdu-font text-xl md:text-2xl text-amber-700 mt-2" data-lang-key="challenges_subtitle"></p>
-                <p class="max-w-2xl mx-auto text-gray-600 mt-4" data-lang-key="challenges_description"></p>
+                <h2 class="text-3xl md:text-4xl font-bold text-stone-800" data-lang-key="challenges_title"></h2>
+                <p class="urdu-font text-xl md:text-2xl text-teal-700 mt-2" data-lang-key="challenges_subtitle"></p>
+                <p class="max-w-2xl mx-auto text-stone-700 mt-4" data-lang-key="challenges_description"></p>
             </div>
             <div class="max-w-4xl mx-auto space-y-4">
                 <!-- Accordion Item 1: Vocabulary and Technical Terms -->
-                <div class="bg-white rounded-lg shadow-md overflow-hidden">
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden">
                     <button class="accordion-header w-full text-left p-4 md:p-6 flex justify-between items-center focus:outline-none">
-                        <h3 class="font-semibold text-lg md:text-xl text-gray-800" data-lang-key="challenge1_title"></h3>
-                        <span class="accordion-icon text-amber-700 text-2xl transform transition-transform duration-300">▼</span>
+                        <h3 class="font-semibold text-lg md:text-xl text-stone-800" data-lang-key="challenge1_title"></h3>
+                        <span class="accordion-icon text-teal-700 text-2xl transform transition-transform duration-300">▼</span>
                     </button>
                     <div class="accordion-content">
-                        <div class="p-4 md:p-6 border-t border-gray-200">
-                            <p class="text-gray-600" data-lang-key="challenge1_challenge"></p>
-                            <p class="text-gray-600 mt-4" data-lang-key="challenge1_solution_intro"></p>
-                            <ul class="list-disc list-inside mt-2 text-gray-600 space-y-2" data-lang-key="challenge1_solution_list"></ul>
+                        <div class="p-4 md:p-6 border-t border-stone-200">
+                            <p class="text-stone-700" data-lang-key="challenge1_challenge"></p>
+                            <p class="text-stone-700 mt-4" data-lang-key="challenge1_solution_intro"></p>
+                            <ul class="list-disc list-inside mt-2 text-stone-700 space-y-2" data-lang-key="challenge1_solution_list"></ul>
                         </div>
                     </div>
                 </div>
                 <!-- Accordion Item 2: Classroom Confidence -->
-                <div class="bg-white rounded-lg shadow-md overflow-hidden">
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden">
                     <button class="accordion-header w-full text-left p-4 md:p-6 flex justify-between items-center focus:outline-none">
-                        <h3 class="font-semibold text-lg md:text-xl text-gray-800" data-lang-key="challenge2_title"></h3>
-                        <span class="accordion-icon text-amber-700 text-2xl transform transition-transform duration-300">▼</span>
+                        <h3 class="font-semibold text-lg md:text-xl text-stone-800" data-lang-key="challenge2_title"></h3>
+                        <span class="accordion-icon text-teal-700 text-2xl transform transition-transform duration-300">▼</span>
                     </button>
                     <div class="accordion-content">
-                        <div class="p-4 md:p-6 border-t border-gray-200">
-                           <p class="text-gray-600" data-lang-key="challenge2_challenge"></p>
-                            <p class="text-gray-600 mt-4" data-lang-key="challenge2_solution_intro"></p>
-                            <ul class="list-disc list-inside mt-2 text-gray-600 space-y-2" data-lang-key="challenge2_solution_list"></ul>
+                        <div class="p-4 md:p-6 border-t border-stone-200">
+                           <p class="text-stone-700" data-lang-key="challenge2_challenge"></p>
+                            <p class="text-stone-700 mt-4" data-lang-key="challenge2_solution_intro"></p>
+                            <ul class="list-disc list-inside mt-2 text-stone-700 space-y-2" data-lang-key="challenge2_solution_list"></ul>
                         </div>
                     </div>
                 </div>
                 <!-- Accordion Item 3: Reading Speed and Comprehension -->
-                <div class="bg-white rounded-lg shadow-md overflow-hidden">
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden">
                     <button class="accordion-header w-full text-left p-4 md:p-6 flex justify-between items-center focus:outline-none">
-                        <h3 class="font-semibold text-lg md:text-xl text-gray-800" data-lang-key="challenge3_title"></h3>
-                        <span class="accordion-icon text-amber-700 text-2xl transform transition-transform duration-300">▼</span>
+                        <h3 class="font-semibold text-lg md:text-xl text-stone-800" data-lang-key="challenge3_title"></h3>
+                        <span class="accordion-icon text-teal-700 text-2xl transform transition-transform duration-300">▼</span>
                     </button>
                     <div class="accordion-content">
-                        <div class="p-4 md:p-6 border-t border-gray-200">
-                            <p class="text-gray-600" data-lang-key="challenge3_challenge"></p>
-                            <p class="text-gray-600 mt-4" data-lang-key="challenge3_solution_intro"></p>
-                            <ul class="list-disc list-inside mt-2 text-gray-600 space-y-2" data-lang-key="challenge3_solution_list"></ul>
+                        <div class="p-4 md:p-6 border-t border-stone-200">
+                            <p class="text-stone-700" data-lang-key="challenge3_challenge"></p>
+                            <p class="text-stone-700 mt-4" data-lang-key="challenge3_solution_intro"></p>
+                            <ul class="list-disc list-inside mt-2 text-stone-700 space-y-2" data-lang-key="challenge3_solution_list"></ul>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <hr class="my-12 border-t-2 border-gray-200">
+        <hr class="my-12 border-t-2 border-stone-200">
 
         <!-- Career Awareness Chart: Visualizing diverse career fields -->
-        <section id="career-chart-section" class="py-16 md:py-24 bg-amber-50 rounded-2xl">
+        <section id="career-chart-section" class="py-16 md:py-24 bg-teal-50 rounded-2xl">
             <div class="text-center mb-12 px-4">
-                <h2 class="text-3xl md:text-4xl font-bold text-gray-800" data-lang-key="chart_title"></h2>
-                <p class="urdu-font text-xl md:text-2xl text-amber-700 mt-2" data-lang-key="chart_subtitle"></p>
-                <p class="max-w-3xl mx-auto text-gray-600 mt-4" data-lang-key="chart_description"></p>
+                <h2 class="text-3xl md:text-4xl font-bold text-stone-800" data-lang-key="chart_title"></h2>
+                <p class="urdu-font text-xl md:text-2xl text-teal-700 mt-2" data-lang-key="chart_subtitle"></p>
+                <p class="max-w-3xl mx-auto text-stone-700 mt-4" data-lang-key="chart_description"></p>
             </div>
             <div class="chart-container">
                 <canvas id="careerAwarenessChart"></canvas>
             </div>
         </section>
 
-        <hr class="my-12 border-t-2 border-gray-200">
+        <hr class="my-12 border-t-2 border-stone-200">
 
         <!-- Career Paths Section: Interactive cards for career exploration -->
         <section id="careers" class="py-16 md:py-24">
             <div class="text-center mb-12">
-                <h2 class="text-3xl md:text-4xl font-bold text-gray-800" data-lang-key="careers_title"></h2>
-                <p class="urdu-font text-xl md:text-2xl text-amber-700 mt-2" data-lang-key="careers_subtitle"></p>
-                <p class="max-w-3xl mx-auto text-gray-600 mt-4" data-lang-key="careers_description"></p>
+                <h2 class="text-3xl md:text-4xl font-bold text-stone-800" data-lang-key="careers_title"></h2>
+                <p class="urdu-font text-xl md:text-2xl text-teal-700 mt-2" data-lang-key="careers_subtitle"></p>
+                <p class="max-w-3xl mx-auto text-stone-700 mt-4" data-lang-key="careers_description"></p>
             </div>
 
             <!-- Career Filters -->
             <div id="career-filters" class="flex flex-wrap justify-center gap-2 md:gap-4 mb-10">
                 <button class="filter-btn active-filter px-4 py-2 text-sm md:text-base font-semibold border-2 border-transparent rounded-full transition" data-filter="all" data-lang-key="filter_all"></button>
-                <button class="filter-btn px-4 py-2 text-sm md:text-base font-semibold border-2 border-gray-300 rounded-full transition text-gray-700 hover:border-amber-600 hover:text-amber-700" data-filter="science" data-lang-key="filter_science"></button>
-                <button class="filter-btn px-4 py-2 text-sm md:text-base font-semibold border-2 border-gray-300 rounded-full transition text-gray-700 hover:border-amber-600 hover:text-amber-700" data-filter="commerce" data-lang-key="filter_commerce"></button>
-                <button class="filter-btn px-4 py-2 text-sm md:text-base font-semibold border-2 border-gray-300 rounded-full transition text-gray-700 hover:border-amber-600 hover:text-amber-700" data-filter="arts" data-lang-key="filter_arts"></button>
-                <button class="filter-btn px-4 py-2 text-sm md:text-base font-semibold border-2 border-gray-300 rounded-full transition text-gray-700 hover:border-amber-600 hover:text-amber-700" data-filter="creative" data-lang-key="filter_creative"></button>
-                <button class="filter-btn px-4 py-2 text-sm md:text-base font-semibold border-2 border-gray-300 rounded-full transition text-gray-700 hover:border-amber-600 hover:text-amber-700" data-filter="vocational" data-lang-key="filter_vocational"></button>
-                <button class="filter-btn px-4 py-2 text-sm md:text-base font-semibold border-2 border-gray-300 rounded-full transition text-gray-700 hover:border-amber-600 hover:text-amber-700" data-filter="public_service" data-lang-key="filter_public_service"></button>
-                <button class="filter-btn px-4 py-2 text-sm md:text-base font-semibold border-2 border-gray-300 rounded-full transition text-gray-700 hover:border-amber-600 hover:text-amber-700" data-filter="healthcare" data-lang-key="filter_healthcare"></button>
-                <button class="filter-btn px-4 py-2 text-sm md:text-base font-semibold border-2 border-gray-300 rounded-full transition text-gray-700 hover:border-amber-600 hover:text-amber-700" data-filter="education" data-lang-key="filter_education"></button>
+                <button class="filter-btn px-4 py-2 text-sm md:text-base font-semibold border-2 border-stone-300 rounded-full transition text-stone-700 hover:border-amber-600 hover:text-amber-700" data-filter="science" data-lang-key="filter_science"></button>
+                <button class="filter-btn px-4 py-2 text-sm md:text-base font-semibold border-2 border-stone-300 rounded-full transition text-stone-700 hover:border-amber-600 hover:text-amber-700" data-filter="commerce" data-lang-key="filter_commerce"></button>
+                <button class="filter-btn px-4 py-2 text-sm md:text-base font-semibold border-2 border-stone-300 rounded-full transition text-stone-700 hover:border-amber-600 hover:text-amber-700" data-filter="arts" data-lang-key="filter_arts"></button>
+                <button class="filter-btn px-4 py-2 text-sm md:text-base font-semibold border-2 border-stone-300 rounded-full transition text-stone-700 hover:border-amber-600 hover:text-amber-700" data-filter="creative" data-lang-key="filter_creative"></button>
+                <button class="filter-btn px-4 py-2 text-sm md:text-base font-semibold border-2 border-stone-300 rounded-full transition text-stone-700 hover:border-amber-600 hover:text-amber-700" data-filter="vocational" data-lang-key="filter_vocational"></button>
+                <button class="filter-btn px-4 py-2 text-sm md:text-base font-semibold border-2 border-stone-300 rounded-full transition text-stone-700 hover:border-amber-600 hover:text-amber-700" data-filter="public_service" data-lang-key="filter_public_service"></button>
+                <button class="filter-btn px-4 py-2 text-sm md:text-base font-semibold border-2 border-stone-300 rounded-full transition text-stone-700 hover:border-amber-600 hover:text-amber-700" data-filter="healthcare" data-lang-key="filter_healthcare"></button>
+                <button class="filter-btn px-4 py-2 text-sm md:text-base font-semibold border-2 border-stone-300 rounded-full transition text-stone-700 hover:border-amber-600 hover:text-amber-700" data-filter="education" data-lang-key="filter_education"></button>
             </div>
 
             <!-- Career Cards Grid -->
@@ -245,50 +249,108 @@
             </div>
         </section>
 
-        <hr class="my-12 border-t-2 border-gray-200">
+        <hr class="my-12 border-t-2 border-stone-200">
 
         <!-- Resources for English Proficiency Section -->
         <section id="english-resources" class="py-16 md:py-24">
             <div class="text-center mb-12 px-4">
-                <h2 class="text-3xl md:text-4xl font-bold text-gray-800" data-lang-key="resources_title"></h2>
+                <h2 class="text-3xl md:text-4xl font-bold text-stone-800" data-lang-key="resources_title"></h2>
                 <p class="urdu-font text-xl md:text-2xl text-orange-700 mt-2" data-lang-key="resources_subtitle"></p>
-                <p class="max-w-3xl mx-auto text-gray-600 mt-4" data-lang-key="resources_description"></p>
+                <p class="max-w-3xl mx-auto text-stone-700 mt-4" data-lang-key="resources_description"></p>
             </div>
             <div class="max-w-4xl mx-auto space-y-8">
                 <!-- Resource Category 1: Vocabulary & Grammar -->
-                <div class="bg-white rounded-lg shadow-md p-6">
-                    <h3 class="text-xl font-semibold text-gray-800 mb-4" data-lang-key="resources_vocab_title"></h3>
-                    <ul class="list-disc list-inside space-y-3 text-gray-700" data-lang-key="resources_vocab_list"></ul>
+                <div class="bg-white rounded-xl shadow-lg p-6">
+                    <h3 class="text-xl font-semibold text-stone-800 mb-4" data-lang-key="resources_vocab_title"></h3>
+                    <ul class="list-disc list-inside space-y-3 text-stone-700" data-lang-key="resources_vocab_list"></ul>
                 </div>
                 <!-- Resource Category 2: Speaking & Listening -->
-                <div class="bg-white rounded-lg shadow-md p-6">
-                    <h3 class="text-xl font-semibold text-gray-800 mb-4" data-lang-key="resources_speak_title"></h3>
-                    <ul class="list-disc list-inside space-y-3 text-gray-700" data-lang-key="resources_speak_list"></ul>
+                <div class="bg-white rounded-xl shadow-lg p-6">
+                    <h3 class="text-xl font-semibold text-stone-800 mb-4" data-lang-key="resources_speak_title"></h3>
+                    <ul class="list-disc list-inside space-y-3 text-stone-700" data-lang-key="resources_speak_list"></ul>
                 </div>
                 <!-- Resource Category 3: Reading & Writing -->
-                <div class="bg-white rounded-lg shadow-md p-6">
-                    <h3 class="text-xl font-semibold text-gray-800 mb-4" data-lang-key="resources_read_title"></h3>
-                    <ul class="list-disc list-inside space-y-3 text-gray-700" data-lang-key="resources_read_list"></ul>
+                <div class="bg-white rounded-xl shadow-lg p-6">
+                    <h3 class="text-xl font-semibold text-stone-800 mb-4" data-lang-key="resources_read_title"></h3>
+                    <ul class="list-disc list-inside space-y-3 text-stone-700" data-lang-key="resources_read_list"></ul>
                 </div>
             </div>
         </section>
 
-        <hr class="my-12 border-t-2 border-gray-200">
+        <hr class="my-12 border-t-2 border-stone-200">
+
+        <!-- New Section: Consistency and Time Management -->
+        <section id="consistency-time" class="py-16 md:py-24 bg-emerald-50 rounded-2xl">
+            <div class="text-center mb-12 px-4">
+                <h2 class="text-3xl md:text-4xl font-bold text-stone-800" data-lang-key="consistency_time_title"></h2>
+                <p class="urdu-font text-xl md:text-2xl text-emerald-700 mt-2" data-lang-key="consistency_time_subtitle"></p>
+                <p class="max-w-3xl mx-auto text-stone-700 mt-4" data-lang-key="consistency_time_description"></p>
+            </div>
+            <div class="max-w-4xl mx-auto space-y-8">
+                <div class="bg-white rounded-xl shadow-lg p-6">
+                    <h3 class="text-xl font-semibold text-stone-800 mb-4" data-lang-key="consistency_point1_title"></h3>
+                    <p class="text-stone-700" data-lang-key="consistency_point1_desc"></p>
+                </div>
+                <div class="bg-white rounded-xl shadow-lg p-6">
+                    <h3 class="text-xl font-semibold text-stone-800 mb-4" data-lang-key="consistency_point2_title"></h3>
+                    <p class="text-stone-700" data-lang-key="consistency_point2_desc"></p>
+                </div>
+                <div class="bg-white rounded-xl shadow-lg p-6">
+                    <h3 class="text-xl font-semibold text-stone-800 mb-4" data-lang-key="time_management_title"></h3>
+                    <p class="text-stone-700" data-lang-key="time_management_desc"></p>
+                </div>
+                <div class="bg-white rounded-xl shadow-lg p-6">
+                    <h3 class="text-xl font-semibold text-stone-800 mb-4" data-lang-key="time_management_point1_title"></h3>
+                    <ul class="list-disc list-inside space-y-3 text-stone-700" data-lang-key="time_management_point1_list"></ul>
+                </div>
+                <div class="bg-white rounded-xl shadow-lg p-6">
+                    <h3 class="text-xl font-semibold text-stone-800 mb-4" data-lang-key="time_management_point2_title"></h3>
+                    <ul class="list-disc list-inside space-y-3 text-stone-700" data-lang-key="time_management_point2_list"></ul>
+                </div>
+            </div>
+        </section>
+
+        <hr class="my-12 border-t-2 border-stone-200">
+
+        <!-- New Section: Value of Parents' Emotions -->
+        <section id="parents-emotions" class="py-16 md:py-24 bg-amber-50 rounded-2xl">
+            <div class="text-center mb-12 px-4">
+                <h2 class="text-3xl md:text-4xl font-bold text-stone-800" data-lang-key="parents_emotions_title"></h2>
+                <p class="urdu-font text-xl md:text-2xl text-amber-700 mt-2" data-lang-key="parents_emotions_subtitle"></p>
+                <p class="max-w-3xl mx-auto text-stone-700 mt-4" data-lang-key="parents_emotions_description"></p>
+            </div>
+            <div class="max-w-4xl mx-auto space-y-8">
+                <div class="bg-white rounded-xl shadow-lg p-6">
+                    <h3 class="text-xl font-semibold text-stone-800 mb-4" data-lang-key="parents_emotions_point1_title"></h3>
+                    <p class="text-stone-700" data-lang-key="parents_emotions_point1_desc"></p>
+                </div>
+                <div class="bg-white rounded-xl shadow-lg p-6">
+                    <h3 class="text-xl font-semibold text-stone-800 mb-4" data-lang-key="parents_emotions_point2_title"></h3>
+                    <p class="text-stone-700" data-lang-key="parents_emotions_point2_desc"></p>
+                </div>
+                <div class="bg-white rounded-xl shadow-lg p-6">
+                    <h3 class="text-xl font-semibold text-stone-800 mb-4" data-lang-key="parents_emotions_point3_title"></h3>
+                    <p class="text-stone-700" data-lang-key="parents_emotions_point3_desc"></p>
+                </div>
+            </div>
+        </section>
+
+        <hr class="my-12 border-t-2 border-stone-200">
 
         <!-- About Section: Creator's message and prayer -->
-        <section id="about" class="text-center py-16 md:py-24 bg-gray-800 text-white rounded-2xl">
+        <section id="about" class="text-center py-16 md:py-24 bg-emerald-900 text-white rounded-2xl">
             <h2 class="text-3xl md:text-4xl font-bold" data-lang-key="about_title"></h2>
-            <p class="urdu-font text-xl md:text-2xl text-amber-300 mt-2" data-lang-key="about_subtitle"></p>
-            <p class="max-w-2xl mx-auto mt-6 text-gray-300 text-lg" data-lang-key="about_description"></p>
-            <p class="max-w-2xl mx-auto mt-4 text-gray-300 text-lg" data-lang-key="about_prayer">
+            <p class="urdu-font text-xl md:text-2xl text-white mt-2" data-lang-key="about_subtitle"></p>
+            <p class="max-w-2xl mx-auto mt-6 text-white text-lg" data-lang-key="about_description"></p>
+            <p class="max-w-2xl mx-auto mt-4 text-white text-lg" data-lang-key="about_prayer">
                 <br>
-                <span class="urdu-font text-xl text-amber-300 mt-2" data-lang-key="about_prayer_urdu"></span>
+                <span class="urdu-font text-xl text-white mt-2" data-lang-key="about_prayer_urdu"></span>
             </p>
         </section>
     </main>
 
     <!-- Modal for Career Details (initially hidden) -->
-    <div id="career-modal" class="modal fixed inset-0 bg-black bg-opacity-60 flex justify-center items-center p-4 z-50 opacity-0 invisible">
+    <div id="career-modal" class="modal fixed inset-0 bg-emerald-700/60 flex justify-center items-center p-4 z-50 opacity-0 invisible">
         <div id="modal-content" class="modal-content bg-white rounded-lg shadow-2xl w-full max-w-2xl max-h-[90vh] overflow-y-auto transform scale-95">
             <!-- Modal content will be injected here by JavaScript -->
         </div>
@@ -296,22 +358,25 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            let currentLanguage = 'en'; // Default language
+            let currentLanguage = 'en'; // Default language state variable
+            let careerChartInstance; // Variable to hold Chart.js instance
 
             // --- Translation Data ---
-            // Comprehensive translation object for English and Roman Urdu content
+            // Stores all translatable content for English and Roman Urdu.
             const translations = {
                 en: {
                     nav_home: 'Home',
                     nav_challenges: 'Challenges',
                     nav_careers: 'Career Paths',
                     nav_english_resources: 'English Resources',
+                    nav_consistency_time: 'Consistency & Time',
+                    nav_parents_emotions: 'Parents\' Emotions',
                     nav_about: 'About',
                     home_title: 'Welcome, Future Leaders!',
-                    home_subtitle: 'Your Compass to a Brighter Future', // Changed to a distinct English subtitle
+                    home_subtitle: 'Your Compass to a Brighter Future',
                     home_description: 'This platform is dedicated to students like you from Hindi and Urdu medium backgrounds. We understand your journey and the questions you have. Your potential is limitless, and your career choices are vast. Let\'s explore the world of opportunities beyond the common paths of engineering and medicine.',
                     challenges_title: 'The Big Leap: From Your Medium to English',
-                    challenges_subtitle: 'Overcoming Language Transition Hurdles', // Changed to a distinct English subtitle
+                    challenges_subtitle: 'Overcoming Language Transition Hurdles',
                     challenges_description: 'Moving to an English medium for 11th and 12th grade can be challenging, but it\'s a bridge to a wider world of knowledge. Here are common hurdles and how you can overcome them. This section is here to prepare you, not to scare you. With the right approach, you can excel.',
                     challenge1_title: 'Vocabulary and Technical Terms',
                     challenge1_challenge: 'The Challenge: Suddenly, \'Koshika\' becomes \'Cell\' and \'Gurutvakarshan\' becomes \'Gravity\'. It feels like learning a new language for every subject.',
@@ -326,10 +391,10 @@
                     challenge3_solution_intro: 'The Solution:',
                     challenge3_solution_list: '<li>Start by reading simple English storybooks or news articles for 15-20 minutes daily.</li><li>Don\'t look up every single word. Try to understand the meaning from the context of the sentence.</li><li>Summarize each chapter or major section in your own simple English or even in Hindi/Urdu. This ensures you\'ve understood the core concepts.</li>',
                     chart_title: 'Perception vs. Reality of Career Fields',
-                    chart_subtitle: 'Unveiling Diverse Professional Paths', // Changed to a distinct English subtitle
+                    chart_subtitle: 'Unveiling Diverse Professional Paths',
                     chart_description: 'Many students believe there are only a few main career options. This chart shows the reality: the world of professions is vast and diverse. This visualization is designed to open your mind to the sheer number of opportunities that await you beyond the two most commonly discussed fields.',
                     careers_title: 'Explore Career Paths',
-                    careers_subtitle: 'Discover Your Future Profession', // Changed to a distinct English subtitle
+                    careers_subtitle: 'Discover Your Future Profession',
                     careers_description: 'Your future is not limited to just two choices. Here is a curated list of exciting career options across different fields. Click on a category to filter the options, and then click on any card to learn more about what the career involves, the subjects you might need, and the challenges you can expect.',
                     filter_all: 'All Fields',
                     filter_science: 'Science & Tech',
@@ -341,7 +406,7 @@
                     filter_healthcare: 'Healthcare & Life Sciences',
                     filter_education: 'Education & Training',
                     resources_title: 'Boost Your English Skills',
-                    resources_subtitle: 'Essential Resources for Language Mastery', // Changed to a distinct English subtitle
+                    resources_subtitle: 'Essential Resources for Language Mastery',
                     resources_description: 'Improving your English can open many doors. Here are some free and easy-to-use resources tailored for Hindi/Urdu speakers to help you along your journey. Consistency is key!',
                     resources_vocab_title: 'Vocabulary & Grammar',
                     resources_vocab_list: '<li><strong>Duolingo / Hello English app:</strong> Fun and interactive lessons for all levels, with Hindi/Urdu support.</li><li><strong>Cambridge Dictionary (Online):</strong> Provides definitions, examples, and often pronunciation guides.</li><li><strong>Grammarly (Free version):</strong> Helps check your writing for grammatical errors and suggests improvements.</li><li><strong>"Word of the Day" apps:</strong> Build your vocabulary daily with new words and their meanings.</li>',
@@ -349,11 +414,28 @@
                     resources_speak_list: '<li><strong>YouTube Channels:</strong> Search for "Spoken English for Hindi speakers" or "Learn English through Urdu" (e.g., Learn English with Viva, BBC Learning English).</li><li><strong>TED Talks (with subtitles):</strong> Listen to inspiring speeches on various topics and use subtitles initially.</li><li><strong>English News Channels/Podcasts:</strong> Start with slower-paced news or podcasts for learners.</li><li><strong>Practice Speaking:</strong> Find a study partner or use apps like HelloTalk to practice with native speakers.</li>',
                     resources_read_title: 'Reading & Writing',
                     resources_read_list: '<li><strong>Simple English Wikipedia:</strong> Read articles on various subjects in simpler English.</li><li><strong>Short English Storybooks:</strong> Start with children\'s books or simplified novels.</li><li><strong>Write Daily:</strong> Maintain a short diary in English, write emails, or summarize what you\'ve read.</li><li><strong>News in Slow English:</strong> Websites that provide news articles read at a slower pace.</li>',
-                    about_title: 'About this Initiative',
-                    about_subtitle: 'A Guide from Aasim Raza', // Changed to a distinct English subtitle
-                    about_description: 'This website is a humble effort by <strong class="font-semibold text-amber-300">Aasim Raza</strong> to guide and empower students from our communities. The goal is to provide clarity and open doors to a future full of possibilities.',
-                    about_prayer: 'If you find this helpful, all that is asked for is your prayers.',
-                    about_prayer_urdu: 'If you find this helpful, all that is asked for is your prayers.'
+                    consistency_time_title: 'Consistency & Time Management',
+                    consistency_time_subtitle: 'Keys to Unlocking Your Full Potential',
+                    consistency_time_description: 'Success isn\'t just about talent; it\'s about showing up consistently and managing your time wisely. These habits build momentum and resilience, crucial for any long-term goal.',
+                    consistency_point1_title: 'The Power of Consistency',
+                    consistency_point1_desc: 'Regular, small efforts compound over time. Instead of sporadic intense study sessions, aim for daily, disciplined learning. This not only reinforces knowledge but also builds strong habits.',
+                    consistency_point2_title: 'Building Momentum',
+                    consistency_point2_desc: 'Consistent effort creates a positive cycle. Each small achievement boosts confidence and makes the next step easier, propelling you towards your goals with steady progress.',
+                    time_management_title: 'Mastering Time Management',
+                    time_management_desc: 'Time is your most valuable resource. Learning to manage it effectively will reduce stress, improve productivity, and give you more freedom.',
+                    time_management_point1_title: 'Create a Study Schedule',
+                    time_management_point1_list: '<li><strong>Prioritize Tasks:</strong> Identify your most important and urgent tasks.</li><li><strong>Break Down Goals:</strong> Divide large assignments into smaller, manageable steps.</li><li><strong>Use Tools:</strong> Utilize planners, calendars, or apps to track your schedule.</li><li><strong>Allocate Time:</strong> Dedicate specific blocks for study, revision, and breaks.</li>',
+                    time_management_point2_title: 'Avoid Procrastination',
+                    time_management_point2_list: '<li><strong>Start Small:</strong> Begin with the easiest part of a daunting task.</li><li><strong>Set Deadlines:</strong> Give yourself mini-deadlines for each sub-task.</li><li><strong>Reward Yourself:</strong> Plan small rewards after completing tasks to stay motivated.</li><li><strong>Eliminate Distractions:</strong> Turn off notifications and find a quiet study environment.</li>',
+                    parents_emotions_title: 'The Value of Parents\' Emotions',
+                    parents_emotions_subtitle: 'Navigating Expectations with Empathy',
+                    parents_emotions_description: 'Your parents are your biggest well-wishers. Understanding their emotional investment in your future, and communicating openly with them, is key to a supportive and harmonious journey.',
+                    parents_emotions_point1_title: 'Understanding Their Worries',
+                    parents_emotions_point1_desc: 'Often, parents\' strictness or high expectations stem from their love and concern for your future security. They might not always express it perfectly, but their intentions are usually good. Try to see things from their perspective.',
+                    parents_emotions_point2_title: 'Open Communication is Key',
+                    parents_emotions_point2_desc: 'Share your aspirations, fears, and academic challenges with your parents. Explain your career interests and why they align with your strengths. A calm, honest conversation can bridge gaps and build trust.',
+                    parents_emotions_point3_title: 'Seeking Their Blessings and Support',
+                    parents_emotions_point3_desc: 'Even if their initial reaction isn\'t what you hoped for, remember their sacrifices and hard work. Seek their blessings, involve them in your decision-making process (where appropriate), and show appreciation for their efforts. Their emotional support is invaluable.'
                 },
                 // Roman Urdu translations
                 ur: {
@@ -361,58 +443,148 @@
                     nav_challenges: 'Challenges',
                     nav_careers: 'Career Paths',
                     nav_english_resources: 'English Resources',
+                    nav_consistency_time: 'Mustaqil Mizaji & Waqt',
+                    nav_parents_emotions: 'Walidain ke Jazbat',
                     nav_about: 'About Us',
-                    home_title: 'Khush Amadid, Mustaqbil ke Rehnumaon!', // Welcome, Future Leaders!
-                    home_subtitle: 'Aapke Roshan Mustaqbil ki Disha', // Your Compass to a Brighter Future
+                    home_title: 'Khush Amadid, Mustaqbil ke Rehnumaon!',
+                    home_subtitle: 'Aapke Roshan Mustaqbil ki Disha',
                     home_description: 'Yeh platform aap jaise Hindi aur Urdu medium ke talba ke liye makhsoos hai. Hum aapke safar aur aapke sawalon ko samajhte hain. Aapki salahiyat be-hud hain, aur aapke career ke intikhabat bohot wasee hain. Aaiye engineering aur medicine ke aam raston se hat kar mauqo ki duniya ko daryaft karein.',
-                    challenges_title: 'Bari Chhalang: Aapke Medium se English tak', // The Big Leap: From Your Medium to English
-                    challenges_subtitle: 'Zuban ki Tabdeeli ki Rukawaton par Qabu Paana', // Overcoming Language Transition Hurdles
+                    challenges_title: 'Bari Chhalang: Aapke Medium se English tak',
+                    challenges_subtitle: 'Zuban ki Tabdeeli ki Rukawaton par Qabu Paana',
                     challenges_description: '11th aur 12th jamaat ke liye English medium mein jaana challenging ho sakta hai, lekin yeh ilm ki wasee duniya ka ek pul hai. Yahan aam rukawatein aur aap unhein kaise dur kar sakte hain. Yeh section aapko tayyar karne ke liye hai, na ke aapko darane ke liye. Sahi nuqta nazar ke saath, aap behtareen karkardagi ka muzahira kar sakte hain.',
-                    challenge1_title: 'Lughat aur Takniki Istilahaat', // Vocabulary and Technical Terms
-                    challenge1_challenge: 'Challenge: Achanak, \'Koshika\' \'Cell\' ban jati hai aur \'Gurutvakarshan\' \'Gravity\'. Aisa lagta hai ke har mazmoon ke liye ek nai zubaan seekh rahe hain.',
-                    challenge1_solution_intro: 'Hal:', // Solution:
-                    challenge1_solution_list: '<li>Har mazmoon ke liye do-zubani lughat banaein. English term aur uska Hindi/Urdu hum-ma\'ani likhein.</li><li>Rozana naye alfaaz yaad karne ke liye flashcards istemal karein.</li><li>Aap jin mawad ka mutala kar rahe hain un par English mein taleemi videos dekhein. Basri alfaaz ko tasawwurat se jorne mein madad karenge.</li>',
-                    challenge2_title: 'Classroom mein Khud Etemadi', // Classroom Confidence
+                    challenge1_title: 'Lughat aur Takniki Istilahaat',
+                    challenge1_challenge: 'Challenge: Achanak, \'Koshika\' \'Cell\' ban jati hai aur \'Gurutvakarshan\' \'Gravity\'. Aisa lagta hai ke har mazmoon ke liye ek nai zubaan seekh رہے hain.',
+                    challenge1_solution_intro: 'Hal:',
+                    challenge1_solution_list: '<li>Har mazmoon ke liye do-zubani lughat banaein. English term aur uska Hindi/Urdu hum-ma\'ani likhein.</li><li>Rozana naye alfaaz yaad karne ke liye flashcards istemal karein.</li><li>Aap jin mawad ka mutala kar رہے hain un par English mein taleemi videos dekhein. Basri alfaaz ko tasawwurat se jorne mein madad karenge.</li>',
+                    challenge2_title: 'Classroom mein Khud Etemadi',
                     challenge2_challenge: 'Challenge: Aap ustad ko samajhte hain, lekin aap sawal poochhne ya jawab dene se darte hain, yeh soch kar ke aap grammar ki galti kar denge.',
                     challenge2_solution_intro: 'Hal:',
                     challenge2_solution_list: '<li>Dostoun ke saath English bolne ki mashq karein jo mu\'awin hon. Ghaltiyan karna theek hai!</li><li>Sawal poochhne se pehle apne sawalat likhein. Yeh aapko apne khayalat ko munazzam karne mein madad karta hai.</li><li>Yaad rakhein, aapke ustad aapki madad karna chahte hain. Aapka sawal poochhne ka hausla behtareen grammar se ziyada aham hai.</li>',
-                    challenge3_title: 'Parrhne ki Raftar aur Samajh', // Reading Speed and Comprehension
+                    challenge3_title: 'Parrhne ki Raftar aur Samajh',
                     challenge3_challenge: 'Challenge: English mein nasabi kitabein parrhne mein bahut zyada waqt lagta hai, aur aapko unhein samajhne ke liye paragraphs ko dobara parrhna parta hai.',
                     challenge3_solution_intro: 'Hal:',
                     challenge3_solution_list: '<li>Rozana 15-20 minute ke liye simple English kahaniyon ki kitabein ya akhbar parrhna shuru karein.</li><li>Har ek lafz ko na dekhein. Jumle ke sayaq o sabaq se ma\'ani samajhne ki koshish karein.</li><li>Har baab ya bade hisse ka khulasa apni sada English ya Hindi/Urdu mein karein. Yeh yaqeeni banata hai ke aapne bunyadi tasawwurat ko samajh liya hai.</li>',
-                    chart_title: 'Career ke Sho\'bon ka Tasawwur ba Muqabla Haqeeqat', // Perception vs. Reality of Career Fields
-                    chart_subtitle: 'Mukhtalif Peshawaranah Rastoun ki Naqab Kushai', // Unveiling Diverse Professional Paths
+                    chart_title: 'Career ke Sho\'bon ka Tasawwur ba Muqabla Haqeeqat',
+                    chart_subtitle: 'Mukhtalif Peshawaranah Rastoun ki Naqab Kushai',
                     chart_description: 'Bohat se talba ka khayal hai ke career ke sirf chand aham options hain. Yeh chart haqeeqat ko zahir karta hai: peshon ki duniya bahut wasee aur mutanawwi hai. Yeh visualization aapke zehan ko un be-shumar mawaqe ke liye kholne ke liye design kiya gaya hai jo engineering aur medicine ke do sab se ziyada aam taur par zere-bahas shobon se hat kar aapke muntazir hain.',
-                    careers_title: 'Career ke Raaste Talash Karein', // Explore Career Paths
-                    careers_subtitle: 'Apne Mustaqbil ke Peshe Daryaft Karein', // Discover Your Future Profession
+                    careers_title: 'Career ke Raaste Talash Karein',
+                    careers_subtitle: 'Apne Mustaqbil ke Peshe Daryaft Karein',
                     careers_description: 'Aapka mustaqbil sirf do ikhtiyarat tak mehdood nahin hai. Yahan mukhtalif shobon mein dilchasp career options ki ek فہرست di gai hai. Options ko filter karne ke liye ek category par click karein, aur phir kisi bhi card par click karke yeh jaanen ke is career mein kya shamil hai, aapko kin mazameen ki zaroorat parr sakti hai, aur aap kin challenges ki tawaqqo kar sakte hain.',
-                    filter_all: 'Tamam Sho\'be', // All Fields
+                    filter_all: 'Tamam Sho\'be',
                     filter_science: 'Science aur Tech',
                     filter_commerce: 'Commerce aur Finance',
                     filter_arts: 'Arts aur Humanities',
-                    filter_creative: 'Takhleeqi Sho\'be', // Creative Fields
+                    filter_creative: 'Takhleeqi Sho\'be',
                     filter_vocational: 'Vocational aur Skill-Based',
                     filter_public_service: 'Sarkari aur Public Service',
                     filter_healthcare: 'Sehat ki Dekhbhal aur Life Sciences',
                     filter_education: 'Taleem aur Training',
-                    resources_title: 'Apni English Skills ko Behtar Banaein', // Boost Your English Skills
-                    resources_subtitle: 'Zuban ki Maharat ke liye Aham Wasail', // Essential Resources for Language Mastery
+                    resources_title: 'Apni English Skills ko Behtar Banaein',
+                    resources_subtitle: 'Zuban ki Maharat ke liye Aham Wasail',
                     resources_description: 'Apni English mein sudhar se bahut se darwaze khul sakte hain. Hindi/Urdu bolne walon ke liye aapke safar mein madad ke liye yahan kuch muft aur aasan-ul-istemal wasail diye gaye hain. Mustaqil mizaji kunji hai!',
-                    resources_vocab_title: 'Lughat aur Grammar', // Vocabulary & Grammar
+                    resources_vocab_title: 'Lughat aur Grammar',
                     resources_vocab_list: '<li><strong>Duolingo / Hello English app:</strong> Fun aur interactive asbaq, Hindi/Urdu support ke saath.</li><li><strong>Cambridge Dictionary (Online):</strong> Ta\'areefein, misaalain, aur aksar talaffuz ki rehnumai faraham karta hai.</li><li><strong>Grammarly (Free version):</strong> Aapki tehreer mein grammar ki ghaltiyon ko jaanchne aur behtari ki tajawiz dene mein madad karta hai.</li><li><strong>"Word of the Day" apps:</strong> Rozana naye alfaaz aur unke ma\'ani ke saath apni lughat banaein.</li>',
-                    resources_speak_title: 'Bolna aur Sunna', // Speaking & Listening
-                    resources_speak_list: '<li><strong>YouTube Channels:</strong> "Hindi bolne walon ke liye Spoken English" ya "Urdu ke zariye English seekhein" (misal ke taur par, Learn English with Viva, BBC Learning English) talash karein.</li><li><strong>TED Talks (subtitles ke saath):</strong> Mukhtalif mawad par mutasir kun taqreerein sunein aur ibtadai taur par subtitles istemal karein.</li><li><strong>English News Channels/Podcasts:</strong> Seekhne walon ke liye sust raftar khabron ya podcasts se shuru karein.</li><li><strong>Bolne ki Mashq:</strong> Ek study partner talash karein ya native speakers ke saath mashq karne ke liye HelloTalk jaisi apps istemal karein.</li>',
-                    resources_read_title: 'Parrhna aur Likhna', // Reading & Writing
-                    resources_read_list: '<li><strong>Simple English Wikipedia:</strong> Simple English mein mukhtalif mawad par articles parrein.</li><li><strong>Choti English Kahaniyon ki Kitabein:</strong> Bachchon ki kitabon ya sadah navelon se shuru karein.</li><li><strong>Rozana Likhein:</strong> English mein ek choti diary rakhein, emails likhein, ya jo kuch aapne parrhha hai uska khulasa karein.</li><li><strong>Slow English mein News:</strong> Aisi websites jo sust raftar se news faraham karti hain.</li>',
-                    about_title: 'Is Pehal ke Barey Mein', // About this Initiative
-                    about_subtitle: 'Aasim Raza ki Janib se Ek Rehnumai', // A Guide from Aasim Raza
-                    about_description: 'Yeh website <strong class="font-semibold text-amber-300">Aasim Raza</strong> ki janib se hamari biradariyoon ke talba ki rehnumai aur unhein ba-ikhtiyar banane ki ek ajizana koshish hai. Iska maqsad wazahat faraham karna aur imkanat se bhare mustaqbil ke liye darwaze kholna hai.',
-                    about_prayer: 'Agar aapko yeh madadgar lage to sirf duaon ki darkhwast hai.',
-                    about_prayer_urdu: 'Agar aapko yeh madadgar lage to sirf duaon ki darkhwast hai.'
+                    resources_speak_title: 'Bolna aur Sunna',
+                    resources_speak_list: '<li><strong>YouTube Channels:</strong> "Hindi bolne walon ke liye Spoken English" ya "Urdu ke zariye English seekhein" (misal ke taur par, Learn English with Viva, BBC Learning English) talash karein.</li><li><strong>TED Talks (subtitles ke saath):</strong> Mukhtalif mawad par mutasir kun taqreerein sunein aur ibtadai taur par subtitles istemal karein.</li><li><strong>English News Channels/Podcasts:</strong> Seekhne walon ke liye sust raftar khabron ya podcasts parhein.</li><li><strong>Bolne ki Mashq:</strong> Ek study partner talash karein ya native speakers ke saath mashq karne ke liye HelloTalk jaisi apps istemal karein.</li>',
+                    resources_read_title: 'Parrhna aur Likhna',
+                    resources_read_list: '<li><strong>Simple English Wikipedia:</strong> Simple English mein mukhtalif mawad par articles parhein.</li><li><strong>Choti English Kahaniyon ki Kitabein:</strong> Bachchon ki kitabon ya sadah navelon se shuru karein.</li><li><strong>Rozana Likhein:</strong> English mein ek choti diary rakhein, emails likhein, ya jo kuch aapne parrhha hai uska khulasa karein.</li><li><strong>Slow English mein News:</strong> Aisi websites jo sust raftar se news faraham karti hain.</li>',
+                    consistency_time_title: 'Consistency & Time Management',
+                    consistency_time_subtitle: 'Keys to Unlocking Your Full Potential',
+                    consistency_time_description: 'Success isn\'t just about talent; it\'s about showing up consistently and managing your time wisely. These habits build momentum and resilience, crucial for any long-term goal.',
+                    consistency_point1_title: 'The Power of Consistency',
+                    consistency_point1_desc: 'Regular, small efforts compound over time. Instead of sporadic intense study sessions, aim for daily, disciplined learning. This not only reinforces knowledge but also builds strong habits.',
+                    consistency_point2_title: 'Building Momentum',
+                    consistency_point2_desc: 'Consistent effort creates a positive cycle. Each small achievement boosts confidence and makes the next step easier, propelling you towards your goals with steady progress.',
+                    time_management_title: 'Mastering Time Management',
+                    time_management_desc: 'Time is your most valuable resource. Learning to manage it effectively will reduce stress, improve productivity, and give you more freedom.',
+                    time_management_point1_title: 'Create a Study Schedule',
+                    time_management_point1_list: '<li><strong>Prioritize Tasks:</strong> Identify your most important and urgent tasks.</li><li><strong>Break Down Goals:</strong> Divide large assignments into smaller, manageable steps.</li><li><strong>Use Tools:</strong> Utilize planners, calendars, or apps to track your schedule.</li><li><strong>Allocate Time:</strong> Dedicate specific blocks for study, revision, and breaks.</li>',
+                    time_management_point2_title: 'Avoid Procrastination',
+                    time_management_point2_list: '<li><strong>Start Small:</strong> Begin with the easiest part of a daunting task.</li><li><strong>Set Deadlines:</strong> Give yourself mini-deadlines for each sub-task.</li><li><strong>Reward Yourself:</strong> Plan small rewards after completing tasks to stay motivated.</li><li><strong>Eliminate Distractions:</strong> Turn off notifications and find a quiet study environment.</li>',
+                    parents_emotions_title: 'The Value of Parents\' Emotions',
+                    parents_emotions_subtitle: 'Navigating Expectations with Empathy',
+                    parents_emotions_description: 'Your parents are your biggest well-wishers. Understanding their emotional investment in your future, and communicating openly with them, is key to a supportive and harmonious journey.',
+                    parents_emotions_point1_title: 'Understanding Their Worries',
+                    parents_emotions_point1_desc: 'Often, parents\' strictness or high expectations stem from their love and concern for your future security. They might not always express it perfectly, but their intentions are usually good. Try to see things from their perspective.',
+                    parents_emotions_point2_title: 'Open Communication is Key',
+                    parents_emotions_point2_desc: 'Share your aspirations, fears, and academic challenges with your parents. Explain your career interests and why they align with your strengths. A calm, honest conversation can bridge gaps and build trust.',
+                    parents_emotions_point3_title: 'Seeking Their Blessings and Support',
+                    parents_emotions_point3_desc: 'Even if their initial reaction isn\'t what you hoped for, remember their sacrifices and hard work. Seek their blessings, involve them in your decision-making process (where appropriate), and show appreciation for their efforts. Their emotional support is invaluable.'
                 }
             };
 
-            // Career data for dynamic rendering and modal details
+            // Roman Urdu translations
+            translations.ur = { ...translations.en, // Start with English translations to fill in missing ones
+                nav_consistency_time: 'Mustaqil Mizaji & Waqt',
+                nav_parents_emotions: 'Walidain ke Jazbat',
+                nav_about: 'About Us', // Keeping About Us for consistency in Roman Urdu
+                home_title: 'Khush Amadid, Mustaqbil ke Rehnumaon!',
+                home_subtitle: 'Aapke Roshan Mustaqbil ki Disha',
+                home_description: 'Yeh platform aap jaise Hindi aur Urdu medium ke talba ke liye makhsoos hai. Hum aapke safar aur aapke sawalon ko samajhte hain. Aapki salahiyat be-hud hain, aur aapke career ke intikhabat bohot wasee hain. Aaiye engineering aur medicine ke aam raston se hat kar mauqo ki duniya ko daryaft karein.',
+                challenges_title: 'Bari Chhalang: Aapke Medium se English tak',
+                challenges_subtitle: 'Zuban ki Tabdeeli ki Rukawaton par Qabu Paana',
+                challenges_description: '11th aur 12th jamaat ke liye English medium mein jaana challenging ho sakta hai, lekin yeh ilm ki wasee duniya ka ek pul hai. Yahan aam rukawatein aur aap unhein kaise dur kar sakte hain. Yeh section aapko tayyar karne ke liye hai, na ke aapko darane ke liye. Sahi nuqta nazar ke saath, aap behtareen karkardagi ka muzahira kar sakte hain.',
+                challenge1_title: 'Lughat aur Takniki Istilahaat',
+                challenge1_challenge: 'Challenge: Achanak, \'Koshika\' \'Cell\' ban jati hai aur \'Gurutvakarshan\' \'Gravity\'. Aisa lagta hai ke har mazmoon ke liye ek nai zubaan seekh rahe hain.',
+                challenge1_solution_intro: 'Hal:',
+                challenge1_solution_list: '<li>Har mazmoon ke liye do-zubani lughat banaein. English term aur uska Hindi/Urdu hum-ma\'ani likhein.</li><li>Rozana naye alfaaz yaad karne ke liye flashcards istemal karein.</li><li>Aap jin mawad ka mutala kar rahe hain un par English mein taleemi videos dekhein. Basri alfaaz ko tasawwurat se jorne mein madad karenge.</li>',
+                challenge2_title: 'Classroom mein Khud Etemadi',
+                challenge2_challenge: 'Challenge: Aap ustad ko samajhte hain, lekin aap sawal poochhne ya jawab dene se darte hain, yeh soch kar ke aap grammar ki galti kar denge.',
+                challenge2_solution_intro: 'Hal:',
+                challenge2_solution_list: '<li>Dostoun ke saath English bolne ki mashq karein jo mu\'awin hon. Ghaltiyan karna theek hai!</li><li>Sawal poochhne se pehle apne sawalat likhein. Yeh aapko apne khayalat ko munazzam karne mein madad karta hai.</li><li>Yaad rakhein, aapke ustad aapki madad karna chahte hain. Aapka sawal poochhne ka hausla behtareen grammar se ziyada aham hai.</li>',
+                challenge3_title: 'Parrhne ki Raftar aur Samajh',
+                challenge3_challenge: 'Challenge: English mein nasabi kitabein parrhne mein bahut zyada waqt lagta hai, aur aapko unhein samajhne ke liye paragraphs ko dobara parrhna parta hai.',
+                challenge3_solution_intro: 'Hal:',
+                challenge3_solution_list: '<li>Rozana 15-20 minute ke liye simple English kahaniyon ki kitabein ya akhbar parrhna shuru karein.</li><li>Har ek lafz ko na dekhein. Jumle ke sayaq o sabaq se ma\'ani samajhne ki koshish karein.</li><li>Har baab ya bade hisse ka khulasa apni sada English ya Hindi/Urdu mein karein. Yeh yaqeeni banata hai ke aapne bunyadi tasawwurat ko samajh liya hai.</li>',
+                chart_title: 'Career ke Sho\'bon ka Tasawwur ba Muqabla Haqeeqat',
+                chart_subtitle: 'Mukhtalif Peshawaranah Rastoun ki Naqab Kushai',
+                chart_description: 'Bohat se talba ka khayal hai ke career ke sirf chand aham options hain. Yeh chart haqeeqat ko zahir karta hai: peshon ki duniya bahut wasee aur mutanawwi hai. Yeh visualization aapke zehan ko un be-shumar mawaqe ke liye kholne ke liye design kiya gaya hai jo engineering aur medicine ke do sab se ziyada aam taur par zere-bahas shobon se hat kar aapke muntazir hain.',
+                careers_title: 'Career ke Raaste Talash Karein',
+                careers_subtitle: 'Apne Mustaqbil ke Peshe Daryaft Karein',
+                careers_description: 'Aapka mustaqbil sirf do ikhtiyarat tak mehdood nahin hai. Yahan mukhtalif shobon mein dilchasp career options ki ek فہرست di gai hai. Options ko filter karne ke liye ek category par click karein, aur phir kisi bhi card par click karke yeh jaanen ke is career mein kya shamil hai, aapko kin mazameen ki zaroorat parr sakti hai, aur aap kin challenges ki tawaqqo kar sakte hain.',
+                filter_all: 'Tamam Sho\'be',
+                filter_science: 'Science aur Tech',
+                filter_commerce: 'Commerce aur Finance',
+                filter_arts: 'Arts aur Humanities',
+                filter_creative: 'Takhleeqi Sho\'be',
+                filter_vocational: 'Vocational aur Skill-Based',
+                filter_public_service: 'Sarkari aur Public Service',
+                filter_healthcare: 'Sehat ki Dekhbhal aur Life Sciences',
+                filter_education: 'Taleem aur Training',
+                resources_title: 'Apni English Skills ko Behtar Banaein',
+                resources_subtitle: 'Zuban ki Maharat ke liye Aham Wasail',
+                resources_description: 'Apni English mein sudhar se bahut se darwaze khul sakte hain. Hindi/Urdu bolne walon ke liye aapke safar mein madad ke liye yahan kuch muft aur aasan-ul-istemal wasail diye gaye hain. Mustaqil mizaji kunji hai!',
+                resources_vocab_title: 'Lughat aur Grammar',
+                resources_vocab_list: '<li><strong>Duolingo / Hello English app:</strong> Fun aur interactive asbaq, Hindi/Urdu support ke saath.</li><li><strong>Cambridge Dictionary (Online):</strong> Ta\'areefein, misaalain, aur aksar talaffuz ki rehnumai faraham karta hai.</li><li><strong>Grammarly (Free version):</strong> Aapki tehreer mein grammar ki ghaltiyon ko jaanchne aur behtari ki tajawiz dene mein madad karta hai.</li><li><strong>"Word of the Day" apps:</strong> Rozana naye alfaaz aur unke ma\'ani ke saath apni lughat banaein.</li>',
+                resources_speak_title: 'Bolna aur Sunna',
+                resources_speak_list: '<li><strong>YouTube Channels:</strong> "Hindi bolne walon ke liye Spoken English" ya "Urdu ke zariye English seekhein" (misal ke taur par, Learn English with Viva, BBC Learning English) talash karein.</li><li><strong>TED Talks (subtitles ke saath):</strong> Mukhtalif mawad par mutasir kun taqreerein sunein aur ibtadai taur par subtitles istemal karein.</li><li><strong>English News Channels/Podcasts:</strong> Seekhne walon ke liye sust raftar khabron ya podcasts parhein.</li><li><strong>Bolne ki Mashq:</strong> Ek study partner talash karein ya native speakers ke saath mashq karne ke liye HelloTalk jaisi apps istemal karein.</li>',
+                resources_read_title: 'Parrhna aur Likhna',
+                resources_read_list: '<li><strong>Simple English Wikipedia:</strong> Simple English mein mukhtalif mawad par articles parrein.</li><li><strong>Choti English Kahaniyon ki Kitabein:</strong> Bachchon ki kitabon ya sadah navelon se shuru karein.</li><li><strong>Rozana Likhein:</strong> English mein ek choti diary rakhein, emails likhein, ya jo kuch aapne parrhha hai uska khulasa karein.</li><li><strong>Slow English mein News:</strong> Aisi websites jo sust raftar se news faraham karti hain.</li>',
+                consistency_time_title: 'Mustaqil Mizaji aur Waqt ka Intizam',
+                consistency_time_subtitle: 'Aapki Mukammal Salahiyat ko Kholne ki Kunji',
+                consistency_time_description: 'Kamyabi sirf salahiyat ke barey mein nahi hai; yeh musalsal mehnat aur waqt ka samajhdari se intizam karne ke barey mein hai. Yeh aadatein raftaar aur lachak paida karti hain, jo kisi bhi taweel muddat ke maqsad ke liye zaroori hain.',
+                consistency_point1_title: 'Mustaqil Mizaji ki Quwwat',
+                consistency_point1_desc: 'Musalsal, choti koshishen waqt ke saath jama hoti hain. Kabhi kabhar shadeed mutale ke sessions ke bajaye, rozana, ba-zabtگی se seekhne ka hadaf rakhein. Yeh na sirf ilm ko mazboot karta hai balkay mazboot aadatein bhi paida karta hai.',
+                consistency_point2_title: 'Raftaar banana',
+                consistency_point2_desc: 'Mustaqil koshish ek misbet cycle banati hai. Har choti kamyabi khud-etmadi barhati hai aur agla qadam aasan banati hai, aapko mustaqil taraqqi ke saath apne ahdaf ki taraf dhakel deti hai.',
+                time_management_title: 'Waqt ka Intizam Seekhna',
+                time_management_desc: 'Waqt aapka sab se qeemti waseela hai. Iska asar-angez tareeqe se intizam karna tanau ko kam karega, پیداواری صلاحیت ko behtar banayega, aur aapko ziyada azadi dega.',
+                time_management_point1_title: 'Study Schedule Banaein',
+                time_management_point1_list: '<li><strong>Tasks ko Tarjeeh Dein:</strong> Apne sab se aham aur fouri kaam ki nishandahi karein.</li><li><strong>Goals ko Chote Hisson mein Baantein:</strong> Bare assignments ko chote, qabil-e-intizam steps mein taqseem karein.</li><li><strong>Tools Istemal Karein:</strong> Apne schedule ko track karne ke liye planners, calendars, ya apps ka istemal karein.</li><li><strong>Waqt Mukarrar Karein:</strong> Mutale, dohrai, aur breaks ke liye makhsoos waqt mukarrar karein.</li>',
+                time_management_point2_title: 'Ghaflat se Bachein',
+                time_management_point2_list: '<li><strong>Start Small:</strong> Mushkil kaam ke sab se aasan hisse se shuru karein.</li><li><strong>Set Deadlines:</strong> Har sub-task ke liye khud ko mini-deadlines dein.</li><li><strong>Reward Yourself:</strong> Plan small rewards after completing tasks to stay motivated.</li><li><strong>Eliminate Distractions:</strong> Notifications band karein aur mutale ke liye pur-sukoon mahol talash karein.</li>',
+                parents_emotions_title: 'Walidain ke Jazbat ki Qadar',
+                parents_emotions_subtitle: 'Umeedon ko Hamdardi se Samajhna',
+                parents_emotions_description: 'Aapke walidain aapke sab se bare khair-khwah hain. Unke mustaqbil mein aapki jazbati sarmaya kari ko samajhna, aur unke saath khule dil se baat cheet karna, aik معاون aur ham-ahang safar ki kunji hai.',
+                parents_emotions_point1_title: 'Unki Fikron ko Samajhna',
+                parents_emotions_point1_desc: 'Aksar, walidain ki sakhti ya oonchi tawaqqoat aapke mustaqbil ki salamati ke liye unki mohabbat aur fikr se paida hoti hain. Woh hamesha ise behtareen tareeqe se zahir nahi kar sakte, lekin unki niyatain aam taur par achhi hoti hain. Cheezon ko unke nuqta nazar se dekhne ki koshish karein.',
+                parents_emotions_point2_title: 'Khuli Baat Cheet Kunji Hai',
+                parents_emotions_point2_desc: 'Apni khwahishat, khauf, aur taleemi mushkilat walidain ke saath share karein. Apni career ki dilchaspiyan aur woh aapki salahiyaton se kaise mel khati hain, yeh unhein samjhaein. Ek pur-sukoon, imandari se ki gai baat cheet khala ko pur kar sakti hai aur bharosa bana sakti hai.',
+                parents_emotions_point3_title: 'Unki Duaon aur Himayat Hasil Karein',
+                parents_emotions_point3_desc: 'Agar unka ibtidai radde amal woh na ho jo aapne ummeed ki thi, to unki qurbaniyon aur mehnat ko yaad rakhein. Unki duaen talab karein, unhein apne faisla sazi ke amal mein shamil karein (jahan munasib ho), aur unki koshishon ke liye shukriya ada karein. Unki jazbati himayat be-qimmat hai.'
+            };
+
+            // Career data for dynamic rendering and modal details.
             // Each career object contains properties for its display in English and Roman Urdu.
             const careerData = [
                 {
@@ -622,131 +794,167 @@
                 }
             ];
 
+            // Update about_description to embed styling directly for "Aasim Raza"
+            translations.en.about_description = 'This interactive guide is a humble effort by <span class="text-white font-semibold">Aasim Raza</span> to provide clarity and direction to students navigating their career paths after 10th grade. Inspired by the challenges faced by students transitioning from Urdu and Hindi medium schools, this initiative aims to bridge knowledge gaps and illuminate the vast opportunities available. We believe that with proper guidance, every student can unlock their true potential and achieve their dreams, regardless of their linguistic background.';
+            translations.ur.about_description = 'Yeh interactive guide <span class="text-white font-semibold">Aasim Raza</span> ki taraf se ek mamooli koshish hai taake 10th jamaat ke baad career ke raston par chalne wale talba ko wazahat aur simt mil sake. Urdu aur Hindi medium ke schools se talba ko darpesh mushkilat se mutasir ho kar, is iqdam ka maqsad ilm ki khamiyon ko pur karna aur dastiyab wasee mawaqe ko roshan karna hai. Hamara yaqeen hai ke sahih rehnumai ke saath, har talib-e-ilm apni asal salahiyat ko khol sakta hai aur apne khwabon ko pura kar sakta hai, chahe unka lisani pas-manzar kuch bhi ho.';
+            translations.en.about_prayer = 'May Allah grant every student the ability to succeed and make their parents proud. Ameen.';
+            translations.ur.about_prayer = 'Allah har talib-e-ilm ko kamyabi ata farmaey aur unke walidain ko fakhr mehsoos karaye. Ameen.';
 
-            // --- Language Switching Logic ---
-            const langButtons = document.querySelectorAll('.lang-btn');
-            const mobileMenuButton = document.getElementById('mobile-menu-button');
-            const mobileMenu = document.getElementById('mobile-menu');
 
-            // Function to update content based on current language
+            /**
+             * Updates all translatable content on the page based on the current language.
+             * It uses data-lang-key attributes to find elements and populate them.
+             * Special handling for elements expecting HTML content (like lists or specifically styled text).
+             */
             function updateContent() {
                 document.querySelectorAll('[data-lang-key]').forEach(element => {
                     const key = element.getAttribute('data-lang-key');
-                    // Check if the key exists for the current language
+                    // Check if translation exists for the current language and key
                     if (translations[currentLanguage] && translations[currentLanguage][key]) {
-                        // For list items, innerHTML is needed to render HTML tags like <strong> and <li>
-                        // Also for paragraph elements that might contain strong tags (e.g., challenge/solution intros)
-                        // Adjusted logic to apply innerHTML only where strong tags or list items are expected
-                        if (element.tagName === 'UL' || (element.tagName === 'P' && (key.includes('challenge') || key.includes('solution') || key.includes('description') || key.includes('prayer'))) || key.includes('_list')) {
-                            element.innerHTML = translations[currentLanguage][key];
+                        // Use innerHTML for lists and specific paragraphs that contain embedded HTML (like <strong> or <span>)
+                        // This ensures bolding or colored text within sentences is rendered.
+                        const content = translations[currentLanguage][key];
+                        if (element.tagName === 'UL' || ['about_description', 'about_prayer', 'challenge1_solution_list', 'challenge2_solution_list', 'challenge3_solution_list', 'resources_vocab_list', 'resources_speak_list', 'resources_read_list', 'time_management_point1_list', 'time_management_point2_list'].includes(key)) {
+                             element.innerHTML = content;
                         } else {
-                            element.textContent = translations[currentLanguage][key];
+                            element.textContent = content;
                         }
+                    } else {
+                        // Fallback or clear if no translation found, though translations object is comprehensive
+                        element.textContent = '';
                     }
                 });
-                renderCareerCards(document.querySelector('.filter-btn.active-filter').dataset.filter); // Re-render cards for current language
+                renderCareerCards(document.querySelector('.filter-btn.active-filter')?.dataset.filter || 'all'); // Re-render cards for current language, defaulting to 'all'
                 updateLanguageButtonStyles();
-                if (careerChart) {
-                    initChart(); // Re-initialize chart to update labels
+                if (careerChartInstance) { // Re-initialize chart to update labels if it exists
+                    initChart();
                 }
             }
 
-            // Function to update language button styles
+            /**
+             * Updates the visual style of the language selection buttons
+             * to indicate which language is currently active.
+             */
             function updateLanguageButtonStyles() {
+                const langButtons = document.querySelectorAll('.lang-btn');
                 langButtons.forEach(button => {
                     if (button.id === `lang-${currentLanguage}`) {
-                        button.classList.remove('bg-gray-200', 'text-gray-700', 'hover:bg-gray-300');
-                        button.classList.add('bg-amber-700', 'text-white');
+                        button.classList.remove('bg-stone-200', 'text-stone-700', 'hover:bg-stone-300');
+                        button.classList.add('bg-orange-600', 'text-white');
                     } else {
-                        button.classList.remove('bg-amber-700', 'text-white');
-                        button.classList.add('bg-gray-200', 'text-gray-700', 'hover:bg-gray-300');
+                        button.classList.remove('bg-orange-600', 'text-white');
+                        button.classList.add('bg-stone-200', 'text-stone-700', 'hover:bg-stone-300');
                     }
                 });
             }
 
-            // Event listeners for language buttons
-            langButtons.forEach(button => {
-                button.addEventListener('click', () => {
-                    currentLanguage = button.id === 'lang-en' ? 'en' : 'ur';
-                    updateContent();
+            /**
+             * Initializes the event listeners for language switching buttons.
+             */
+            function initLanguageSwitch() {
+                const langButtons = document.querySelectorAll('.lang-btn');
+                langButtons.forEach(button => {
+                    button.addEventListener('click', () => {
+                        currentLanguage = button.id.includes('lang-en') ? 'en' : 'ur';
+                        updateContent();
+                    });
                 });
-            });
+            }
 
-            // --- Mobile Menu Toggle Logic ---
-            mobileMenuButton.addEventListener('click', () => {
-                mobileMenu.classList.toggle('hidden');
-            });
+            /**
+             * Initializes the mobile menu toggle functionality.
+             */
+            function initMobileMenu() {
+                const mobileMenuButton = document.getElementById('mobile-menu-button');
+                const mobileMenu = document.getElementById('mobile-menu');
 
-            // Close mobile menu when a link is clicked
-            mobileMenu.querySelectorAll('a').forEach(link => {
-                link.addEventListener('click', () => {
-                    mobileMenu.classList.add('hidden');
-                });
-            });
+                if (mobileMenuButton && mobileMenu) {
+                    mobileMenuButton.addEventListener('click', () => {
+                        mobileMenu.classList.toggle('hidden');
+                    });
 
-            // --- Accordion Logic ---
-            document.querySelectorAll('.accordion-header').forEach(header => {
-                header.addEventListener('click', () => {
-                    const content = header.nextElementSibling;
-                    const icon = header.querySelector('.accordion-icon');
-
-                    // Toggle active class on content and rotate icon
-                    content.classList.toggle('active');
-                    icon.classList.toggle('rotate');
-
-                    // Adjust max-height for smooth transition
-                    if (content.classList.contains('active')) {
-                        content.style.maxHeight = content.scrollHeight + 'px';
-                    } else {
-                        content.style.maxHeight = '0';
-                    }
-                });
-            });
-
-            // --- Chart.js Initialization ---
-            const ctx = document.getElementById('careerAwarenessChart').getContext('2d');
-            let careerChart; // Declare chart instance outside to allow destruction/update
-
-            const chartLabels = {
-                en: ['Science & Tech', 'Healthcare', 'Commerce', 'Arts & Humanities', 'Creative', 'Vocational', 'Public Service', 'Education'],
-                ur: ['Science aur Tech', 'Sehat ki Dekhbhal', 'Commerce', 'Arts aur Humanities', 'Takhleeqi', 'Vocational', 'Public Service', 'Taleem'] // Roman Urdu labels
-            };
-
-            const chartData = {
-                en: [80, 70, 60, 50, 45, 40, 35, 30], // Example data for awareness (higher is more aware)
-                ur: [80, 70, 60, 50, 45, 40, 35, 30] // Same example data for Roman Urdu, but labels will change
-            };
-
-            function initChart() {
-                if (careerChart) {
-                    careerChart.destroy(); // Destroy previous chart instance if it exists
+                    // Close mobile menu when a navigation link is clicked
+                    mobileMenu.querySelectorAll('a').forEach(link => {
+                        link.addEventListener('click', () => {
+                            mobileMenu.classList.add('hidden');
+                        });
+                    });
                 }
-                careerChart = new Chart(ctx, {
+            }
+
+            /**
+             * Initializes accordion functionality, handling click events
+             * to expand/collapse content and rotate icons.
+             */
+            function initAccordions() {
+                document.querySelectorAll('.accordion-header').forEach(header => {
+                    header.addEventListener('click', () => {
+                        const content = header.nextElementSibling;
+                        const icon = header.querySelector('.accordion-icon');
+
+                        if (content && icon) {
+                            content.classList.toggle('active');
+                            icon.classList.toggle('rotate');
+
+                            // Set max-height for smooth transition
+                            if (content.classList.contains('active')) {
+                                content.style.maxHeight = content.scrollHeight + 'px';
+                            } else {
+                                content.style.maxHeight = '0';
+                            }
+                        }
+                    });
+                });
+            }
+
+            /**
+             * Initializes or updates the Chart.js bar chart displaying career awareness.
+             * Destroys previous instance if it exists to prevent overlap.
+             */
+            function initChart() {
+                const ctx = document.getElementById('careerAwarenessChart')?.getContext('2d');
+                if (!ctx) return; // Exit if canvas context is not available
+
+                if (careerChartInstance) {
+                    careerChartInstance.destroy(); // Destroy previous chart instance
+                }
+
+                const chartLabels = {
+                    en: ['Science & Tech', 'Healthcare', 'Commerce', 'Arts & Humanities', 'Creative', 'Vocational', 'Public Service', 'Education'],
+                    ur: ['Science aur Tech', 'Sehat ki Dekhbhal', 'Commerce', 'Arts aur Humanities', 'Takhleeqi', 'Vocational', 'Public Service', 'Taleem']
+                };
+
+                const chartDataValues = {
+                    en: [80, 70, 60, 50, 45, 40, 35, 30], // Example data
+                    ur: [80, 70, 60, 50, 45, 40, 35, 30] // Same data, labels change
+                };
+
+                careerChartInstance = new Chart(ctx, {
                     type: 'bar',
                     data: {
                         labels: chartLabels[currentLanguage],
                         datasets: [{
-                            label: currentLanguage === 'en' ? 'Student Awareness (%)' : 'Talba ki Agahi (%)', // Roman Urdu label
-                            data: chartData[currentLanguage],
+                            label: currentLanguage === 'en' ? 'Student Awareness (%)' : 'Talba ki Agahi (%)',
+                            data: chartDataValues[currentLanguage],
                             backgroundColor: [
-                                '#f59e0b', // Amber-500
-                                '#d97706', // Amber-600
-                                '#b45309', // Amber-700
-                                '#92400e', // Amber-800
-                                '#78350f', // Amber-900
-                                '#c2410c', // Orange-700
-                                '#ea580c', // Orange-600
-                                '#fb923c'  // Orange-400
+                                '#0d9488', /* teal-700 */
+                                '#14b8a6', /* teal-500 */
+                                '#22c55e', /* green-500 */
+                                '#4ade80', /* green-400 */
+                                '#facc15', /* yellow-400 */
+                                '#fbbf24', /* amber-400 */
+                                '#fb923c', /* orange-400 */
+                                '#f97316'  /* orange-500 */
                             ],
                             borderColor: [
-                                '#d97706',
-                                '#b45309',
-                                '#92400e',
-                                '#78350f',
-                                '#78350f',
-                                '#a23d0a',
-                                '#c74e0a',
-                                '#f67e2a'
+                                '#0f766e', /* teal-800 */
+                                '#0d9488', /* teal-700 */
+                                '#16a34a', /* green-600 */
+                                '#15803d', /* green-700 */
+                                '#eab308', /* yellow-600 */
+                                '#f59e0b', /* amber-600 */
+                                '#ea580c', /* orange-600 */
+                                '#c2410c'  /* orange-700 */
                             ],
                             borderWidth: 1
                         }]
@@ -754,26 +962,26 @@
                     options: {
                         responsive: true,
                         maintainAspectRatio: false,
-                        indexAxis: 'y', // Make it a horizontal bar chart
+                        indexAxis: 'y', // Horizontal bar chart
                         scales: {
                             x: {
                                 beginAtZero: true,
                                 title: {
                                     display: true,
-                                    text: currentLanguage === 'en' ? 'Awareness Level' : 'Agahi ki Satah' // Roman Urdu label
+                                    text: currentLanguage === 'en' ? 'Awareness Level' : 'Agahi ki Satah'
                                 }
                             },
                             y: {
                                 beginAtZero: true,
                                 title: {
                                     display: true,
-                                    text: currentLanguage === 'en' ? 'Career Field' : 'Career ka Sho\'ba' // Roman Urdu label
+                                    text: currentLanguage === 'en' ? 'Career Field' : 'Career ka Sho\'ba'
                                 }
                             }
                         },
                         plugins: {
                             legend: {
-                                display: false // Hide legend as there's only one dataset
+                                display: false
                             },
                             tooltip: {
                                 callbacks: {
@@ -794,32 +1002,33 @@
                 });
             }
 
-            // --- Career Card Rendering and Filtering Logic ---
-            const careerGrid = document.getElementById('career-grid');
-            const filterButtons = document.querySelectorAll('.filter-btn');
-
+            /**
+             * Renders career cards into the #career-grid based on the active filter.
+             * Ensures content is in the currently selected language.
+             * @param {string} filter - The category to filter careers by ('all' for no filter).
+             */
             function renderCareerCards(filter = 'all') {
+                const careerGrid = document.getElementById('career-grid');
+                if (!careerGrid) return;
+
                 careerGrid.innerHTML = ''; // Clear existing cards
                 const fragment = document.createDocumentFragment();
 
                 careerData.forEach(career => {
-                    // Check if the career matches the filter or if filter is 'all'
                     const matchesFilter = filter === 'all' || career.category.includes(filter);
 
                     if (matchesFilter) {
                         const card = document.createElement('div');
-                        card.classList.add('bg-white', 'rounded-lg', 'shadow-md', 'p-6', 'cursor-pointer', 'hover:shadow-lg', 'transform', 'hover:-translate-y-1', 'transition-all', 'duration-300');
+                        card.classList.add('bg-white', 'rounded-xl', 'shadow-xl', 'p-6', 'cursor-pointer', 'hover:shadow-2xl', 'transform', 'hover:-translate-y-2', 'transition-all', 'duration-300');
                         card.dataset.id = career.id; // Store ID for modal lookup
 
-                        // Determine which language content to use
-                        // Use _ur for Roman Urdu, fallback to _en
                         const title = career[`title_${currentLanguage}`] || career.title_en;
                         const description = career[`description_${currentLanguage}`] || career.description_en;
 
                         card.innerHTML = `
-                            <h3 class="text-xl font-semibold text-gray-800 mb-3">${title}</h3>
-                            <p class="text-gray-600 text-sm">${description.substring(0, 100)}...</p>
-                            <button class="mt-4 text-amber-700 font-semibold hover:underline text-sm">${currentLanguage === 'en' ? 'Learn More' : 'Mazeed Janen'}</button>
+                            <h3 class="text-xl font-semibold text-stone-800 mb-3">${title}</h3>
+                            <p class="text-stone-700 text-sm">${description.substring(0, 100)}...</p>
+                            <button class="mt-4 text-orange-600 font-semibold hover:underline text-sm">${currentLanguage === 'en' ? 'Learn More' : 'Mazeed Janen'}</button>
                         `;
                         fragment.appendChild(card);
                     }
@@ -827,65 +1036,87 @@
                 careerGrid.appendChild(fragment);
             }
 
-            // Event listener for filter buttons
-            filterButtons.forEach(button => {
-                button.addEventListener('click', () => {
-                    // Remove active class from all buttons
-                    filterButtons.forEach(btn => {
-                        btn.classList.remove('active-filter', 'bg-amber-700', 'text-white');
-                        btn.classList.add('border-gray-300', 'text-gray-700', 'hover:border-amber-600', 'hover:text-amber-700');
+            /**
+             * Initializes event listeners for career filter buttons.
+             */
+            function initCareerFilters() {
+                const filterButtons = document.querySelectorAll('.filter-btn');
+                filterButtons.forEach(button => {
+                    button.addEventListener('click', () => {
+                        // Remove active class from all buttons
+                        filterButtons.forEach(btn => {
+                            btn.classList.remove('active-filter', 'bg-orange-600', 'text-white');
+                            btn.classList.add('border-stone-300', 'text-stone-700', 'hover:border-amber-600', 'hover:text-amber-700');
+                        });
+                        // Add active class to the clicked button
+                        button.classList.add('active-filter', 'bg-orange-600', 'text-white');
+                        button.classList.remove('border-stone-300', 'text-stone-700', 'hover:border-amber-600', 'hover:text-amber-700');
+
+                        renderCareerCards(button.dataset.filter);
                     });
-                    // Add active class to the clicked button
-                    button.classList.add('active-filter', 'bg-amber-700', 'text-white');
-                    button.classList.remove('border-gray-300', 'text-gray-700', 'hover:border-amber-600', 'hover:text-amber-700');
-
-                    renderCareerCards(button.dataset.filter);
                 });
-            });
+            }
 
-            // --- Modal Logic ---
-            const careerModal = document.getElementById('career-modal');
-            const modalContentDiv = document.getElementById('modal-content');
+            /**
+             * Initializes the career details modal functionality.
+             * Uses event delegation on the career grid to handle clicks.
+             */
+            function initCareerModal() {
+                const careerModal = document.getElementById('career-modal');
+                const modalContentDiv = document.getElementById('modal-content');
+                const careerGrid = document.getElementById('career-grid'); // Re-get career grid for event listener
 
-            careerGrid.addEventListener('click', (event) => {
-                const card = event.target.closest('.rounded-lg'); // Find the clicked career card
-                if (card && card.dataset.id) {
-                    const careerId = card.dataset.id;
-                    const career = careerData.find(c => c.id === careerId);
+                if (!careerGrid || !careerModal || !modalContentDiv) return;
 
-                    if (career) {
-                        // Populate modal with content based on current language
-                        modalContentDiv.innerHTML = `
-                            <div class="p-6">
-                                <h3 class="text-2xl md:text-3xl font-bold text-gray-800 mb-4">${career[`title_${currentLanguage}`]}</h3>
-                                <p class="text-gray-700 mb-4">${career[`description_${currentLanguage}`]}</p>
-                                <h4 class="text-lg font-semibold text-gray-800 mt-6 mb-2">${currentLanguage === 'en' ? 'Key Subjects:' : 'Aham Mazameen:'}</h4>
-                                <p class="text-gray-600">${career[`subjects_${currentLanguage}`]}</p>
-                                <h4 class="text-lg font-semibold text-gray-800 mt-6 mb-2">${currentLanguage === 'en' ? 'Potential Challenges:' : 'Mumkinah Challenges:'}</h4>
-                                <p class="text-gray-600">${career[`challenges_${currentLanguage}`]}</p>
-                                <button id="modal-close-btn" class="mt-8 px-6 py-2 bg-amber-700 text-white rounded-full font-semibold hover:bg-amber-800 transition shadow-md">${currentLanguage === 'en' ? 'Close' : 'Band Karein'}</button>
-                            </div>
-                        `;
-                        // Show modal
-                        careerModal.classList.remove('opacity-0', 'invisible');
-                        careerModal.classList.add('opacity-100', 'visible');
-                        modalContentDiv.classList.remove('scale-95');
-                        modalContentDiv.classList.add('scale-100');
+                // Use event delegation on the parent grid for efficiency
+                careerGrid.addEventListener('click', (event) => {
+                    const card = event.target.closest('.rounded-xl'); // Find the clicked career card
+                    if (card && card.dataset.id) {
+                        const careerId = card.dataset.id;
+                        const career = careerData.find(c => c.id === careerId);
 
-                        // Add event listener for close button within the modal
-                        document.getElementById('modal-close-btn').addEventListener('click', closeModal);
+                        if (career) {
+                            // Populate modal with content based on current language
+                            modalContentDiv.innerHTML = `
+                                <div class="p-6">
+                                    <h3 class="text-2xl md:text-3xl font-bold text-stone-800 mb-4">${career[`title_${currentLanguage}`]}</h3>
+                                    <p class="text-stone-700 mb-4">${career[`description_${currentLanguage}`]}</p>
+                                    <h4 class="text-lg font-semibold text-stone-800 mt-6 mb-2">${currentLanguage === 'en' ? 'Key Subjects:' : 'Aham Mazameen:'}</h4>
+                                    <p class="text-stone-700">${career[`subjects_${currentLanguage}`]}</p>
+                                    <h4 class="text-lg font-semibold text-stone-800 mt-6 mb-2">${currentLanguage === 'en' ? 'Potential Challenges:' : 'Mumkinah Challenges:'}</h4>
+                                    <p class="text-stone-700">${career[`challenges_${currentLanguage}`]}</p>
+                                    <button id="modal-close-btn" class="mt-8 px-6 py-2 bg-orange-600 text-white rounded-full font-semibold hover:bg-orange-700 transition shadow-md">${currentLanguage === 'en' ? 'Close' : 'Band Karein'}</button>
+                                </div>
+                            `;
+                            // Show modal
+                            careerModal.classList.remove('opacity-0', 'invisible');
+                            careerModal.classList.add('opacity-100', 'visible');
+                            modalContentDiv.classList.remove('scale-95');
+                            modalContentDiv.classList.add('scale-100');
+
+                            // Add event listener for close button within the modal
+                            // Important: This listener needs to be re-added each time modal content is changed
+                            document.getElementById('modal-close-btn')?.addEventListener('click', closeModal);
+                        }
                     }
-                }
-            });
+                });
 
-            // Close modal when clicking outside content or on close button
-            careerModal.addEventListener('click', (event) => {
-                if (event.target === careerModal) { // Only close if clicking the overlay, not the content
-                    closeModal();
-                }
-            });
+                // Close modal when clicking outside content area
+                careerModal.addEventListener('click', (event) => {
+                    if (event.target === careerModal) {
+                        closeModal();
+                    }
+                });
+            }
 
+            /**
+             * Closes the career details modal with a transition effect.
+             */
             function closeModal() {
+                const careerModal = document.getElementById('career-modal');
+                const modalContentDiv = document.getElementById('modal-content');
+                if (!careerModal || !modalContentDiv) return;
+
                 modalContentDiv.classList.remove('scale-100');
                 modalContentDiv.classList.add('scale-95');
                 careerModal.classList.remove('opacity-100', 'visible');
@@ -893,10 +1124,21 @@
             }
 
 
-            // --- Initial Setup ---
-            updateContent(); // Apply initial translations
-            initChart(); // Initialize the chart on page load
-            renderCareerCards('all'); // Render all career cards initially
+            // --- Initial Setup - Called when DOM is fully loaded ---
+            // This function orchestrates the initialization of all components.
+            function initializeApp() {
+                initLanguageSwitch(); // Set up language buttons
+                initMobileMenu();     // Set up mobile menu toggle
+                initAccordions();     // Set up accordion functionality
+                initCareerFilters();  // Set up career filter buttons
+
+                // Perform initial content updates based on default language
+                updateContent();
+                initChart();          // Initialize the chart
+                initCareerModal();    // Set up modal functionality
+            }
+
+            initializeApp(); // Call the main initialization function
         });
     </script>
 </body>
