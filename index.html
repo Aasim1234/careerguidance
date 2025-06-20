@@ -1,0 +1,2130 @@
+<!DOCTYPE html>
+<html lang="en" style="scroll-behavior: smooth;">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mustaqbil Numa - Your Future Compass</title>
+    <!-- Chosen Palette: Calm Harmony -->
+    <!-- Application Structure Plan: The application is designed as a single-page journey for Hindi/Urdu medium students. The structure is thematic and user-centric, not a rigid report. It starts with a welcoming Hero section to build trust, moves to a 'Challenges & Solutions' section to directly address their primary concern about switching to English medium, then opens up a world of possibilities with an interactive, filterable 'Career Paths' section. This flow is designed to first acknowledge their fears, then empower them with solutions, and finally inspire them with opportunities. A final 'About' section provides a personal touch from the creator. This structure was chosen because it mirrors a supportive guidance conversation, making the information highly usable and emotionally resonant. -->
+    <!-- Visualization & Content Choices: 1. Report Info: Students only know of Medical/Engineering. Goal: Visually show the vast number of other fields. Viz/Presentation: A Bar Chart (using Chart.js/Canvas). Interaction: Tooltips on hover. Justification: A chart provides a quick, high-impact "aha!" moment that text alone cannot achieve, immediately broadening their perspective. 2. Report Info: Students need to explore many career details. Goal: Organize and present detailed information without overwhelming the user. Viz/Presentation: Interactive Cards with a filtering system and modal pop-ups. Interaction: Users click a filter (e.g., 'Arts', 'Science') to see relevant career cards. Clicking a card opens a modal with details. Justification: This approach allows users to control the information they see, making exploration self-directed and manageable. It avoids a long, intimidating list. -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Naskh+Arabic:wght@400;500;700&family=Poppins:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #fdfaf6; /* Light Cream */
+            color: #4a4a4a; /* Dark Gray */
+            font-size: 1rem; /* Base font size for readability */
+        }
+        .urdu-font {
+            font-family: 'Noto Naskh Arabic', serif;
+        }
+        .nav-link {
+            transition: color 0.3s;
+        }
+        .nav-link:hover {
+            color: #d97706; /* Amber-600 */
+        }
+        .active-filter {
+            background-color: #c2410c; /* Amber-700 */
+            color: white;
+            border-color: #c2410c;
+        }
+        .modal {
+            transition: opacity 0.3s ease, transform 0.3s ease;
+        }
+        .modal-content {
+            transition: transform 0.3s ease;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 350px;
+            max-height: 50vh;
+        }
+        /* Ensure good contrast for text on various backgrounds */
+        .text-gray-800, .text-amber-700, .text-amber-800 {
+            /* These should have good contrast on light backgrounds like #fdfaf6 or white */
+        }
+        .bg-gray-800 .text-white, .bg-gray-800 .text-amber-300 {
+            /* These should have good contrast on dark backgrounds */
+        }
+
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 400px;
+            }
+            body {
+                font-size: 1.125rem; /* Slightly larger base font for desktops */
+            }
+        }
+    </style>
+</head>
+<body class="bg-[#fdfaf6]">
+
+    <!-- Header -->
+    <header class="bg-[#fdfaf6]/80 backdrop-blur-md sticky top-0 z-50 shadow-sm">
+        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <h1 class="text-2xl md:text-3xl font-bold text-amber-800">
+                <span class="urdu-font">مستقبل نما</span> <span class="text-gray-700">| Future Compass</span>
+            </h1>
+            <nav class="hidden md:flex space-x-8">
+                <a href="#home" class="text-gray-600 nav-link font-medium" data-lang-key="nav_home">Home</a>
+                <a href="#challenges" class="text-gray-600 nav-link font-medium" data-lang-key="nav_challenges">Challenges</a>
+                <a href="#careers" class="text-gray-600 nav-link font-medium" data-lang-key="nav_careers">Career Paths</a>
+                <a href="#english-resources" class="text-gray-600 nav-link font-medium" data-lang-key="nav_english_resources">English Resources</a>
+                <a href="#about" class="text-gray-600 nav-link font-medium" data-lang-key="nav_about">About</a>
+            </nav>
+            <div class="flex items-center space-x-2">
+                <button id="lang-en" class="lang-btn px-3 py-1 rounded-full text-sm font-semibold bg-amber-700 text-white transition">EN</button>
+                <button id="lang-hi" class="lang-btn px-3 py-1 rounded-full text-sm font-semibold bg-gray-200 text-gray-700 hover:bg-gray-300 transition">HI</button>
+                <button id="mobile-menu-button" class="md:hidden text-gray-700 focus:outline-none">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+                </button>
+            </div>
+        </div>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white shadow-lg">
+            <a href="#home" class="block text-center py-3 px-4 text-gray-700 hover:bg-amber-50" data-lang-key="nav_home">Home</a>
+            <a href="#challenges" class="block text-center py-3 px-4 text-gray-700 hover:bg-amber-50" data-lang-key="nav_challenges">Challenges</a>
+            <a href="#careers" class="block text-center py-3 px-4 text-gray-700 hover:bg-amber-50" data-lang-key="nav_careers">Career Paths</a>
+            <a href="#english-resources" class="block text-center py-3 px-4 text-gray-700 hover:bg-amber-50" data-lang-key="nav_english_resources">English Resources</a>
+            <a href="#about" class="block text-center py-3 px-4 text-gray-700 hover:bg-amber-50" data-lang-key="nav_about">About</a>
+        </div>
+    </header>
+
+    <main class="container mx-auto px-6 py-8 md:py-16">
+
+        <!-- Home Section -->
+        <section id="home" class="text-center min-h-[60vh] flex flex-col justify-center items-center">
+            <h2 class="text-3xl md:text-5xl font-bold text-gray-800 mb-4" data-lang-key="home_title">
+                Welcome, Future Leaders!
+            </h2>
+            <p class="urdu-font text-2xl md:text-4xl text-amber-700 mb-6" data-lang-key="home_subtitle">آپ کا استقبال ہے، مستقبل کے رہنماؤں</p>
+            <p class="max-w-3xl mx-auto text-gray-600 text-lg md:text-xl leading-relaxed" data-lang-key="home_description">
+                This platform is dedicated to students like you from Hindi and Urdu medium backgrounds. We understand your journey and the questions you have. Your potential is limitless, and your career choices are vast. Let's explore the world of opportunities beyond the common paths of engineering and medicine.
+            </p>
+        </section>
+
+        ---
+
+        <!-- Challenges Section -->
+        <section id="challenges" class="py-16 md:py-24">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-800" data-lang-key="challenges_title">The Big Leap: From Your Medium to English</h2>
+                <p class="urdu-font text-xl md:text-2xl text-amber-700 mt-2" data-lang-key="challenges_subtitle">آپ کے میڈیم سے انگریزی تک کی بڑی چھلانگ</p>
+                <p class="max-w-2xl mx-auto text-gray-600 mt-4" data-lang-key="challenges_description">
+                    Moving to an English medium for 11th and 12th grade can be challenging, but it's a bridge to a wider world of knowledge. Here are common hurdles and how you can overcome them. This section is here to prepare you, not to scare you. With the right approach, you can excel.
+                </p>
+            </div>
+            <div class="max-w-4xl mx-auto space-y-4">
+                <!-- Accordion Item 1 -->
+                <div class="bg-white rounded-lg shadow-md overflow-hidden">
+                    <button class="accordion-header w-full text-left p-4 md:p-6 focus:outline-none">
+                        <div class="flex justify-between items-center">
+                            <h3 class="font-semibold text-lg md:text-xl text-gray-800" data-lang-key="challenge1_title">Vocabulary and Technical Terms</h3>
+                            <span class="accordion-icon text-amber-700 text-2xl transform transition-transform duration-300">▼</span>
+                        </div>
+                    </button>
+                    <div class="accordion-content max-h-0 overflow-hidden transition-all duration-500 ease-in-out">
+                        <div class="p-4 md:p-6 border-t border-gray-200">
+                            <p class="text-gray-600" data-lang-key="challenge1_challenge"><strong class="font-semibold">The Challenge:</strong> Suddenly, 'Koshika' becomes 'Cell' and 'Gurutvakarshan' becomes 'Gravity'. It feels like learning a new language for every subject.</p>
+                            <p class="text-gray-600 mt-4" data-lang-key="challenge1_solution_intro"><strong class="font-semibold text-green-700">The Solution:</strong></p>
+                            <ul class="list-disc list-inside mt-2 text-gray-600 space-y-2" data-lang-key="challenge1_solution_list">
+                                <li>Create a bilingual dictionary for each subject. Write the English term and its Hindi/Urdu equivalent.</li>
+                                <li>Use flashcards to memorize new terms daily.</li>
+                                <li>Watch educational videos in English on topics you're studying. The visuals will help connect words to concepts.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                 <!-- Accordion Item 2 -->
+                <div class="bg-white rounded-lg shadow-md overflow-hidden">
+                    <button class="accordion-header w-full text-left p-4 md:p-6 focus:outline-none">
+                        <div class="flex justify-between items-center">
+                            <h3 class="font-semibold text-lg md:text-xl text-gray-800" data-lang-key="challenge2_title">Classroom Confidence</h3>
+                            <span class="accordion-icon text-amber-700 text-2xl transform transition-transform duration-300">▼</span>
+                        </div>
+                    </button>
+                    <div class="accordion-content max-h-0 overflow-hidden transition-all duration-500 ease-in-out">
+                        <div class="p-4 md:p-6 border-t border-gray-200">
+                           <p class="text-gray-600" data-lang-key="challenge2_challenge"><strong class="font-semibold">The Challenge:</strong> You understand the teacher, but you're afraid to ask questions or answer them, fearing you'll make a grammatical mistake.</p>
+                            <p class="text-gray-600 mt-4" data-lang-key="challenge2_solution_intro"><strong class="font-semibold text-green-700">The Solution:</strong></p>
+                            <ul class="list-disc list-inside mt-2 text-gray-600 space-y-2" data-lang-key="challenge2_solution_list">
+                                <li>Practice speaking English with friends who are supportive. It's okay to make mistakes!</li>
+                                <li>Write down your questions before asking. This helps you structure your thoughts.</li>
+                                <li>Remember, your teachers want to help you. Your courage to ask is more important than perfect grammar.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                 <!-- Accordion Item 3 -->
+                <div class="bg-white rounded-lg shadow-md overflow-hidden">
+                    <button class="accordion-header w-full text-left p-4 md:p-6 focus:outline-none">
+                        <div class="flex justify-between items-center">
+                            <h3 class="font-semibold text-lg md:text-xl text-gray-800" data-lang-key="challenge3_title">Reading Speed and Comprehension</h3>
+                            <span class="accordion-icon text-amber-700 text-2xl transform transition-transform duration-300">▼</span>
+                        </div>
+                    </button>
+                    <div class="accordion-content max-h-0 overflow-hidden transition-all duration-500 ease-in-out">
+                        <div class="p-4 md:p-6 border-t border-gray-200">
+                            <p class="text-gray-600" data-lang-key="challenge3_challenge"><strong class="font-semibold">The Challenge:</strong> Reading textbooks in English takes much longer, and you have to re-read paragraphs to understand them.</p>
+                            <p class="text-gray-600 mt-4" data-lang-key="challenge3_solution_intro"><strong class="font-semibold text-green-700">The Solution:</strong></p>
+                            <ul class="list-disc list-inside mt-2 text-gray-600 space-y-2" data-lang-key="challenge3_solution_list">
+                                <li>Start by reading simple English storybooks or news articles for 15-20 minutes daily.</li>
+                                <li>Don't look up every single word. Try to understand the meaning from the context of the sentence.</li>
+                                <li>Summarize each chapter or major section in your own simple English or even in Hindi/Urdu. This ensures you've understood the core concepts.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        ---
+
+        <!-- Career Awareness Chart -->
+        <section id="career-chart-section" class="py-16 md:py-24 bg-amber-50 rounded-2xl">
+            <div class="text-center mb-12 px-4">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-800" data-lang-key="chart_title">Perception vs. Reality of Career Fields</h2>
+                <p class="urdu-font text-xl md:text-2xl text-amber-700 mt-2" data-lang-key="chart_subtitle">کیریئر کے شعبوں کا تصور بمقابلہ حقیقت</p>
+                <p class="max-w-3xl mx-auto text-gray-600 mt-4" data-lang-key="chart_description">
+                    Many students believe there are only a few main career options. This chart shows the reality: the world of professions is vast and diverse. This visualization is designed to open your mind to the sheer number of opportunities that await you beyond the two most commonly discussed fields.
+                </p>
+            </div>
+            <div class="chart-container">
+                <canvas id="careerAwarenessChart"></canvas>
+            </div>
+        </section>
+
+        ---
+
+        <!-- Career Paths Section -->
+        <section id="careers" class="py-16 md:py-24">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-800" data-lang-key="careers_title">Explore Career Paths</h2>
+                <p class="urdu-font text-xl md:text-2xl text-amber-700 mt-2" data-lang-key="careers_subtitle">کیریئر کے راستے دریافت کریں</p>
+                 <p class="max-w-3xl mx-auto text-gray-600 mt-4" data-lang-key="careers_description">
+                    Your future is not limited to just two choices. Here is a curated list of exciting career options across different fields. Click on a category to filter the options, and then click on any card to learn more about what the career involves, the subjects you might need, and the challenges you can expect.
+                </p>
+            </div>
+
+            <!-- Filters -->
+            <div id="career-filters" class="flex flex-wrap justify-center gap-2 md:gap-4 mb-10">
+                <button class="filter-btn active-filter px-4 py-2 text-sm md:text-base font-semibold border-2 border-transparent rounded-full transition" data-filter="all" data-lang-key="filter_all">All Fields</button>
+                <button class="filter-btn px-4 py-2 text-sm md:text-base font-semibold border-2 border-gray-300 rounded-full transition text-gray-700 hover:border-amber-600" data-filter="science" data-lang-key="filter_science">Science & Tech</button>
+                <button class="filter-btn px-4 py-2 text-sm md:text-base font-semibold border-2 border-gray-300 rounded-full transition text-gray-700 hover:border-amber-600" data-filter="commerce" data-lang-key="filter_commerce">Commerce & Finance</button>
+                <button class="filter-btn px-4 py-2 text-sm md:text-base font-semibold border-2 border-gray-300 rounded-full transition text-gray-700 hover:border-amber-600" data-filter="arts" data-lang-key="filter_arts">Arts & Humanities</button>
+                <button class="filter-btn px-4 py-2 text-sm md:text-base font-semibold border-2 border-gray-300 rounded-full transition text-gray-700 hover:border-amber-600" data-filter="creative" data-lang-key="filter_creative">Creative Fields</button>
+                <button class="filter-btn px-4 py-2 text-sm md:text-base font-semibold border-2 border-gray-300 rounded-full transition text-gray-700 hover:border-amber-600" data-filter="vocational" data-lang-key="filter_vocational">Vocational & Skill-Based</button>
+                <button class="filter-btn px-4 py-2 text-sm md:text-base font-semibold border-2 border-gray-300 rounded-full transition text-gray-700 hover:border-amber-600" data-filter="public_service" data-lang-key="filter_public_service">Government & Public Service</button>
+                <button class="filter-btn px-4 py-2 text-sm md:text-base font-semibold border-2 border-gray-300 rounded-full transition text-gray-700 hover:border-amber-600" data-filter="healthcare" data-lang-key="filter_healthcare">Healthcare & Life Sciences</button>
+                <button class="filter-btn px-4 py-2 text-sm md:text-base font-semibold border-2 border-gray-300 rounded-full transition text-gray-700 hover:border-amber-600" data-filter="education" data-lang-key="filter_education">Education & Training</button>
+            </div>
+
+            <!-- Career Cards Grid -->
+            <div id="career-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 md:gap-8">
+                <!-- Career cards will be injected here by JavaScript -->
+            </div>
+        </section>
+
+        ---
+
+        <!-- Resources for English Proficiency Section -->
+        <section id="english-resources" class="py-16 md:py-24">
+            <div class="text-center mb-12 px-4">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-800" data-lang-key="resources_title">Boost Your English Skills</h2>
+                <p class="urdu-font text-xl md:text-2xl text-orange-700 mt-2" data-lang-key="resources_subtitle">اپنی انگریزی کی مہارتیں بہتر بنائیں</p>
+                <p class="max-w-3xl mx-auto text-gray-600 mt-4" data-lang-key="resources_description">
+                    Improving your English can open many doors. Here are some free and easy-to-use resources tailored for Hindi/Urdu speakers to help you along your journey. Consistency is key!
+                </p>
+            </div>
+            <div class="max-w-4xl mx-auto space-y-8">
+                <!-- Resource Category 1: Vocabulary & Grammar -->
+                <div class="bg-white rounded-lg shadow-md p-6">
+                    <h3 class="text-xl font-semibold text-gray-800 mb-4" data-lang-key="resources_vocab_title">Vocabulary & Grammar</h3>
+                    <ul class="list-disc list-inside space-y-3 text-gray-700" data-lang-key="resources_vocab_list">
+                        <li><strong>Duolingo / Hello English app:</strong> Fun and interactive lessons for all levels, with Hindi/Urdu support.</li>
+                        <li><strong>Cambridge Dictionary (Online):</strong> Provides definitions, examples, and often pronunciation guides.</li>
+                        <li><strong>Grammarly (Free version):</strong> Helps check your writing for grammatical errors and suggests improvements.</li>
+                        <li><strong>"Word of the Day" apps:</strong> Build your vocabulary daily with new words and their meanings.</li>
+                    </ul>
+                </div>
+                <!-- Resource Category 2: Speaking & Listening -->
+                <div class="bg-white rounded-lg shadow-md p-6">
+                    <h3 class="text-xl font-semibold text-gray-800 mb-4" data-lang-key="resources_speak_title">Speaking & Listening</h3>
+                    <ul class="list-disc list-inside space-y-3 text-gray-700" data-lang-key="resources_speak_list">
+                        <li><strong>YouTube Channels:</strong> Search for "Spoken English for Hindi speakers" or "Learn English through Urdu" (e.g., Learn English with Viva, BBC Learning English).</li>
+                        <li><strong>TED Talks (with subtitles):</strong> Listen to inspiring speeches on various topics and use subtitles initially.</li>
+                        <li><strong>English News Channels/Podcasts:</strong> Start with slower-paced news or podcasts for learners.</li>
+                        <li><strong>Practice Speaking:</strong> Find a study partner or use apps like HelloTalk to practice with native speakers.</li>
+                    </ul>
+                </div>
+                <!-- Resource Category 3: Reading & Writing -->
+                <div class="bg-white rounded-lg shadow-md p-6">
+                    <h3 class="text-xl font-semibold text-gray-800 mb-4" data-lang-key="resources_read_title">Reading & Writing</h3>
+                    <ul class="list-disc list-inside space-y-3 text-gray-700" data-lang-key="resources_read_list">
+                        <li><strong>Simple English Wikipedia:</strong> Read articles on various subjects in simpler English.</li>
+                        <li><strong>Short English Storybooks:</strong> Start with children's books or simplified novels.</li>
+                        <li><strong>Write Daily:</strong> Maintain a short diary in English, write emails, or summarize what you've read.</li>
+                        <li><strong>News in Slow English:</strong> Websites that provide news articles read at a slower pace.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        ---
+
+        <!-- About Section -->
+        <section id="about" class="text-center py-16 md:py-24 bg-gray-800 text-white rounded-2xl">
+            <h2 class="text-3xl md:text-4xl font-bold" data-lang-key="about_title">About this Initiative</h2>
+            <p class="urdu-font text-xl md:text-2xl text-amber-300 mt-2" data-lang-key="about_subtitle">اس پہل کے بارے میں</p>
+            <p class="max-w-2xl mx-auto mt-6 text-gray-300 text-lg" data-lang-key="about_description">
+                This website is a humble effort by <strong class="font-semibold text-amber-300">Aasim Raza</strong> to guide and empower students from our communities. The goal is to provide clarity and open doors to a future full of possibilities.
+            </p>
+            <p class="max-w-2xl mx-auto mt-4 text-gray-300 text-lg" data-lang-key="about_prayer">
+                If you find this helpful, all that is asked for is your prayers.
+                <br>
+                <span class="urdu-font text-xl text-amber-300 mt-2" data-lang-key="about_prayer_urdu">"اگر آپ کو یہ مددگار لگے تو صرف دعاؤں کی درخواست ہے۔"</span>
+            </p>
+        </section>
+    </main>
+
+    <!-- Modal -->
+    <div id="career-modal" class="modal fixed inset-0 bg-black bg-opacity-60 flex justify-center items-center p-4 z-50 opacity-0 pointer-events-none">
+        <div id="modal-content" class="modal-content bg-white rounded-lg shadow-2xl w-full max-w-2xl max-h-[90vh] overflow-y-auto transform scale-95">
+            <!-- Modal content will be injected here -->
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+
+            let currentLanguage = 'en'; // Default language
+
+            // Translations object
+            const translations = {
+                en: {
+                    nav_home: 'Home',
+                    nav_challenges: 'Challenges',
+                    nav_careers: 'Career Paths',
+                    nav_english_resources: 'English Resources',
+                    nav_about: 'About',
+                    home_title: 'Welcome, Future Leaders!',
+                    home_subtitle: 'آپ کا استقبال ہے، مستقبل کے رہنماؤں', // Kept Urdu for stylistic choice
+                    home_description: 'This platform is dedicated to students like you from Hindi and Urdu medium backgrounds. We understand your journey and the questions you have. Your potential is limitless, and your career choices are vast. Let\'s explore the world of opportunities beyond the common paths of engineering and medicine.',
+                    challenges_title: 'The Big Leap: From Your Medium to English',
+                    challenges_subtitle: 'آپ کے میڈیم سے انگریزی تک کی بڑی چھلانگ', // Kept Urdu
+                    challenges_description: 'Moving to an English medium for 11th and 12th grade can be challenging, but it\'s a bridge to a wider world of knowledge. Here are common hurdles and how you can overcome them. This section is here to prepare you, not to scare you. With the right approach, you can excel.',
+                    challenge1_title: 'Vocabulary and Technical Terms',
+                    challenge1_challenge: 'The Challenge: Suddenly, \'Koshika\' becomes \'Cell\' and \'Gurutvakarshan\' becomes \'Gravity\'. It feels like learning a new language for every subject.',
+                    challenge1_solution_intro: 'The Solution:',
+                    challenge1_solution_list: '<li>Create a bilingual dictionary for each subject. Write the English term and its Hindi/Urdu equivalent.</li><li>Use flashcards to memorize new terms daily.</li><li>Watch educational videos in English on topics you\'re studying. The visuals will help connect words to concepts.</li>',
+                    challenge2_title: 'Classroom Confidence',
+                    challenge2_challenge: 'The Challenge: You understand the teacher, but you\'re afraid to ask questions or answer them, fearing you\'ll make a grammatical mistake.',
+                    challenge2_solution_intro: 'The Solution:',
+                    challenge2_solution_list: '<li>Practice speaking English with friends who are supportive. It\'s okay to make mistakes!</li><li>Write down your questions before asking. This helps you structure your thoughts.</li><li>Remember, your teachers want to help you. Your courage to ask is more important than perfect grammar.</li>',
+                    challenge3_title: 'Reading Speed and Comprehension',
+                    challenge3_challenge: 'The Challenge: Reading textbooks in English takes much longer, and you have to re-read paragraphs to understand them.',
+                    challenge3_solution_intro: 'The Solution:',
+                    challenge3_solution_list: '<li>Start by reading simple English storybooks or news articles for 15-20 minutes daily.</li><li>Don\'t look up every single word. Try to understand the meaning from the context of the sentence.</li><li>Summarize each chapter or major section in your own simple English or even in Hindi/Urdu. This ensures you\'ve understood the core concepts.</li>',
+                    chart_title: 'Perception vs. Reality of Career Fields',
+                    chart_subtitle: 'کیریئر کے شعبوں کا تصور بمقابلہ حقیقت', // Kept Urdu
+                    chart_description: 'Many students believe there are only a few main career options. This chart shows the reality: the world of professions is vast and diverse. This visualization is designed to open your mind to the sheer number of opportunities that await you beyond the two most commonly discussed fields.',
+                    careers_title: 'Explore Career Paths',
+                    careers_subtitle: 'کیریئر کے راستے دریافت کریں', // Kept Urdu
+                    careers_description: 'Your future is not limited to just two choices. Here is a curated list of exciting career options across different fields. Click on a category to filter the options, and then click on any card to learn more about what the career involves, the subjects you might need, and the challenges you can expect.',
+                    filter_all: 'All Fields',
+                    filter_science: 'Science & Tech',
+                    filter_commerce: 'Commerce & Finance',
+                    filter_arts: 'Arts & Humanities',
+                    filter_creative: 'Creative Fields',
+                    filter_vocational: 'Vocational & Skill-Based',
+                    filter_public_service: 'Government & Public Service',
+                    filter_healthcare: 'Healthcare & Life Sciences',
+                    filter_education: 'Education & Training',
+                    resources_title: 'Boost Your English Skills',
+                    resources_subtitle: 'اپنی انگریزی کی مہارتیں بہتر بنائیں', // Kept Urdu
+                    resources_description: 'Improving your English can open many doors. Here are some free and easy-to-use resources tailored for Hindi/Urdu speakers to help you along your journey. Consistency is key!',
+                    resources_vocab_title: 'Vocabulary & Grammar',
+                    resources_vocab_list: '<li><strong>Duolingo / Hello English app:</strong> Fun and interactive lessons for all levels, with Hindi/Urdu support.</li><li><strong>Cambridge Dictionary (Online):</strong> Provides definitions, examples, and often pronunciation guides.</li><li><strong>Grammarly (Free version):</strong> Helps check your writing for grammatical errors and suggests improvements.</li><li><strong>"Word of the Day" apps:</strong> Build your vocabulary daily with new words and their meanings.</li>',
+                    resources_speak_title: 'Speaking & Listening',
+                    resources_speak_list: '<li><strong>YouTube Channels:</strong> Search for "Spoken English for Hindi speakers" or "Learn English through Urdu" (e.g., Learn English with Viva, BBC Learning English).</li><li><strong>TED Talks (with subtitles):</strong> Listen to inspiring speeches on various topics and use subtitles initially.</li><li><strong>English News Channels/Podcasts:</strong> Start with slower-paced news or podcasts for learners.</li><li><strong>Practice Speaking:</strong> Find a study partner or use apps like HelloTalk to practice with native speakers.</li>',
+                    resources_read_title: 'Reading & Writing',
+                    resources_read_list: '<li><strong>Simple English Wikipedia:</strong> Read articles on various subjects in simpler English.</li><li><strong>Short English Storybooks:</strong> Start with children\'s books or simplified novels.</li><li><strong>Write Daily:</strong> Maintain a short diary in English, write emails, or summarize what you\'ve read.</li><li><strong>News in Slow English:</strong> Websites that provide news articles read at a slower pace.</li>',
+                    about_title: 'About this Initiative',
+                    about_subtitle: 'اس پہل کے بارے میں', // Kept Urdu
+                    about_description: 'This website is a humble effort by <strong class="font-semibold text-amber-300">Aasim Raza</strong> to guide and empower students from our communities. The goal is to provide clarity and open doors to a future full of possibilities.',
+                    about_prayer: 'If you find this helpful, all that is asked for is your prayers.',
+                    about_prayer_urdu: '"اگر آپ کو یہ مددگار لگے تو صرف دعاؤں کی درخواست ہے۔"', // Kept Urdu
+                    modal_what_they_do: 'What they do:',
+                    modal_required_subjects: 'Required Subjects/Path:',
+                    modal_top_institutes: 'Top Institutes:',
+                    modal_future_scope: 'Future Scope:',
+                    modal_challenges_expect: 'Challenges to Expect:'
+                },
+                hi: {
+                    nav_home: 'होम',
+                    nav_challenges: 'चुनौतियाँ',
+                    nav_careers: 'करियर मार्ग',
+                    nav_english_resources: 'अंग्रेजी संसाधन',
+                    nav_about: 'हमारे बारे में',
+                    home_title: 'भविष्य के नेताओं, आपका स्वागत है!',
+                    home_subtitle: 'آپ کا استقبال ہے، مستقبل کے رہنماؤں', // Kept Urdu for stylistic choice
+                    home_description: 'यह मंच हिंदी और उर्दू माध्यम के छात्रों जैसे आप के लिए समर्पित है। हम आपकी यात्रा और आपके प्रश्नों को समझते हैं। आपकी क्षमता असीमित है, और आपके करियर के विकल्प विशाल हैं। आइए इंजीनियरिंग और चिकित्सा के सामान्य रास्तों से परे अवसरों की दुनिया का अन्वेषण करें।',
+                    challenges_title: 'बड़ी छलांग: आपके माध्यम से अंग्रेजी तक',
+                    challenges_subtitle: 'آپ کے میڈیم سے انگریزی تک کی بڑی چھلانگ', // Kept Urdu
+                    challenges_description: '11वीं और 12वीं कक्षा के लिए अंग्रेजी माध्यम में जाना चुनौतीपूर्ण हो सकता है, लेकिन यह ज्ञान की व्यापक दुनिया के लिए एक पुल है। यहां कुछ सामान्य बाधाएं और आप उन्हें कैसे दूर कर सकते हैं। यह खंड आपको तैयार करने के लिए है, डराने के लिए नहीं। सही दृष्टिकोण से, आप उत्कृष्टता प्राप्त कर सकते हैं।',
+                    challenge1_title: 'शब्दावली और तकनीकी शब्द',
+                    challenge1_challenge: 'चुनौती: अचानक \'कोशिका\' \'सेल\' बन जाती है और \'गुरुत्वाकर्षण\' \'ग्रेविटी\'। ऐसा लगता है जैसे हर विषय के लिए एक नई भाषा सीखनी पड़ रही है।',
+                    challenge1_solution_intro: 'समाधान:',
+                    challenge1_solution_list: '<li>हर विषय के लिए एक द्विभाषी शब्दकोश बनाएं। अंग्रेजी शब्द और उसका हिंदी/उर्दू समकक्ष लिखें।</li><li>नए शब्दों को रोजाना याद करने के लिए फ्लैशकार्ड का उपयोग करें।</li><li>अपने पढ़े हुए विषयों पर अंग्रेजी में शैक्षिक वीडियो देखें। दृश्य शब्दों को अवधारणाओं से जोड़ने में मदद करेंगे।</li>',
+                    challenge2_title: 'कक्षा में आत्मविश्वास',
+                    challenge2_challenge: 'चुनौती: आप शिक्षक को समझते हैं, लेकिन आपको प्रश्न पूछने या उनके उत्तर देने में डर लगता है, यह सोचकर कि आप कोई व्याकरण संबंधी गलती कर देंगे।',
+                    challenge2_solution_intro: 'समाधान:',
+                    challenge2_solution_list: '<li>सहायक दोस्तों के साथ अंग्रेजी बोलने का अभ्यास करें। गलतियाँ करना ठीक है!</li><li>प्रश्न पूछने से पहले अपने प्रश्न लिख लें। यह आपको अपने विचारों को संरचित करने में मदद करेगा।</li><li>याद रखें, आपके शिक्षक आपकी मदद करना चाहते हैं। आपका पूछने का साहस सही व्याकरण से अधिक महत्वपूर्ण है।</li>',
+                    challenge3_title: 'पढ़ने की गति और समझ',
+                    challenge3_challenge: 'चुनौती: अंग्रेजी में पाठ्यपुस्तकों को पढ़ने में बहुत अधिक समय लगता है, और आपको उन्हें समझने के लिए पैराग्राफ को दोबारा पढ़ना पड़ता है।',
+                    challenge3_solution_intro: 'समाधान:',
+                    challenge3_solution_list: '<li>रोजाना 15-20 मिनट के लिए साधारण अंग्रेजी कहानियों की किताबें या समाचार लेख पढ़ना शुरू करें।</li><li>हर एक शब्द को न देखें। वाक्य के संदर्भ से अर्थ समझने की कोशिश करें।</li><li>प्रत्येक अध्याय या प्रमुख खंड को अपनी सरल अंग्रेजी या यहां तक कि हिंदी/उर्दू में सारांशित करें। यह सुनिश्चित करता है कि आपने मुख्य अवधारणाओं को समझ लिया है।</li>',
+                    chart_title: 'करियर क्षेत्रों की धारणा बनाम वास्तविकता',
+                    chart_subtitle: 'کیریئر کے شعبوں کا تصور بمقابلہ حقیقت', // Kept Urdu
+                    chart_description: 'कई छात्र मानते हैं कि करियर के केवल कुछ ही मुख्य विकल्प हैं। यह चार्ट वास्तविकता दर्शाता है: व्यवसायों की दुनिया विशाल और विविध है। यह विज़ुअलाइज़ेशन आपको इंजीनियरिंग और चिकित्सा के दो सबसे अधिक चर्चित क्षेत्रों से परे अवसरों की संख्या के लिए अपना दिमाग खोलने के लिए डिज़ाइन किया गया है।',
+                    careers_title: 'करियर मार्ग खोजें',
+                    careers_subtitle: 'کیریئر کے راستے دریافت کریں', // Kept Urdu
+                    careers_description: 'आपका भविष्य सिर्फ दो विकल्पों तक सीमित नहीं है। यहां विभिन्न क्षेत्रों में रोमांचक करियर विकल्पों की एक क्यूरेटेड सूची दी गई है। विकल्पों को फ़िल्टर करने के लिए किसी श्रेणी पर क्लिक करें, और फिर करियर में क्या शामिल है, आपको किन विषयों की आवश्यकता हो सकती है, और आप किन चुनौतियों की उम्मीद कर सकते हैं, इसके बारे में अधिक जानने के लिए किसी भी कार्ड पर क्लिक करें।',
+                    filter_all: 'सभी क्षेत्र',
+                    filter_science: 'विज्ञान और तकनीक',
+                    filter_commerce: 'वाणिज्य और वित्त',
+                    filter_arts: 'कला और मानविकी',
+                    filter_creative: 'रचनात्मक क्षेत्र',
+                    filter_vocational: 'व्यावसायिक और कौशल-आधारित',
+                    filter_public_service: 'सरकारी और लोक सेवा',
+                    filter_healthcare: 'स्वास्थ्य सेवा और जीवन विज्ञान',
+                    filter_education: 'शिक्षा और प्रशिक्षण',
+                    resources_title: 'अपनी अंग्रेजी कौशल बढ़ाएँ',
+                    resources_subtitle: 'اپنی انگریزی کی مہارتیں بہتر بنائیں', // Kept Urdu
+                    resources_description: 'अपनी अंग्रेजी में सुधार से कई दरवाजे खुल सकते हैं। आपकी यात्रा में मदद करने के लिए हिंदी/उर्दू भाषी छात्रों के लिए यहां कुछ मुफ्त और उपयोग में आसान संसाधन दिए गए हैं। निरंतरता महत्वपूर्ण है!',
+                    resources_vocab_title: 'शब्दावली और व्याकरण',
+                    resources_vocab_list: '<li><strong>डुओलिंगो / हेलो इंग्लिश ऐप:</strong> सभी स्तरों के लिए मजेदार और इंटरैक्टिव पाठ, हिंदी/उर्दू समर्थन के साथ।</li><li><strong>कैम्ब्रिज डिक्शनरी (ऑनलाइन):</strong> परिभाषाएँ, उदाहरण और अक्सर उच्चारण गाइड प्रदान करता है।</li><li><strong>ग्रामरली (निःशुल्क संस्करण):</strong> आपके लेखन में व्याकरण संबंधी त्रुटियों की जाँच करने और सुधार का सुझाव देने में मदद करता है।</li><li><strong>"वर्ड ऑफ़ द डे" ऐप:</strong> नए शब्दों और उनके अर्थों के साथ अपनी शब्दावली रोजाना बनाएं।</li>',
+                    resources_speak_title: 'बोलना और सुनना',
+                    resources_speak_list: '<li><strong>यूट्यूब चैनल:</strong> "हिंदी बोलने वालों के लिए स्पोकन इंग्लिश" या "उर्दू के माध्यम से अंग्रेजी सीखें" (जैसे, लर्न इंग्लिश विद विवा, बीबीसी लर्निंग इंग्लिश) खोजें।</li><li><strong>टेड टॉक्स (उपशीर्षक के साथ):</strong> विभिन्न विषयों पर प्रेरणादायक भाषण सुनें और शुरू में उपशीर्षक का उपयोग करें।</li><li><strong>अंग्रेजी समाचार चैनल/पॉडकास्ट:</strong> सीखने वालों के लिए धीमी गति वाले समाचार या पॉडकास्ट के साथ शुरुआत करें।</li><li><strong>बोलने का अभ्यास करें:</strong> एक अध्ययन साथी ढूंढें या मूल वक्ताओं के साथ अभ्यास करने के लिए हेलोटॉक जैसे ऐप का उपयोग करें।</li>',
+                    resources_read_title: 'पढ़ना और लिखना',
+                    resources_read_list: '<li><strong>सिंपल इंग्लिश विकिपीडिया:</strong> सरल अंग्रेजी में विभिन्न विषयों पर लेख पढ़ें।</li><li><strong>छोटी अंग्रेजी कहानियों की किताबें:</strong> बच्चों की किताबों या सरलीकृत उपन्यासों से शुरुआत करें।</li><li><strong>रोजाना लिखें:</strong> अंग्रेजी में एक छोटी डायरी बनाएं, ईमेल लिखें, या जो कुछ आपने पढ़ा है उसका सारांश दें।</li><li><strong>स्लो इंग्लिश में समाचार:</strong> वेबसाइटें जो धीमी गति से समाचार लेख प्रदान करती हैं।</li>',
+                    about_title: 'इस पहल के बारे में',
+                    about_subtitle: 'اس پہل کے بارے میں', // Kept Urdu
+                    about_description: 'यह वेबसाइट <strong class="font-semibold text-amber-300">आसिम रजा</strong> का एक विनम्र प्रयास है जो हमारे समुदायों के छात्रों को मार्गदर्शन और सशक्त बनाने के लिए है। इसका लक्ष्य स्पष्टता प्रदान करना और संभावनाओं से भरे भविष्य के द्वार खोलना है।',
+                    about_prayer: 'यदि आपको यह उपयोगी लगे, तो आपसे केवल आपकी प्रार्थनाओं का अनुरोध है।',
+                    about_prayer_urdu: '"اگر آپ کو یہ مددگار لگے تو صرف دعاؤں کی درخواست ہے۔"', // Kept Urdu
+                    modal_what_they_do: 'वे क्या करते हैं:',
+                    modal_required_subjects: 'आवश्यक विषय/मार्ग:',
+                    modal_top_institutes: 'शीर्ष संस्थान:',
+                    modal_future_scope: 'भविष्य का दायरा:',
+                    modal_challenges_expect: 'अपेक्षित चुनौतियाँ:'
+                }
+            };
+
+            // Career Data
+            const careersData = [
+                {
+                    category: "science",
+                    details: {
+                        en: {
+                            title: "Data Scientist",
+                            description: "Data scientists use data to solve complex problems. They gather, clean, and analyze data to find patterns and make predictions. It's a mix of statistics, computer science, and business knowledge.",
+                            subjects: "11th/12th with PCM/PCB. Strong in Maths & Statistics. A Bachelor's degree in Computer Science, Statistics, or a related field is a good start.",
+                            colleges: "IITs, NITs, IISc Bangalore, ISI Kolkata.",
+                            scope: "High demand in tech, finance, e-commerce, and healthcare.",
+                            challenges: "Requires continuous learning of new tools. Transitioning from theory to practical problem-solving can be tough."
+                        },
+                        hi: {
+                            title: "डेटा साइंटिस्ट",
+                            description: "डेटा साइंटिस्ट जटिल समस्याओं को हल करने के लिए डेटा का उपयोग करते हैं। वे पैटर्न खोजने और भविष्यवाणियां करने के लिए डेटा एकत्र करते हैं, साफ करते हैं और विश्लेषण करते हैं। यह सांख्यिकी, कंप्यूटर विज्ञान और व्यावसायिक ज्ञान का एक मिश्रण है।",
+                            subjects: "11वीं/12वीं पीसीएम/पीसीबी के साथ। गणित और सांख्यिकी में मजबूत। कंप्यूटर विज्ञान, सांख्यिकी, या संबंधित क्षेत्र में स्नातक की डिग्री एक अच्छी शुरुआत है।",
+                            colleges: "आईआईटी, एनआईटी, आईआईएससी बैंगलोर, आईएसआई कोलकाता।",
+                            scope: "टेक, वित्त, ई-कॉमर्स और स्वास्थ्य सेवा में उच्च मांग।",
+                            challenges: "नए उपकरणों को लगातार सीखना आवश्यक है। सिद्धांत से व्यावहारिक समस्या-समाधान में संक्रमण कठिन हो सकता है।"
+                        }
+                    }
+                },
+                {
+                    title: "Graphic Designer",
+                    category: "creative",
+                    details: {
+                        en: {
+                            description: "Graphic designers create visual concepts to communicate ideas. They design logos, websites, advertisements, and magazines. It's about art meeting technology.",
+                            subjects: "Any stream is fine, but Arts/Humanities can be helpful. A degree/diploma in Fine Arts or Design is recommended.",
+                            colleges: "National Institute of Design (NID), IIT Bombay (IDC), Pearl Academy.",
+                            scope: "Huge scope in advertising, marketing, web design, and freelance work.",
+                            challenges: "Need to build a strong portfolio. Keeping up with design trends and software."
+                        },
+                        hi: { // Placeholder for Hindi translation
+                            title: "ग्राफिक डिजाइनर",
+                            description: "ग्राफिक डिजाइनर विचारों को संप्रेषित करने के लिए दृश्य अवधारणाएं बनाते हैं। वे लोगो, वेबसाइट, विज्ञापन और पत्रिकाएं डिजाइन करते हैं। यह कला और प्रौद्योगिकी का संगम है।",
+                            subjects: "कोई भी स्ट्रीम ठीक है, लेकिन कला/मानविकी सहायक हो सकती है। ललित कला या डिजाइन में डिग्री/डिप्लोमा की सिफारिश की जाती है।",
+                            colleges: "नेशनल इंस्टीट्यूट ऑफ डिजाइन (NID), आईआईटी बॉम्बे (IDC), पर्ल एकेडमी।",
+                            scope: "विज्ञापन, विपणन, वेब डिजाइन और फ्रीलांस काम में बहुत बड़ा दायरा।",
+                            challenges: "एक मजबूत पोर्टफोलियो बनाने की जरूरत है। डिजाइन रुझानों और सॉफ्टवेयर के साथ तालमेल बनाए रखना।"
+                        }
+                    }
+                },
+                {
+                    title: "Chartered Accountant (CA)",
+                    category: "commerce",
+                    details: {
+                        en: {
+                            description: "CAs are experts in accounting, auditing, and taxation. They help businesses manage their finances and comply with laws.",
+                            subjects: "Commerce in 11th/12th is ideal. You have to clear exams conducted by the Institute of Chartered Accountants of India (ICAI).",
+                            colleges: "This is a professional course, not a college degree. Requires clearing CPT, IPCC, and Final exams.",
+                            scope: "Always in demand in every industry. Can have their own practice or work for large firms.",
+                            challenges: "Exams are very tough and require years of dedicated study and hard work."
+                        },
+                        hi: { // Placeholder for Hindi translation
+                            title: "चार्टर्ड अकाउंटेंट (CA)",
+                            description: "सीए अकाउंटिंग, ऑडिटिंग और कराधान के विशेषज्ञ होते हैं। वे व्यवसायों को अपने वित्त का प्रबंधन करने और कानूनों का पालन करने में मदद करते हैं।",
+                            subjects: "11वीं/12वीं में कॉमर्स आदर्श है। आपको इंस्टीट्यूट ऑफ चार्टर्ड अकाउंटेंट्स ऑफ इंडिया (ICAI) द्वारा आयोजित परीक्षाएँ उत्तीर्ण करनी होंगी।",
+                            colleges: "यह एक पेशेवर कोर्स है, कॉलेज की डिग्री नहीं। सीपीटी, आईपीसीसी और अंतिम परीक्षाएँ उत्तीर्ण करना आवश्यक है।",
+                            scope: "हर उद्योग में हमेशा मांग में रहते हैं। उनका अपना अभ्यास हो सकता है या बड़ी फर्मों के लिए काम कर सकते हैं।",
+                            challenges: "परीक्षाएं बहुत कठिन होती हैं और इसके लिए वर्षों के समर्पित अध्ययन और कड़ी मेहनत की आवश्यकता होती है।"
+                        }
+                    }
+                },
+                {
+                    title: "Clinical Psychologist",
+                    category: "arts",
+                    details: {
+                        en: {
+                            description: "Clinical psychologists assess and treat mental, emotional, and behavioral disorders. They help people cope with life's challenges.",
+                            subjects: "Arts/Humanities with Psychology in 11th/12th is best. Requires a Bachelor's and Master's in Psychology, followed by an M.Phil in Clinical Psychology.",
+                            colleges: "Delhi University, TISS Mumbai, NIMHANS Bangalore.",
+                            scope: "Growing awareness about mental health is increasing demand in hospitals, schools, and private practice.",
+                            challenges: "Emotionally demanding job. Requires a lot of patience, empathy, and years of higher education."
+                        },
+                        hi: { // Placeholder for Hindi translation
+                            title: "क्लिनिकल मनोवैज्ञानिक",
+                            description: "क्लिनिकल मनोवैज्ञानिक मानसिक, भावनात्मक और व्यवहार संबंधी विकारों का आकलन और उपचार करते हैं। वे लोगों को जीवन की चुनौतियों का सामना करने में मदद करते हैं।",
+                            subjects: "11वीं/12वीं में मनोविज्ञान के साथ कला/मानविकी सबसे अच्छा है। मनोविज्ञान में स्नातक और परास्नातक की आवश्यकता होती है, जिसके बाद क्लिनिकल मनोविज्ञान में एम.फिल।",
+                            colleges: "दिल्ली विश्वविद्यालय, टीआईएसएस मुंबई, निमहंस बैंगलोर।",
+                            scope: "मानसिक स्वास्थ्य के बारे में बढ़ती जागरूकता अस्पतालों, स्कूलों और निजी अभ्यास में मांग बढ़ा रही है।",
+                            challenges: "भावनात्मक रूप से मांग वाली नौकरी। बहुत धैर्य, सहानुभूति और वर्षों की उच्च शिक्षा की आवश्यकता होती है।"
+                        }
+                    }
+                },
+                {
+                    title: "Ethical Hacker",
+                    category: "science",
+                    details: {
+                        en: {
+                            description: "Also known as cybersecurity experts, they legally hack into systems to find vulnerabilities and help companies strengthen their security.",
+                            subjects: "PCM with Computer Science. A B.Tech in Computer Science or IT is a common path. Certifications like CEH are important.",
+                            colleges: "IITs, NITs, and other top engineering colleges.",
+                            scope: "Extremely high demand as cyber threats increase.",
+                            challenges: "Must constantly update skills to stay ahead of malicious hackers. High-pressure job."
+                        },
+                        hi: { // Placeholder for Hindi translation
+                            title: "एथिकल हैकर",
+                            description: "साइबर सुरक्षा विशेषज्ञों के रूप में भी जाने जाते हैं, वे कानूनी रूप से सिस्टम में घुसपैठ करते हैं ताकि कमजोरियों का पता लगा सकें और कंपनियों को अपनी सुरक्षा मजबूत करने में मदद कर सकें।",
+                            subjects: "कंप्यूटर विज्ञान के साथ पीसीएम। कंप्यूटर विज्ञान या आईटी में बी.टेक एक सामान्य मार्ग है। सीईएच जैसे प्रमाणन महत्वपूर्ण हैं।",
+                            colleges: "आईआईटी, एनआईटी और अन्य शीर्ष इंजीनियरिंग कॉलेज।",
+                            scope: "साइबर खतरों के बढ़ने के कारण अत्यधिक उच्च मांग।",
+                            challenges: "दुर्भावनापूर्ण हैकर्स से आगे रहने के लिए कौशल को लगातार अपडेट करना चाहिए। उच्च दबाव वाली नौकरी।"
+                        }
+                    }
+                },
+                {
+                    title: "Content Writer / Copywriter",
+                    category: "creative",
+                     details: {
+                        en: {
+                            description: "Content writers create articles, blogs, and website content. Copywriters write persuasive text for advertising and marketing.",
+                            subjects: "Any stream, but a strong command of the language (English) is key. Mass Communication or English Literature degrees can be helpful.",
+                            colleges: "No specific college required; it's a skill-based field. IIMC Delhi, Symbiosis Pune are good for communication courses.",
+                            scope: "Digital marketing has created a massive demand for good writers.",
+                            challenges: "Need to be creative and meet deadlines. Building a strong portfolio is essential."
+                        },
+                        hi: { // Placeholder for Hindi translation
+                            title: "कंटेंट राइटर / कॉपीराइटर",
+                            description: "कंटेंट राइटर लेख, ब्लॉग और वेबसाइट सामग्री बनाते हैं। कॉपीराइटर विज्ञापन और विपणन के लिए प्रेरक पाठ लिखते हैं।",
+                            subjects: "कोई भी स्ट्रीम, लेकिन भाषा (अंग्रेजी) पर एक मजबूत पकड़ महत्वपूर्ण है। जनसंचार या अंग्रेजी साहित्य की डिग्री सहायक हो सकती है।",
+                            colleges: "कोई विशिष्ट कॉलेज की आवश्यकता नहीं है; यह एक कौशल-आधारित क्षेत्र है। आईआईएमसी दिल्ली, सिम्बायोसिस पुणे संचार पाठ्यक्रमों के लिए अच्छे हैं।",
+                            scope: "डिजिटल मार्केटिंग ने अच्छे लेखकों के लिए भारी मांग पैदा की है।",
+                            challenges: "रचनात्मक होने और समय सीमा को पूरा करने की आवश्यकता है। एक मजबूत पोर्टफोलियो बनाना आवश्यक है।"
+                        }
+                    }
+                },
+                 {
+                    title: "Social Worker",
+                    category: "arts",
+                    details: {
+                        en: {
+                            description: "Social workers help individuals, families, and communities to improve their well-being. They work in NGOs, hospitals, and government agencies.",
+                            subjects: "Any stream. A Bachelor of Social Work (BSW) followed by a Master of Social Work (MSW) is the professional qualification.",
+                            colleges: "Tata Institute of Social Sciences (TISS), Delhi School of Social Work.",
+                            scope: "Fulfilling career with opportunities in diverse sectors like child welfare, healthcare, and rural development.",
+                            challenges: "Can be emotionally taxing. Salaries may not be as high as in corporate jobs initially."
+                        },
+                        hi: { // Placeholder for Hindi translation
+                            title: "समाज सेवक",
+                            description: "समाज सेवक व्यक्तियों, परिवारों और समुदायों को उनके कल्याण में सुधार करने में मदद करते हैं। वे गैर-सरकारी संगठनों, अस्पतालों और सरकारी एजेंसियों में काम करते हैं।",
+                            subjects: "कोई भी स्ट्रीम। सोशल वर्क में स्नातक (बीएसडब्ल्यू) के बाद सोशल वर्क में मास्टर (एमएसडब्ल्यू) पेशेवर योग्यता है।",
+                            colleges: "टाटा इंस्टीट्यूट ऑफ सोशल साइंसेज (टीआईएसएस), दिल्ली स्कूल ऑफ सोशल वर्क।",
+                            scope: "बाल कल्याण, स्वास्थ्य सेवा और ग्रामीण विकास जैसे विभिन्न क्षेत्रों में अवसरों के साथ एक संतोषजनक करियर।",
+                            challenges: "भावनात्मक रूप से थका देने वाला हो सकता है। शुरुआती तौर पर कॉर्पोरेट नौकरियों जितनी वेतन नहीं हो सकता है।"
+                        }
+                    }
+                },
+                 {
+                    title: "Chef / Culinary Artist",
+                    category: "vocational",
+                    details: {
+                        en: {
+                            description: "Chefs are professional cooks and artists who create dishes in restaurants, hotels, and cafes. It's a highly creative and demanding job.",
+                            subjects: "Any stream. A degree in Hotel Management is the standard path.",
+                            colleges: "Institute of Hotel Management (IHM) chain across India, Welcomgroup Graduate School of Hotel Administration (WGSHA) Manipal.",
+                            scope: "The food and hospitality industry is always growing. Opportunities to work abroad.",
+                            challenges: "Long working hours in a high-pressure environment. Physically demanding."
+                        },
+                        hi: { // Placeholder for Hindi translation
+                            title: "शेफ / पाक कलाकार",
+                            description: "शेफ पेशेवर रसोइये और कलाकार होते हैं जो रेस्तरां, होटल और कैफे में व्यंजन बनाते हैं। यह एक अत्यधिक रचनात्मक और मांग वाली नौकरी है।",
+                            subjects: "कोई भी स्ट्रीम। होटल मैनेजमेंट में डिग्री मानक मार्ग है।",
+                            colleges: "भारत भर में होटल मैनेजमेंट संस्थान (आईएचएम) श्रृंखला, वेलकमग्रुप ग्रेजुएट स्कूल ऑफ होटल एडमिनिस्ट्रेशन (डब्ल्यूजीएसएचए) मणिपाल।",
+                            scope: "खाद्य और आतिथ्य उद्योग हमेशा बढ़ रहा है। विदेश में काम करने के अवसर।",
+                            challenges: "उच्च दबाव वाले वातावरण में लंबे समय तक काम करना। शारीरिक रूप से मांग वाला।"
+                        }
+                    }
+                },
+                {
+                    title: "Investment Banker",
+                    category: "commerce",
+                    details: {
+                        en: {
+                            description: "Investment bankers help companies raise money through stock and bond markets. They also advise on mergers and acquisitions. It's a high-finance job.",
+                            subjects: "Commerce stream is best. Requires a degree in finance, economics, or an MBA in Finance from a top B-School.",
+                            colleges: "For MBA: IIMs, ISB Hyderabad, FMS Delhi.",
+                            scope: "Very high-paying jobs in major financial hubs.",
+                            challenges: "Extremely long working hours and very high-pressure, competitive environment."
+                        },
+                        hi: { // Placeholder for Hindi translation
+                            title: "निवेश बैंकर",
+                            description: "निवेश बैंकर कंपनियों को स्टॉक और बॉन्ड बाजारों के माध्यम से धन जुटाने में मदद करते हैं। वे विलय और अधिग्रहण पर भी सलाह देते हैं। यह एक उच्च वित्त नौकरी है।",
+                            subjects: "कॉमर्स स्ट्रीम सबसे अच्छी है। वित्त, अर्थशास्त्र में डिग्री या शीर्ष बी-स्कूल से वित्त में एमबीए की आवश्यकता होती है।",
+                            colleges: "एमबीए के लिए: आईआईएम, आईएसबी हैदराबाद, एफएमएस दिल्ली।",
+                            scope: "प्रमुख वित्तीय केंद्रों में बहुत अधिक वेतन वाली नौकरियां।",
+                            challenges: "अत्यंत लंबे काम के घंटे और बहुत उच्च दबाव, प्रतिस्पर्धी वातावरण।"
+                        }
+                    }
+                },
+                 {
+                    title: "UX/UI Designer",
+                    category: "creative",
+                    details: {
+                        en: {
+                            description: "UI (User Interface) designers focus on the look of an app or website. UX (User Experience) designers focus on making it easy and enjoyable to use.",
+                            subjects: "Any stream, but a background in design, psychology or computer science helps. Many people transition into this field via online courses and certifications.",
+                            colleges: "NID, IITs (Design Depts). However, a strong portfolio of projects is more important than a degree.",
+                            scope: "Essential role in every tech company that builds digital products.",
+                            challenges: "Need to understand user psychology and have good problem-solving skills. Field is constantly evolving."
+                        },
+                        hi: { // Placeholder for Hindi translation
+                            title: "यूएक्स/यूआई डिजाइनर",
+                            description: "यूआई (यूजर इंटरफेस) डिजाइनर किसी ऐप या वेबसाइट के लुक पर ध्यान केंद्रित करते हैं। यूएक्स (यूजर एक्सपीरियंस) डिजाइनर इसे उपयोग में आसान और सुखद बनाने पर ध्यान केंद्रित करते हैं।",
+                            subjects: "कोई भी स्ट्रीम, लेकिन डिजाइन, मनोविज्ञान या कंप्यूटर विज्ञान में पृष्ठभूमि सहायक होती है। बहुत से लोग ऑनलाइन कोर्स और प्रमाणन के माध्यम से इस क्षेत्र में आते हैं।",
+                            colleges: "एनआईडी, आईआईटी (डिजाइन विभाग)। हालांकि, डिग्री से ज्यादा परियोजनाओं का एक मजबूत पोर्टफोलियो महत्वपूर्ण है।",
+                            scope: "डिजिटल उत्पादों का निर्माण करने वाली हर टेक कंपनी में आवश्यक भूमिका।",
+                            challenges: "उपयोगकर्ता मनोविज्ञान को समझने और अच्छे समस्या-समाधान कौशल की आवश्यकता है। क्षेत्र लगातार विकसित हो रहा है।"
+                        }
+                    }
+                },
+                {
+                    title: "Environmental Scientist",
+                    category: "science",
+                    details: {
+                        en: {
+                            description: "They study environmental problems like pollution and climate change and find solutions. Their work involves fieldwork, lab research, and policy-making.",
+                            subjects: "Science stream (PCB or PCM). A Bachelor's degree in Environmental Science/Engineering is required.",
+                            colleges: "IITs, Delhi University, TERI School of Advanced Studies.",
+                            scope: "Growing demand due to increasing environmental concerns globally.",
+                            challenges: "Work can involve challenging fieldwork in remote locations. Policy changes can be slow."
+                        },
+                        hi: { // Placeholder for Hindi translation
+                            title: "पर्यावरण वैज्ञानिक",
+                            description: "वे प्रदूषण और जलवायु परिवर्तन जैसी पर्यावरणीय समस्याओं का अध्ययन करते हैं और समाधान खोजते हैं। उनके काम में फील्डवर्क, लैब रिसर्च और नीति-निर्माण शामिल हैं।",
+                            subjects: "विज्ञान स्ट्रीम (पीसीबी या पीसीएम)। पर्यावरण विज्ञान/इंजीनियरिंग में स्नातक की डिग्री आवश्यक है।",
+                            colleges: "आईआईटी, दिल्ली विश्वविद्यालय, टेरी स्कूल ऑफ एडवांस्ड स्टडीज।",
+                            scope: "विश्व स्तर पर बढ़ती पर्यावरणीय चिंताओं के कारण बढ़ती मांग।",
+                            challenges: "काम में दूरदराज के स्थानों में चुनौतीपूर्ण फील्डवर्क शामिल हो सकता है। नीतिगत परिवर्तन धीमे हो सकते हैं।"
+                        }
+                    }
+                },
+                {
+                    title: "Digital Marketing Specialist",
+                    category: "vocational",
+                    details: {
+                        en: {
+                            description: "They use online channels like social media, search engines (Google), and email to promote products or services.",
+                            subjects: "Any stream. It's a skill-based field. Many successful marketers have degrees in business, communications, or even engineering.",
+                            colleges: "No specific degree is a must. Certifications from Google, HubSpot, and practical experience are highly valued.",
+                            scope: "Every business needs an online presence, so demand is massive and growing.",
+                            challenges: "The digital landscape changes very fast; requires constant learning. Need to be analytical and creative."
+                        },
+                        hi: { // Placeholder for Hindi translation
+                            title: "डिजिटल मार्केटिंग विशेषज्ञ",
+                            description: "वे उत्पादों या सेवाओं को बढ़ावा देने के लिए सोशल मीडिया, सर्च इंजन (गूगल) और ईमेल जैसे ऑनलाइन चैनलों का उपयोग करते हैं।",
+                            subjects: "कोई भी स्ट्रीम। यह एक कौशल-आधारित क्षेत्र है। कई सफल विपणक के पास व्यवसाय, संचार या यहां तक कि इंजीनियरिंग में डिग्री होती है।",
+                            colleges: "कोई विशिष्ट डिग्री आवश्यक नहीं है। गूगल, हबस्पॉट और व्यावहारिक अनुभव से प्रमाणन अत्यधिक मूल्यवान हैं।",
+                            scope: "हर व्यवसाय को एक ऑनलाइन उपस्थिति की आवश्यकता होती है, इसलिए मांग बहुत अधिक है और बढ़ रही है।",
+                            challenges: "डिजिटल परिदृश्य बहुत तेजी से बदलता है; लगातार सीखने की आवश्यकता है। विश्लेषणात्मक और रचनात्मक होने की आवश्यकता है।"
+                        }
+                    }
+                },
+                {
+                    title: "Architect",
+                    category: "creative",
+                    details: {
+                        en: {
+                            description: "Architects design buildings and other structures. They combine creativity with technical knowledge to create functional and aesthetically pleasing spaces.",
+                            subjects: "PCM with a focus on Maths/Drawing. A Bachelor of Architecture (B.Arch) is required.",
+                            colleges: "IIT Roorkee, SPA Delhi, CEPT University Ahmedabad.",
+                            scope: "Opportunities in construction, urban planning, and interior design.",
+                            challenges: "Long academic course. Requires strong visualization and problem-solving skills."
+                        },
+                        hi: { // Placeholder for Hindi translation
+                            title: "आर्किटेक्ट",
+                            description: "आर्किटेक्ट इमारतों और अन्य संरचनाओं को डिजाइन करते हैं। वे कार्यात्मक और सौंदर्यपूर्ण रूप से मनभावन स्थान बनाने के लिए रचनात्मकता को तकनीकी ज्ञान के साथ जोड़ते हैं।",
+                            subjects: "गणित/ड्राइंग पर ध्यान केंद्रित करने के साथ पीसीएम। आर्किटेक्चर में स्नातक (बी.आर्क) आवश्यक है।",
+                            colleges: "आईआईटी रुड़की, एसपीए दिल्ली, सेप्ट विश्वविद्यालय अहमदाबाद।",
+                            scope: "निर्माण, शहरी नियोजन और इंटीरियर डिजाइन में अवसर।",
+                            challenges: "लंबे अकादमिक कोर्स। मजबूत विज़ुअलाइज़ेशन और समस्या-समाधान कौशल की आवश्यकता है।"
+                        }
+                    }
+                },
+                {
+                    title: "Financial Analyst",
+                    category: "commerce",
+                    details: {
+                        en: {
+                            description: "Financial analysts evaluate investment opportunities for individuals or companies. They research industries, companies, and market trends.",
+                            subjects: "Commerce stream is ideal. A Bachelor's degree in Finance, Economics, or Business Administration. CFA (Chartered Financial Analyst) certification is highly valued.",
+                            colleges: "IIMs, FMS Delhi, XLRI Jamshedpur.",
+                            scope: "High demand in investment banking, corporate finance, and asset management.",
+                            challenges: "Requires strong analytical skills and staying updated on market conditions. High-pressure environment."
+                        },
+                        hi: { // Placeholder for Hindi translation
+                            title: "वित्तीय विश्लेषक",
+                            description: "वित्तीय विश्लेषक व्यक्तियों या कंपनियों के लिए निवेश के अवसरों का मूल्यांकन करते हैं। वे उद्योगों, कंपनियों और बाजार के रुझानों पर शोध करते हैं।",
+                            subjects: "कॉमर्स स्ट्रीम आदर्श है। वित्त, अर्थशास्त्र या व्यवसाय प्रशासन में स्नातक की डिग्री। सीएफए (चार्टर्ड फाइनेंशियल एनालिस्ट) प्रमाणन अत्यधिक मूल्यवान है।",
+                            colleges: "आईआईएम, एफएमएस दिल्ली, एक्सएलआरआई जमशेदपुर।",
+                            scope: "निवेश बैंकिंग, कॉर्पोरेट वित्त और संपत्ति प्रबंधन में उच्च मांग।",
+                            challenges: "मजबूत विश्लेषणात्मक कौशल और बाजार की स्थितियों पर अद्यतित रहने की आवश्यकता है। उच्च दबाव वाला वातावरण।"
+                        }
+                    }
+                },
+                {
+                    title: "Journalist",
+                    category: "arts",
+                    details: {
+                        en: {
+                            description: "Journalists research, write, and report news. They work across various mediums like print, television, radio, and digital platforms.",
+                            subjects: "Any stream. A Bachelor's or Master's degree in Journalism or Mass Communication is common.",
+                            colleges: "IIMC Delhi, Symbiosis Institute of Media and Communication Pune, Asian College of Journalism Chennai.",
+                            scope: "Opportunities in news agencies, media houses, and digital content creation.",
+                            challenges: "Can involve long hours and challenging fieldwork. Need strong communication and critical thinking skills."
+                        },
+                        hi: { // Placeholder for Hindi translation
+                            title: "पत्रकार",
+                            description: "पत्रकार समाचारों पर शोध करते हैं, लिखते हैं और रिपोर्ट करते हैं। वे प्रिंट, टेलीविजन, रेडियो और डिजिटल प्लेटफॉर्म जैसे विभिन्न माध्यमों में काम करते हैं।",
+                            subjects: "कोई भी स्ट्रीम। पत्रकारिता या जनसंचार में स्नातक या मास्टर की डिग्री सामान्य है।",
+                            colleges: "आईआईएमसी दिल्ली, सिम्बायोसिस इंस्टीट्यूट ऑफ मीडिया एंड कम्युनिकेशन पुणे, एशियन कॉलेज ऑफ जर्नलिज्म चेन्नई।",
+                            scope: "समाचार एजेंसियों, मीडिया हाउसों और डिजिटल सामग्री निर्माण में अवसर।",
+                            challenges: "इसमें लंबे समय तक काम करना और चुनौतीपूर्ण फील्डवर्क शामिल हो सकता है। मजबूत संचार और महत्वपूर्ण सोच कौशल की आवश्यकता है।"
+                        }
+                    }
+                },
+                {
+                    title: "Biotechnologist",
+                    category: "science",
+                    details: {
+                        en: {
+                            description: "Biotechnologists use biological processes to develop new products and technologies, especially in medicine, agriculture, and environmental science.",
+                            subjects: "PCB or PCM. A Bachelor's/Master's degree in Biotechnology or related biological sciences is required.",
+                            colleges: "IITs, NITs, Vellore Institute of Technology, Anna University.",
+                            scope: "Growing field with applications in pharmaceuticals, food processing, and biofuels.",
+                            challenges: "Requires strong research skills and lab work. Ethical considerations can be complex."
+                        },
+                        hi: { // Placeholder for Hindi translation
+                            title: "जैव प्रौद्योगिकीविद्",
+                            description: "जैव प्रौद्योगिकीविद् नए उत्पादों और प्रौद्योगिकियों को विकसित करने के लिए जैविक प्रक्रियाओं का उपयोग करते हैं, खासकर चिकित्सा, कृषि और पर्यावरण विज्ञान में।",
+                            subjects: "पीसीबी या पीसीएम। जैव प्रौद्योगिकी या संबंधित जैविक विज्ञान में स्नातक/मास्टर की डिग्री आवश्यक है।",
+                            colleges: "आईआईटी, एनआईटी, वेल्लोर इंस्टीट्यूट ऑफ टेक्नोलॉजी, अन्ना विश्वविद्यालय।",
+                            scope: "फार्मास्यूटिकल्स, खाद्य प्रसंस्करण और जैव ईंधन में अनुप्रयोगों के साथ बढ़ता क्षेत्र।",
+                            challenges: "मजबूत शोध कौशल और प्रयोगशाला कार्य की आवश्यकता है। नैतिक विचार जटिल हो सकते हैं।"
+                        }
+                    }
+                },
+                {
+                    title: "Event Manager",
+                    category: "vocational",
+                    details: {
+                        en: {
+                            description: "Event managers plan and execute various events, from corporate conferences to weddings and concerts. They handle everything from logistics to budgeting.",
+                            subjects: "Any stream. A diploma or degree in Event Management is beneficial.",
+                            colleges: "National Institute of Event Management (NIEM), Amity University, Symbiosis Centre for Management Studies.",
+                            scope: "Dynamic field with opportunities in corporate, entertainment, and social events.",
+                            challenges: "High-pressure job with irregular hours. Requires excellent organizational and communication skills."
+                        },
+                        hi: { // Placeholder for Hindi translation
+                            title: "इवेंट मैनेजर",
+                            description: "इवेंट मैनेजर कॉर्पोरेट सम्मेलनों से लेकर शादियों और संगीत समारोहों तक विभिन्न आयोजनों की योजना बनाते और उन्हें निष्पादित करते हैं। वे लॉजिस्टिक्स से लेकर बजट तक सब कुछ संभालते हैं।",
+                            subjects: "कोई भी स्ट्रीम। इवेंट मैनेजमेंट में डिप्लोमा या डिग्री फायदेमंद है।",
+                            colleges: "नेशनल इंस्टीट्यूट ऑफ इवेंट मैनेजमेंट (एनआईईएम), एमिटी यूनिवर्सिटी, सिम्बायोसिस सेंटर फॉर मैनेजमेंट स्टडीज।",
+                            scope: "कॉर्पोरेट, मनोरंजन और सामाजिक आयोजनों में अवसरों के साथ गतिशील क्षेत्र।",
+                            challenges: "अनियमित घंटों के साथ उच्च दबाव वाली नौकरी। उत्कृष्ट संगठनात्मक और संचार कौशल की आवश्यकता है।"
+                        }
+                    }
+                },
+                {
+                    title: "Fashion Designer",
+                    category: "creative",
+                    details: {
+                        en: {
+                            description: "Fashion designers create clothing and accessories. They research trends, sketch designs, select fabrics, and oversee production.",
+                            subjects: "Any stream. A degree or diploma in Fashion Design is essential.",
+                            colleges: "National Institute of Fashion Technology (NIFT), Pearl Academy, NID Ahmedabad.",
+                            scope: "Highly competitive industry. Opportunities in design houses or starting own label.",
+                            challenges: "Highly competitive industry. Requires constant creativity and understanding of market trends."
+                        },
+                        hi: { // Placeholder for Hindi translation
+                            title: "फैशन डिजाइनर",
+                            description: "फैशन डिजाइनर कपड़े और सामान बनाते हैं। वे रुझानों पर शोध करते हैं, डिजाइन स्केच करते हैं, कपड़े का चयन करते हैं और उत्पादन की देखरेख करते हैं।",
+                            subjects: "कोई भी स्ट्रीम। फैशन डिजाइन में डिग्री या डिप्लोमा आवश्यक है।",
+                            colleges: "नेशनल इंस्टीट्यूट ऑफ फैशन टेक्नोलॉजी (NIFT), पर्ल एकेडमी, NID अहमदाबाद।",
+                            scope: "अत्यधिक प्रतिस्पर्धी उद्योग। डिजाइन हाउस में या अपना खुद का लेबल शुरू करने के अवसर।",
+                            challenges: "अत्यधिक प्रतिस्पर्धी उद्योग। लगातार रचनात्मकता और बाजार के रुझानों को समझने की आवश्यकता है।"
+                        }
+                    }
+                },
+                {
+                    category: "public_service",
+                    details: {
+                        en: {
+                            title: "National Defence Academy (NDA) Officer",
+                            description: "The National Defence Academy (NDA) is the joint services academy of the Indian Armed Forces, where cadets of the Army, Navy, and Air Force train together before going on to pre-commissioning training at their respective service academies. NDA provides a path to becoming an officer in the Indian Armed Forces right after 12th grade.",
+                            subjects: "Candidates must have passed 10+2 with Physics, Chemistry, and Mathematics for Naval & Air Force wings. For the Army wing, any stream is acceptable.",
+                            colleges: "National Defence Academy (NDA), Khadakwasla, Pune.",
+                            scope: "Prestigious and highly respected career with leadership roles, job security, and opportunities for diverse experiences and service to the nation.",
+                            challenges: "Extremely competitive entrance exam and rigorous physical and mental training. Strict discipline and demanding lifestyle."
+                        },
+                        hi: {
+                            title: "राष्ट्रीय रक्षा अकादमी (NDA) अधिकारी",
+                            description: "राष्ट्रीय रक्षा अकादमी (NDA) भारतीय सशस्त्र बलों की संयुक्त सेवा अकादमी है, जहाँ सेना, नौसेना और वायु सेना के कैडेट अपनी-अपनी सेवा अकादमियों में कमीशन-पूर्व प्रशिक्षण के लिए जाने से पहले एक साथ प्रशिक्षण लेते हैं। NDA 12वीं कक्षा के ठीक बाद भारतीय सशस्त्र बलों में अधिकारी बनने का मार्ग प्रदान करता है।",
+                            subjects: "नौसेना और वायु सेना विंग के लिए उम्मीदवारों को 10+2 भौतिकी, रसायन विज्ञान और गणित के साथ उत्तीर्ण होना चाहिए। सेना विंग के लिए, कोई भी स्ट्रीम स्वीकार्य है।",
+                            colleges: "राष्ट्रीय रक्षा अकादमी (NDA), खडकवासला, पुणे।",
+                            scope: "नेतृत्व भूमिकाओं, नौकरी की सुरक्षा और राष्ट्र की सेवा के लिए विविध अनुभवों और अवसरों के साथ प्रतिष्ठित और अत्यधिक सम्मानित करियर।",
+                            challenges: "अत्यंत प्रतिस्पर्धी प्रवेश परीक्षा और कठोर शारीरिक और मानसिक प्रशिक्षण। सख्त अनुशासन और मांग वाली जीवनशैली।"
+                        }
+                    }
+                },
+                {
+                    title: "UPSC Civil Services Officer (IAS/IPS/IFS)",
+                    category: "public_service",
+                    details: {
+                        en: {
+                            description: "The Union Public Service Commission (UPSC) Civil Services Examination (CSE) is one of India's most challenging competitive exams. Clearing it leads to prestigious administrative, police, and foreign service roles (e.g., Indian Administrative Service - IAS, Indian Police Service - IPS, Indian Foreign Service - IFS), playing a crucial role in governance and policy implementation.",
+                            subjects: "Any Bachelor's degree from a recognized university. General Studies papers cover a wide range of subjects including History, Geography, Polity, Economics, Science & Technology, and Current Affairs.",
+                            colleges: "Union Public Service Commission (UPSC) conducts the exam. Training academies: LBSNAA (IAS), SVP NPA (IPS), FSI (IFS).",
+                            scope: "High impact on society, involvement in policy-making, law and order, diplomatic relations. Offers diverse roles across various government ministries and departments.",
+                            challenges: "Extremely competitive, requires years of dedicated preparation, long and multi-stage selection process (Prelims, Mains, Interview). Demanding job with high responsibility."
+                        },
+                        hi: { // Placeholder for Hindi translation
+                            title: "यूपीएससी सिविल सेवा अधिकारी (IAS/IPS/IFS)",
+                            description: "संघ लोक सेवा आयोग (UPSC) सिविल सेवा परीक्षा (CSE) भारत की सबसे चुनौतीपूर्ण प्रतियोगी परीक्षाओं में से एक है। इसे पास करने से प्रतिष्ठित प्रशासनिक, पुलिस और विदेशी सेवा भूमिकाएँ (जैसे, भारतीय प्रशासनिक सेवा - IAS, भारतीय पुलिस सेवा - IPS, भारतीय विदेश सेवा - IFS) मिलती हैं, जो शासन और नीति कार्यान्वयन में महत्वपूर्ण भूमिका निभाती हैं।",
+                            subjects: "किसी मान्यता प्राप्त विश्वविद्यालय से कोई भी स्नातक डिग्री। सामान्य अध्ययन के पेपर में इतिहास, भूगोल, राजनीति, अर्थशास्त्र, विज्ञान और प्रौद्योगिकी, और करेंट अफेयर्स सहित विषयों की एक विस्तृत श्रृंखला शामिल है।",
+                            colleges: "संघ लोक सेवा आयोग (UPSC) परीक्षा आयोजित करता है। प्रशिक्षण अकादमियाँ: एलबीएसएनएए (IAS), एसवीपी एनपीए (IPS), एफएसआई (IFS)।",
+                            scope: "समाज पर उच्च प्रभाव, नीति-निर्माण, कानून और व्यवस्था, राजनयिक संबंधों में भागीदारी। विभिन्न सरकारी मंत्रालयों और विभागों में विविध भूमिकाएँ प्रदान करता है।",
+                            challenges: "अत्यंत प्रतिस्पर्धी, वर्षों की समर्पित तैयारी की आवश्यकता है, लंबी और बहु-स्तरीय चयन प्रक्रिया (प्रारंभिक, मुख्य, साक्षात्कार)। उच्च जिम्मेदारी के साथ मांग वाली नौकरी।"
+                        }
+                    }
+                },
+                {
+                    title: "MPSC State Services Officer",
+                    category: "public_service",
+                    details: {
+                        en: {
+                            description: "The Maharashtra Public Service Commission (MPSC) conducts the State Services Examination for recruitment to various administrative and executive positions in the Maharashtra state government. This includes roles like Deputy Collector, Police Sub-Inspector, Tahsildar, and Assistant Commissioner, directly contributing to state-level governance.",
+                            subjects: "Any Bachelor's degree from a recognized university. Syllabus includes General Studies, History of Maharashtra & India, Geography of Maharashtra & India, Maharashtra Polity, Economy, and Current Affairs.",
+                            colleges: "Maharashtra Public Service Commission (MPSC) conducts the exam. Training academies are provided by the state government.",
+                            scope: "Opportunity to serve the state, direct involvement in local administration and development. Good career progression within the state government.",
+                            challenges: "Highly competitive exam specific to Maharashtra. Requires in-depth knowledge of state-specific subjects. Postings are primarily within Maharashtra."
+                        },
+                        hi: { // Placeholder for Hindi translation
+                            title: "एमपीएससी राज्य सेवा अधिकारी",
+                            description: "महाराष्ट्र लोक सेवा आयोग (MPSC) महाराष्ट्र राज्य सरकार में विभिन्न प्रशासनिक और कार्यकारी पदों पर भर्ती के लिए राज्य सेवा परीक्षा आयोजित करता है। इसमें डिप्टी कलेक्टर, पुलिस सब-इंस्पेक्टर, तहसीलदार और सहायक आयुक्त जैसी भूमिकाएँ शामिल हैं, जो सीधे राज्य-स्तरीय शासन में योगदान करती हैं।",
+                            subjects: "किसी मान्यता प्राप्त विश्वविद्यालय से कोई भी स्नातक डिग्री। पाठ्यक्रम में सामान्य अध्ययन, महाराष्ट्र और भारत का इतिहास, महाराष्ट्र और भारत का भूगोल, महाराष्ट्र की राजनीति, अर्थव्यवस्था और करेंट अफेयर्स शामिल हैं।",
+                            colleges: "महाराष्ट्र लोक सेवा आयोग (MPSC) परीक्षा आयोजित करता है। राज्य सरकार द्वारा प्रशिक्षण अकादमियाँ प्रदान की जाती हैं।",
+                            scope: "राज्य की सेवा करने का अवसर, स्थानीय प्रशासन और विकास में सीधी भागीदारी। राज्य सरकार के भीतर अच्छी करियर प्रगति।",
+                            challenges: "महाराष्ट्र के लिए अत्यधिक प्रतिस्पर्धी परीक्षा। राज्य-विशिष्ट विषयों के गहन ज्ञान की आवश्यकता है। पोस्टिंग मुख्य रूप से महाराष्ट्र के भीतर होती है।"
+                        }
+                    }
+                },
+                {
+                    title: "Indian Railways Officer (RRB)",
+                    category: "public_service",
+                    details: {
+                        en: {
+                            description: "The Railway Recruitment Board (RRB) conducts various examinations for recruitment to a wide range of technical and non-technical positions across the Indian Railways, one of the world's largest employers. Roles include Assistant Station Master, Goods Guard, various Engineers, Clerks, and more.",
+                            subjects: "Varies significantly by post: Engineering degrees for technical roles, any graduate degree for non-technical popular categories (NTPC).",
+                            colleges: "Railway Recruitment Boards (RRBs) across India conduct the examinations.",
+                            scope: "High job security, diverse roles, opportunities for career growth within a vast organization. Provides essential services to the nation.",
+                            challenges: "Highly competitive exams. Job roles can sometimes involve irregular hours or postings in remote locations depending on the position."
+                        },
+                        hi: { // Placeholder for Hindi translation
+                            title: "भारतीय रेलवे अधिकारी (RRB)",
+                            description: "रेलवे भर्ती बोर्ड (RRB) भारतीय रेलवे, जो दुनिया के सबसे बड़े नियोक्ताओं में से एक है, में तकनीकी और गैर-तकनीकी पदों की एक विस्तृत श्रृंखला में भर्ती के लिए विभिन्न परीक्षाएँ आयोजित करता है। भूमिकाओं में असिस्टेंट स्टेशन मास्टर, गुड्स गार्ड, विभिन्न इंजीनियर, क्लर्क और बहुत कुछ शामिल हैं।",
+                            subjects: "पद के अनुसार काफी भिन्न होता है: तकनीकी भूमिकाओं के लिए इंजीनियरिंग की डिग्री, गैर-तकनीकी लोकप्रिय श्रेणियों (एनटीपीसी) के लिए कोई भी स्नातक डिग्री।",
+                            colleges: "भारत भर में रेलवे भर्ती बोर्ड (आरआरबी) परीक्षाएँ आयोजित करते हैं।",
+                            scope: "उच्च नौकरी सुरक्षा, विविध भूमिकाएँ, एक विशाल संगठन के भीतर करियर विकास के अवसर। राष्ट्र को आवश्यक सेवाएँ प्रदान करता है।",
+                            challenges: "अत्यधिक प्रतिस्पर्धी परीक्षाएँ। पद के आधार पर नौकरी की भूमिकाओं में कभी-कभी अनियमित घंटे या दूरदराज के स्थानों में पोस्टिंग शामिल हो सकती है।"
+                        }
+                    }
+                },
+                {
+                    title: "Bank Probationary Officer (PO) / Clerk (IBPS/SBI)",
+                    category: "commerce",
+                    details: {
+                        en: {
+                            description: "Probationary Officers (POs) are entry-level managerial positions in public sector banks, while Clerks handle customer service and operational duties. Exams like IBPS PO/Clerk and SBI PO/Clerk are conducted for recruitment.",
+                            subjects: "Any Bachelor's degree from a recognized university. Exams test Quantitative Aptitude, Reasoning Ability, English Language, General Awareness, and Computer Knowledge.",
+                            colleges: "Institute of Banking Personnel Selection (IBPS) and State Bank of India (SBI) are key recruitment bodies.",
+                            scope: "Stable government job with good salary and benefits. Opportunities for rapid career progression to higher managerial roles.",
+                            challenges: "Very competitive exams. Initial probationary period can be demanding. Some roles may involve sales targets."
+                        },
+                        hi: { // Placeholder for Hindi translation
+                            title: "बैंक परिवीक्षाधीन अधिकारी (PO) / क्लर्क (IBPS/SBI)",
+                            description: "परिवीक्षाधीन अधिकारी (पीओ) सार्वजनिक क्षेत्र के बैंकों में प्रवेश स्तर के प्रबंधकीय पद होते हैं, जबकि क्लर्क ग्राहक सेवा और परिचालन कर्तव्यों को संभालते हैं। आईबीपीएस पीओ/क्लर्क और एसबीआई पीओ/क्लर्क जैसी परीक्षाएँ भर्ती के लिए आयोजित की जाती हैं।",
+                            subjects: "किसी मान्यता प्राप्त विश्वविद्यालय से कोई भी स्नातक डिग्री। परीक्षा मात्रात्मक योग्यता, तर्क क्षमता, अंग्रेजी भाषा, सामान्य जागरूकता और कंप्यूटर ज्ञान का परीक्षण करती है।",
+                            colleges: "बैंकिंग कार्मिक चयन संस्थान (आईबीपीएस) और भारतीय स्टेट बैंक (एसबीआई) प्रमुख भर्ती निकाय हैं।",
+                            scope: "अच्छा वेतन और लाभ के साथ स्थिर सरकारी नौकरी। उच्च प्रबंधकीय भूमिकाओं में तेजी से करियर प्रगति के अवसर।",
+                            challenges: "अत्यंत प्रतिस्पर्धी परीक्षाएँ। प्रारंभिक परिवीक्षा अवधि मांग वाली हो सकती है। कुछ भूमिकाओं में बिक्री लक्ष्य शामिल हो सकते हैं।"
+                        }
+                    }
+                },
+                {
+                    title: "SSC Combined Graduate Level (CGL) Officer",
+                    category: "public_service",
+                    details: {
+                        en: {
+                            description: "The Staff Selection Commission (SSC) Combined Graduate Level (CGL) examination is conducted for recruitment to various Group 'B' and Group 'C' posts in different Ministries, Departments, and Organizations of the Government of India. Popular roles include Income Tax Inspector, Assistant Audit Officer, Excise Inspector, and Section Officer.",
+                            subjects: "Any Bachelor's degree from a recognized university. Exams cover General Intelligence & Reasoning, General Awareness, Quantitative Aptitude, and English Comprehension.",
+                            colleges: "Staff Selection Commission (SSC) conducts the examination.",
+                            scope: "Provides access to a wide range of central government jobs with good pay scales, job security, and opportunities for promotion.",
+                            challenges: "Highly competitive with multiple tiers of examination. Requires extensive preparation across various subjects."
+                        },
+                        hi: { // Placeholder for Hindi translation
+                            title: "एसएससी संयुक्त स्नातक स्तरीय (सीजीएल) अधिकारी",
+                            description: "कर्मचारी चयन आयोग (SSC) संयुक्त स्नातक स्तरीय (CGL) परीक्षा भारत सरकार के विभिन्न मंत्रालयों, विभागों और संगठनों में विभिन्न समूह 'बी' और समूह 'सी' पदों पर भर्ती के लिए आयोजित की जाती है। लोकप्रिय भूमिकाओं में आयकर निरीक्षक, सहायक लेखा परीक्षा अधिकारी, उत्पाद शुल्क निरीक्षक और अनुभाग अधिकारी शामिल हैं।",
+                            subjects: "किसी मान्यता प्राप्त विश्वविद्यालय से कोई भी स्नातक डिग्री। परीक्षा में सामान्य बुद्धिमत्ता और तर्क, सामान्य जागरूकता, मात्रात्मक योग्यता और अंग्रेजी समझ शामिल है।",
+                            colleges: "कर्मचारी चयन आयोग (SSC) परीक्षा आयोजित करता है।",
+                            scope: "अच्छे वेतनमान, नौकरी की सुरक्षा और पदोन्नति के अवसरों के साथ केंद्रीय सरकारी नौकरियों की एक विस्तृत श्रृंखला तक पहुंच प्रदान करता है।",
+                            challenges: "परीक्षा के कई स्तरों के साथ अत्यधिक प्रतिस्पर्धी। विभिन्न विषयों में व्यापक तैयारी की आवश्यकता है।"
+                        }
+                    }
+                },
+                {
+                    title: "Teacher / Educator",
+                    category: "education",
+                    details: {
+                        en: {
+                            description: "Teachers shape the minds of future generations in schools, colleges, and universities. Roles range from primary and secondary school teachers to lecturers and professors in higher education. This career path offers the joy of imparting knowledge and contributing to societal development.",
+                            subjects: "Varies by level and subject specialization. Typically a Bachelor's degree in a specific subject + B.Ed for school teaching. Master's degree + NET/SET for college/university lecturing.",
+                            colleges: "National Council for Teacher Education (NCTE) recognized institutions. Various universities for B.Ed, M.A., M.Sc., M.Com, and PhD programs.",
+                            scope: "Consistent demand across all levels of education. Opportunities in private, public, and international schools/colleges. Growth into administrative roles (Principal, Dean).",
+                            challenges: "Requires strong communication and pedagogical skills. Continuous professional development. Adapting to evolving educational methodologies and technologies."
+                        },
+                        hi: { // Placeholder for Hindi translation
+                            title: "शिक्षक / शिक्षाविद",
+                            description: "शिक्षक स्कूलों, कॉलेजों और विश्वविद्यालयों में भविष्य की पीढ़ियों के दिमाग को आकार देते हैं। भूमिकाओं में प्राथमिक और माध्यमिक विद्यालय के शिक्षकों से लेकर उच्च शिक्षा में व्याख्याता और प्रोफेसर तक शामिल हैं। यह करियर मार्ग ज्ञान प्रदान करने और सामाजिक विकास में योगदान करने का आनंद प्रदान करता है।",
+                            subjects: "स्तर और विषय विशेषज्ञता के अनुसार भिन्न होता है। आमतौर पर स्कूल में पढ़ाने के लिए एक विशिष्ट विषय में स्नातक की डिग्री + बी.एड। कॉलेज/विश्वविद्यालय में व्याख्यान के लिए मास्टर की डिग्री + नेट/सेट।",
+                            colleges: "राष्ट्रीय अध्यापक शिक्षा परिषद (एनसीटीई) द्वारा मान्यता प्राप्त संस्थान। बी.एड, एम.ए., एम.एससी., एम.कॉम और पीएचडी कार्यक्रमों के लिए विभिन्न विश्वविद्यालय।",
+                            scope: "शिक्षा के सभी स्तरों पर लगातार मांग। निजी, सार्वजनिक और अंतरराष्ट्रीय स्कूलों/कॉलेजों में अवसर। प्रशासनिक भूमिकाओं में वृद्धि (प्रिंसिपल, डीन)।",
+                            challenges: "मजबूत संचार और शैक्षणिक कौशल की आवश्यकता है। निरंतर पेशेवर विकास। विकसित हो रही शैक्षिक पद्धतियों और प्रौद्योगिकियों के अनुकूल होना।"
+                        }
+                    }
+                },
+                {
+                    title: "Healthcare Administrator / Hospital Manager",
+                    category: "healthcare",
+                    details: {
+                        en: {
+                            description: "Healthcare administrators or hospital managers are responsible for the overall operation and management of healthcare facilities, including hospitals, clinics, and public health organizations. They ensure efficient delivery of healthcare services, manage budgets, oversee staff, and maintain compliance with regulations.",
+                            subjects: "Bachelor's degree in any discipline, followed by a Master's in Hospital Administration (MHA) or MBA in Healthcare Management.",
+                            colleges: "AIIMS Delhi, TISS Mumbai, IIHMR Delhi/Jaipur, Symbiosis Institute of Health Sciences Pune.",
+                            scope: "Rapidly growing sector with high demand for skilled managers. Opportunities in private hospitals, government healthcare, NGOs, and health consultancies.",
+                            challenges: "High-pressure environment, requiring strong leadership, problem-solving, and decision-making skills. Staying updated with healthcare policies and technologies."
+                        },
+                        hi: { // Placeholder for Hindi translation
+                            title: "स्वास्थ्य सेवा प्रशासक / अस्पताल प्रबंधक",
+                            description: "स्वास्थ्य सेवा प्रशासक या अस्पताल प्रबंधक अस्पतालों, क्लीनिकों और सार्वजनिक स्वास्थ्य संगठनों सहित स्वास्थ्य सेवा सुविधाओं के समग्र संचालन और प्रबंधन के लिए जिम्मेदार होते हैं। वे स्वास्थ्य सेवा सेवाओं के कुशल वितरण, बजट प्रबंधन, कर्मचारियों की देखरेख और नियमों के अनुपालन को सुनिश्चित करते हैं।",
+                            subjects: "किसी भी विषय में स्नातक की डिग्री, उसके बाद अस्पताल प्रशासन में मास्टर (एमएचए) या स्वास्थ्य सेवा प्रबंधन में एमबीए।",
+                            colleges: "एम्स दिल्ली, टीआईएसएस मुंबई, आईआईएचएमआर दिल्ली/जयपुर, सिम्बायोसिस इंस्टीट्यूट ऑफ हेल्थ साइंसेज पुणे।",
+                            scope: "कुशल प्रबंधकों के लिए उच्च मांग के साथ तेजी से बढ़ता क्षेत्र। निजी अस्पतालों, सरकारी स्वास्थ्य सेवा, गैर-सरकारी संगठनों और स्वास्थ्य परामर्शदाता में अवसर।",
+                            challenges: "उच्च दबाव वाला वातावरण, मजबूत नेतृत्व, समस्या-समाधान और निर्णय लेने के कौशल की आवश्यकता होती है। स्वास्थ्य सेवा नीतियों और प्रौद्योगिकियों के साथ अद्यतित रहना।"
+                        }
+                    }
+                },
+                {
+                    title: "Indian Forest Service (IFS) Officer",
+                    category: "public_service",
+                    details: {
+                        en: {
+                            description: "The Indian Forest Service (IFS) is one of the All India Services. IFS officers are responsible for the conservation, protection, and management of forest and wildlife resources in India. This involves policy implementation, sustainable forest management, and wildlife protection.",
+                            subjects: "A Bachelor's degree with at least one of the subjects: Animal Husbandry & Veterinary Science, Botany, Chemistry, Geology, Mathematics, Physics, Statistics, or Zoology. Or a Bachelor's degree in Agriculture or Forestry, or Engineering.",
+                            colleges: "UPSC conducts the exam. Training at Indira Gandhi National Forest Academy (IGNFA), Dehradun.",
+                            scope: "A challenging and rewarding career for those passionate about environment and wildlife. Offers significant responsibility and field exposure.",
+                            challenges: "Highly competitive exam. Requires physical fitness and resilience for fieldwork. Postings can be in remote forest areas."
+                        },
+                        hi: { // Placeholder for Hindi translation
+                            title: "भारतीय वन सेवा (IFS) अधिकारी",
+                            description: "भारतीय वन सेवा (IFS) अखिल भारतीय सेवाओं में से एक है। आईएफएस अधिकारी भारत में वन और वन्यजीव संसाधनों के संरक्षण, सुरक्षा और प्रबंधन के लिए जिम्मेदार होते हैं। इसमें नीति कार्यान्वयन, स्थायी वन प्रबंधन और वन्यजीव संरक्षण शामिल है।",
+                            subjects: "कम से कम एक विषय के साथ स्नातक की डिग्री: पशुपालन और पशु चिकित्सा विज्ञान, वनस्पति विज्ञान, रसायन विज्ञान, भूविज्ञान, गणित, भौतिकी, सांख्यिकी, या प्राणीशास्त्र। या कृषि या वानिकी, या इंजीनियरिंग में स्नातक की डिग्री।",
+                            colleges: "यूपीएससी परीक्षा आयोजित करता है। इंदिरा गांधी राष्ट्रीय वन अकादमी (आईजीएनएफए), देहरादून में प्रशिक्षण।",
+                            scope: "पर्यावरण और वन्यजीव के प्रति उत्साही लोगों के लिए एक चुनौतीपूर्ण और पुरस्कृत करियर। महत्वपूर्ण जिम्मेदारी और क्षेत्र एक्सपोजर प्रदान करता है।",
+                            challenges: "अत्यंत प्रतिस्पर्धी परीक्षा। फील्डवर्क के लिए शारीरिक फिटनेस और लचीलापन की आवश्यकता है। पोस्टिंग दूरस्थ वन क्षेत्रों में हो सकती है।"
+                        }
+                    }
+                },
+                {
+                    title: "Customs and Central Excise Inspector (SSC CGL)",
+                    category: "public_service",
+                    details: {
+                        en: {
+                            description: "These officers are part of the Indian Revenue Service (IRS) and work under the Central Board of Indirect Taxes and Customs. Their duties include preventing smuggling, collecting customs and excise duties, and enforcing tax laws.",
+                            subjects: "Any Bachelor's degree from a recognized university. Selected through SSC CGL exam.",
+                            colleges: "Staff Selection Commission (SSC) conducts the examination.",
+                            scope: "Prestigious government job with good career progression opportunities in various departments under the Ministry of Finance.",
+                            challenges: "Demanding job involving intelligence gathering, raids, and legal procedures. Can be high-pressure with strict targets and deadlines."
+                        },
+                        hi: { // Placeholder for Hindi translation
+                            title: "सीमा शुल्क और केंद्रीय उत्पाद शुल्क निरीक्षक (SSC CGL)",
+                            description: "ये अधिकारी भारतीय राजस्व सेवा (IRS) का हिस्सा हैं और केंद्रीय अप्रत्यक्ष कर और सीमा शुल्क बोर्ड के तहत काम करते हैं। उनके कर्तव्यों में तस्करी को रोकना, सीमा शुल्क और उत्पाद शुल्क एकत्र करना और कर कानूनों को लागू करना शामिल है।",
+                            subjects: "किसी मान्यता प्राप्त विश्वविद्यालय से कोई भी स्नातक डिग्री। एसएससी सीजीएल परीक्षा के माध्यम से चयन।",
+                            colleges: "कर्मचारी चयन आयोग (SSC) परीक्षा आयोजित करता है।",
+                            scope: "वित्त मंत्रालय के तहत विभिन्न विभागों में अच्छी करियर प्रगति के अवसरों के साथ प्रतिष्ठित सरकारी नौकरी।",
+                            challenges: "खुफिया जानकारी जुटाने, छापों और कानूनी प्रक्रियाओं से संबंधित मांग वाली नौकरी। सख्त लक्ष्यों और समय सीमा के साथ उच्च दबाव वाला हो सकता है।"
+                        }
+                    }
+                },
+                {
+                    title: "Food Safety Officer",
+                    category: "vocational",
+                    details: {
+                        en: {
+                            description: "Food Safety Officers ensure that food products meet safety and quality standards, from production to distribution. They conduct inspections, investigate complaints, and implement food safety regulations.",
+                            subjects: "A Bachelor's degree in Food Technology, Dairy Technology, Biotechnology, Agriculture Science, or any other relevant science discipline. State PSCs or FSSAI may conduct recruitment.",
+                            colleges: "Various state universities and central food technology institutes (e.g., CFTRI Mysore) offer relevant degrees.",
+                            scope: "Growing demand due to increased focus on food safety and quality. Opportunities in government agencies (FSSAI, state food departments), food industries, and quality control labs.",
+                            challenges: "Requires thorough knowledge of food science and regulations. Fieldwork can be challenging. Staying updated with evolving food safety standards."
+                        },
+                        hi: { // Placeholder for Hindi translation
+                            title: "खाद्य सुरक्षा अधिकारी",
+                            description: "खाद्य सुरक्षा अधिकारी यह सुनिश्चित करते हैं कि खाद्य उत्पाद उत्पादन से लेकर वितरण तक सुरक्षा और गुणवत्ता मानकों को पूरा करते हैं। वे निरीक्षण करते हैं, शिकायतों की जाँच करते हैं और खाद्य सुरक्षा नियमों को लागू करते हैं।",
+                            subjects: "खाद्य प्रौद्योगिकी, डेयरी प्रौद्योगिकी, जैव प्रौद्योगिकी, कृषि विज्ञान, या किसी अन्य प्रासंगिक विज्ञान विषय में स्नातक की डिग्री। राज्य पीएससी या एफएसएसएआई भर्ती आयोजित कर सकते हैं।",
+                            colleges: "विभिन्न राज्य विश्वविद्यालय और केंद्रीय खाद्य प्रौद्योगिकी संस्थान (जैसे, सीएफटीआरआई मैसूर) प्रासंगिक डिग्री प्रदान करते हैं।",
+                            scope: "खाद्य सुरक्षा और गुणवत्ता पर बढ़ते ध्यान के कारण बढ़ती मांग। सरकारी एजेंसियों (एफएसएसएआई, राज्य खाद्य विभाग), खाद्य उद्योगों और गुणवत्ता नियंत्रण प्रयोगशालाओं में अवसर।",
+                            challenges: "खाद्य विज्ञान और नियमों के गहन ज्ञान की आवश्यकता है। फील्डवर्क चुनौतीपूर्ण हो सकता है। विकसित हो रहे खाद्य सुरक्षा मानकों के साथ अद्यतित रहना।"
+                        }
+                    }
+                },
+                {
+                    title: "Librarian / Information Scientist",
+                    category: "arts",
+                    details: {
+                        en: {
+                            description: "Librarians and Information Scientists manage libraries and information centers, helping people access information, organize resources, and promote literacy. They work in various settings including public libraries, academic institutions, and corporate information centers.",
+                            subjects: "Bachelor's degree followed by a Bachelor of Library and Information Science (B.Lib.I.Sc.) or Master of Library and Information Science (M.Lib.I.Sc.).",
+                            colleges: "Delhi University, IGNOU, Jadavpur University, University of Mumbai, etc.",
+                            scope: "Stable career with opportunities in educational institutions, government departments, and private organizations. Evolving role with digital information management.",
+                            challenges: "Requires strong organizational and research skills. Keeping up with digital information technologies. Salaries can vary."
+                        },
+                        hi: { // Placeholder for Hindi translation
+                            title: "पुस्तकालयाध्यक्ष / सूचना वैज्ञानिक",
+                            description: "पुस्तकालयाध्यक्ष और सूचना वैज्ञानिक पुस्तकालयों और सूचना केंद्रों का प्रबंधन करते हैं, लोगों को जानकारी तक पहुँचने, संसाधनों को व्यवस्थित करने और साक्षरता को बढ़ावा देने में मदद करते हैं। वे सार्वजनिक पुस्तकालयों, शैक्षणिक संस्थानों और कॉर्पोरेट सूचना केंद्रों सहित विभिन्न सेटिंग्स में काम करते हैं।",
+                            subjects: "पुस्तकालय और सूचना विज्ञान में स्नातक (बी.लिब.आई.एससी.) या पुस्तकालय और सूचना विज्ञान में मास्टर (एम.लिब.आई.एससी.) के बाद स्नातक की डिग्री।",
+                            colleges: "दिल्ली विश्वविद्यालय, इग्नू, जाधवपुर विश्वविद्यालय, मुंबई विश्वविद्यालय, आदि।",
+                            scope: "शैक्षणिक संस्थानों, सरकारी विभागों और निजी संगठनों में अवसरों के साथ स्थिर करियर। डिजिटल सूचना प्रबंधन के साथ विकसित हो रही भूमिका।",
+                            challenges: "मजबूत संगठनात्मक और शोध कौशल की आवश्यकता है। डिजिटल सूचना प्रौद्योगिकियों के साथ तालमेल बनाए रखना। वेतन भिन्न हो सकता है।"
+                        }
+                    }
+                },
+                {
+                    title: "Medical Laboratory Technologist",
+                    category: "healthcare",
+                    details: {
+                        en: {
+                            description: "Medical Laboratory Technologists perform tests on blood, tissue, and other body fluids to help diagnose, treat, and prevent diseases. They work in hospital labs, private diagnostic centers, and research facilities.",
+                            subjects: "11th/12th with PCB. A Bachelor's degree in Medical Laboratory Technology (BMLT) or relevant science degrees (e.g., Microbiology, Biochemistry).",
+                            colleges: "AIIMS, Manipal University, Christian Medical College (CMC) Vellore, various state medical colleges.",
+                            scope: "Consistent demand in the growing healthcare sector. Essential for accurate diagnosis and treatment. Opportunities in India and abroad.",
+                            challenges: "Requires precision and attention to detail. Handling biological samples safely. Irregular shifts in some settings."
+                        },
+                        hi: { // Placeholder for Hindi translation
+                            title: "मेडिकल लैब टेक्नोलॉजिस्ट",
+                            description: "मेडिकल लैब टेक्नोलॉजिस्ट रक्त, ऊतक और अन्य शारीरिक तरल पदार्थों पर परीक्षण करते हैं ताकि बीमारियों का निदान, उपचार और रोकथाम में मदद मिल सके। वे अस्पताल प्रयोगशालाओं, निजी नैदानिक केंद्रों और अनुसंधान सुविधाओं में काम करते हैं।",
+                            subjects: "पीसीबी के साथ 11वीं/12वीं। मेडिकल लैब टेक्नोलॉजी (बीएमएलटी) में स्नातक की डिग्री या प्रासंगिक विज्ञान डिग्री (जैसे, माइक्रोबायोलॉजी, बायोकेमिस्ट्री)।",
+                            colleges: "एम्स, मणिपाल विश्वविद्यालय, क्रिश्चियन मेडिकल कॉलेज (सीएमसी) वेल्लोर, विभिन्न राज्य मेडिकल कॉलेज।",
+                            scope: "बढ़ते स्वास्थ्य सेवा क्षेत्र में लगातार मांग। सटीक निदान और उपचार के लिए आवश्यक। भारत और विदेश में अवसर।",
+                            challenges: "सटीकता और विस्तार पर ध्यान देने की आवश्यकता है। जैविक नमूनों को सुरक्षित रूप से संभालना। कुछ सेटिंग्स में अनियमित शिफ्टें।"
+                        }
+                    }
+                },
+                {
+                    title: "Air Traffic Controller (ATC)",
+                    category: "vocational",
+                    details: {
+                        en: {
+                            description: "Air Traffic Controllers manage the flow of aircraft in designated airspace, ensuring safety and efficiency. They provide instructions to pilots and monitor flight paths.",
+                            subjects: "Any Bachelor's degree (preferably Science/Engineering) with Physics and Mathematics at 10+2 level. Recruitment by Airport Authority of India (AAI).",
+                            colleges: "AAI conducts recruitment and provides specialized training at its academies.",
+                            scope: "Highly critical and well-paying job in the aviation sector. High demand with growth in air travel.",
+                            challenges: "Extremely high-pressure and stressful job. Requires exceptional focus, quick decision-making, and excellent communication skills. Rigorous selection process."
+                        },
+                        hi: { // Placeholder for Hindi translation
+                            title: "एयर ट्रैफिक कंट्रोलर (ATC)",
+                            description: "एयर ट्रैफिक कंट्रोलर सुरक्षित और कुशल सुनिश्चित करने के लिए निर्धारित हवाई क्षेत्र में विमानों के प्रवाह का प्रबंधन करते हैं। वे पायलटों को निर्देश प्रदान करते हैं और उड़ान पथों की निगरानी करते हैं।",
+                            subjects: "10+2 स्तर पर भौतिकी और गणित के साथ कोई भी स्नातक डिग्री (अधिमानतः विज्ञान/इंजीनियरिंग)। भारतीय विमानपत्तन प्राधिकरण (एएआई) द्वारा भर्ती।",
+                            colleges: "एएआई भर्ती आयोजित करता है और अपनी अकादमियों में विशेष प्रशिक्षण प्रदान करता है।",
+                            scope: "विमानन क्षेत्र में अत्यधिक महत्वपूर्ण और उच्च वेतन वाली नौकरी। हवाई यात्रा में वृद्धि के साथ उच्च मांग।",
+                            challenges: "अत्यंत उच्च दबाव और तनावपूर्ण नौकरी। असाधारण ध्यान, त्वरित निर्णय लेने और उत्कृष्ट संचार कौशल की आवश्यकता है। कठोर चयन प्रक्रिया।"
+                        }
+                    }
+                },
+                {
+                    title: "Doctor (MBBS, Specialist)",
+                    category: "healthcare",
+                    details: {
+                        en: {
+                            description: "Doctors diagnose and treat illnesses, injuries, and other physical and mental ailments. They may specialize in various fields like cardiology, pediatrics, or orthopedics.",
+                            subjects: "11th/12th with PCB. Requires MBBS (Bachelor of Medicine, Bachelor of Surgery) followed by MD/MS for specialization.",
+                            colleges: "AIIMS, Maulana Azad Medical College, Christian Medical College (CMC) Vellore, AFMC Pune.",
+                            scope: "Perennially high demand, respected profession, opportunities in private practice, hospitals, research, and public health.",
+                            challenges: "Extremely long and demanding study and training period. High-pressure and emotionally taxing work. Requires continuous learning."
+                        },
+                        hi: { // Placeholder for Hindi translation
+                            title: "डॉक्टर (MBBS, विशेषज्ञ)",
+                            description: "डॉक्टर बीमारियों, चोटों और अन्य शारीरिक और मानसिक बीमारियों का निदान और उपचार करते हैं। वे कार्डियोलॉजी, बाल रोग या हड्डी रोग जैसे विभिन्न क्षेत्रों में विशेषज्ञ हो सकते हैं।",
+                            subjects: "पीसीबी के साथ 11वीं/12वीं। विशेषज्ञता के लिए एमबीबीएस (बैचलर ऑफ मेडिसिन, बैचलर ऑफ सर्जरी) के बाद एमडी/एमएस की आवश्यकता होती है।",
+                            colleges: "एम्स, मौलाना आजाद मेडिकल कॉलेज, क्रिश्चियन मेडिकल कॉलेज (सीएमसी) वेल्लोर, एएफएमसी पुणे।",
+                            scope: "हमेशा उच्च मांग, सम्मानित पेशा, निजी अभ्यास, अस्पतालों, अनुसंधान और सार्वजनिक स्वास्थ्य में अवसर।",
+                            challenges: "अत्यंत लंबी और मांग वाली अध्ययन और प्रशिक्षण अवधि। उच्च दबाव और भावनात्मक रूप से थका देने वाला काम। निरंतर सीखने की आवश्यकता है।"
+                        }
+                    }
+                },
+                {
+                    title: "Nurse",
+                    category: "healthcare",
+                    details: {
+                        en: {
+                            description: "Nurses provide direct patient care, administer medications, assist doctors, educate patients and their families, and maintain patient records. They are critical to the healthcare system.",
+                            subjects: "11th/12th with PCB. Requires GNM (General Nursing and Midwifery) or B.Sc. Nursing degree.",
+                            colleges: "AIIMS, Armed Forces Medical College, various state nursing colleges.",
+                            scope: "High demand in hospitals, clinics, nursing homes, and home healthcare. Opportunities for specialization and working abroad.",
+                            challenges: "Physically and emotionally demanding work, long shifts, and exposure to various illnesses. Requires empathy and resilience."
+                        },
+                        hi: { // Placeholder for Hindi translation
+                            title: "नर्स",
+                            description: "नर्स सीधे रोगी की देखभाल करती हैं, दवाएं देती हैं, डॉक्टरों की सहायता करती हैं, रोगियों और उनके परिवारों को शिक्षित करती हैं, और रोगी के रिकॉर्ड बनाए रखती हैं। वे स्वास्थ्य सेवा प्रणाली के लिए महत्वपूर्ण हैं।",
+                            subjects: "पीसीबी के साथ 11वीं/12वीं। जीएनएम (जनरल नर्सिंग और मिडवाइफरी) या बी.एससी. नर्सिंग की डिग्री आवश्यक है।",
+                            colleges: "एम्स, सशस्त्र बल मेडिकल कॉलेज, विभिन्न राज्य नर्सिंग कॉलेज।",
+                            scope: "अस्पतालों, क्लीनिकों, नर्सिंग होम और घर पर स्वास्थ्य सेवा में उच्च मांग। विशेषज्ञता और विदेश में काम करने के अवसर।",
+                            challenges: "शारीरिक और भावनात्मक रूप से मांग वाला काम, लंबी शिफ्टें, और विभिन्न बीमारियों के संपर्क में आना। सहानुभूति और लचीलेपन की आवश्यकता है।"
+                        }
+                    }
+                },
+                {
+                    title: "Pharmacist",
+                    category: "healthcare",
+                    details: {
+                        en: {
+                            description: "Pharmacists dispense medications, counsel patients on drug use, and ensure safe and effective drug therapy. They work in retail pharmacies, hospitals, and pharmaceutical companies.",
+                            subjects: "11th/12th with PCB. Requires B.Pharm (Bachelor of Pharmacy) or D.Pharm (Diploma in Pharmacy).",
+                            colleges: "BITS Pilani, Jamia Hamdard, Panjab University, ICT Mumbai.",
+                            scope: "Stable career with opportunities in retail, hospital, clinical research, and pharmaceutical manufacturing.",
+                            challenges: "Requires precise knowledge of drugs and their interactions. Long working hours in some settings."
+                        },
+                        hi: { // Placeholder for Hindi translation
+                            title: "फार्मासिस्ट",
+                            description: "फार्मासिस्ट दवाएं वितरित करते हैं, रोगियों को दवा के उपयोग के बारे में सलाह देते हैं, और सुरक्षित और प्रभावी दवा चिकित्सा सुनिश्चित करते हैं। वे खुदरा फार्मेसियों, अस्पतालों और दवा कंपनियों में काम करते हैं।",
+                            subjects: "पीसीबी के साथ 11वीं/12वीं। बी.फार्मा (बैचलर ऑफ फार्मेसी) या डी.फार्मा (डिप्लोमा इन फार्मेसी) की आवश्यकता होती है।",
+                            colleges: "बिट्स पिलानी, जामिया हमदर्द, पंजाब यूनिवर्सिटी, आईसीटी मुंबई।",
+                            scope: "खुदरा, अस्पताल, नैदानिक अनुसंधान और दवा निर्माण में अवसरों के साथ स्थिर करियर।",
+                            challenges: "दवाओं और उनकी अंतःक्रियाओं का सटीक ज्ञान आवश्यक है। कुछ सेटिंग्स में लंबे समय तक काम करना।"
+                        }
+                    }
+                },
+                {
+                    title: "Physiotherapist",
+                    category: "healthcare",
+                    details: {
+                        en: {
+                            description: "Physiotherapists help patients recover from injuries, illnesses, and disabilities through physical methods like exercise, massage, and electrotherapy, improving their mobility and quality of life.",
+                            subjects: "11th/12th with PCB. Requires BPT (Bachelor of Physiotherapy) degree.",
+                            colleges: "Seth GS Medical College, Christian Medical College (CMC) Vellore, Jamia Millia Islamia.",
+                            scope: "Growing demand in hospitals, sports clinics, rehabilitation centers, and private practice.",
+                            challenges: "Requires physical stamina and patience. Dealing with patients in pain or with limited mobility."
+                        },
+                        hi: { // Placeholder for Hindi translation
+                            title: "फिजियोथेरेपिस्ट",
+                            description: "फिजियोथेरेपिस्ट रोगियों को व्यायाम, मालिश और इलेक्ट्रोथेरेपी जैसे शारीरिक तरीकों से चोटों, बीमारियों और अक्षमताओं से उबरने में मदद करते हैं, जिससे उनकी गतिशीलता और जीवन की गुणवत्ता में सुधार होता है।",
+                            subjects: "पीसीबी के साथ 11वीं/12वीं। बीपीटी (बैचलर ऑफ फिजियोथेरेपी) की डिग्री आवश्यक है।",
+                            colleges: "सेठ जीएस मेडिकल कॉलेज, क्रिश्चियन मेडिकल कॉलेज (सीएमसी) वेल्लोर, जामिया मिलिया इस्लामिया।",
+                            scope: "अस्पतालों, खेल क्लीनिकों, पुनर्वास केंद्रों और निजी अभ्यास में बढ़ती मांग।",
+                            challenges: "शारीरिक सहनशक्ति और धैर्य की आवश्यकता है। दर्द में या सीमित गतिशीलता वाले रोगियों से निपटना।"
+                        }
+                    }
+                },
+                {
+                    title: "Biomedical Scientist",
+                    category: "healthcare",
+                    details: {
+                        en: {
+                            description: "Biomedical scientists conduct research to understand diseases and develop new treatments. They work in labs, performing experiments and analyzing biological samples.",
+                            subjects: "11th/12th with PCB. Requires B.Sc. in Biomedical Science, Biochemistry, Microbiology, or related fields, followed by M.Sc. or PhD.",
+                            colleges: "IISc Bangalore, AIIMS, various universities for B.Sc./M.Sc.",
+                            scope: "Opportunities in research institutions, pharmaceutical companies, diagnostic labs, and public health.",
+                            challenges: "Requires strong analytical and research skills. Results can be slow and unpredictable."
+                        },
+                        hi: { // Placeholder for Hindi translation
+                            title: "बायोमेडिकल वैज्ञानिक",
+                            description: "बायोमेडिकल वैज्ञानिक बीमारियों को समझने और नए उपचार विकसित करने के लिए शोध करते हैं। वे प्रयोगशालाओं में काम करते हैं, प्रयोग करते हैं और जैविक नमूनों का विश्लेषण करते हैं।",
+                            subjects: "पीसीबी के साथ 11वीं/12वीं। बायोमेडिकल साइंस, बायोकेमिस्ट्री, माइक्रोबायोलॉजी, या संबंधित क्षेत्रों में बी.एससी., उसके बाद एम.एससी. या पीएचडी की आवश्यकता है।",
+                            colleges: "आईआईएससी बैंगलोर, एम्स, बी.एससी./एम.एससी. के लिए विभिन्न विश्वविद्यालय।",
+                            scope: "अनुसंधान संस्थानों, दवा कंपनियों, नैदानिक प्रयोगशालाओं और सार्वजनिक स्वास्थ्य में अवसर।",
+                            challenges: "मजबूत विश्लेषणात्मक और शोध कौशल की आवश्यकता है। परिणाम धीमे और अप्रत्याशित हो सकते हैं।"
+                        }
+                    }
+                },
+                {
+                    title: "Clinical Research Associate",
+                    category: "healthcare",
+                    details: {
+                        en: {
+                            description: "Clinical Research Associates (CRAs) monitor and manage clinical trials for new drugs and treatments. They ensure studies adhere to protocols and regulations.",
+                            subjects: "Bachelor's degree in Pharmacy, Life Sciences, or Medical fields. PG Diploma/Certificate in Clinical Research is beneficial.",
+                            colleges: "Various institutes offering Clinical Research programs (e.g., ICRI, Catalyst Clinical Services).",
+                            scope: "High demand in pharmaceutical companies, contract research organizations (CROs), and biotech firms.",
+                            challenges: "Involves frequent travel to clinical sites. Requires meticulous attention to detail and strong communication skills."
+                        },
+                        hi: { // Placeholder for Hindi translation
+                            title: "क्लिनिकल रिसर्च एसोसिएट",
+                            description: "क्लिनिकल रिसर्च एसोसिएट (सीआरए) नई दवाओं और उपचारों के लिए नैदानिक ​​परीक्षणों की निगरानी और प्रबंधन करते हैं। वे सुनिश्चित करते हैं कि अध्ययन प्रोटोकॉल और नियमों का पालन करते हैं।",
+                            subjects: "फार्मेसी, जीवन विज्ञान, या चिकित्सा क्षेत्रों में स्नातक की डिग्री। क्लिनिकल रिसर्च में पीजी डिप्लोमा/प्रमाण पत्र फायदेमंद है।",
+                            colleges: "क्लिनिकल रिसर्च कार्यक्रम प्रदान करने वाले विभिन्न संस्थान (जैसे, आईसीआरआई, कैटालिस्ट क्लिनिकल सर्विसेज)।",
+                            scope: "दवा कंपनियों, अनुबंध अनुसंधान संगठनों (सीआरओ) और बायोटेक फर्मों में उच्च मांग।",
+                            challenges: "नैदानिक ​​स्थलों की लगातार यात्रा शामिल है। विस्तार पर सावधानीपूर्वक ध्यान और मजबूत संचार कौशल की आवश्यकता है।"
+                        }
+                    }
+                },
+                {
+                    title: "Psychiatrist",
+                    category: "healthcare",
+                    details: {
+                        en: {
+                            description: "Psychiatrists are medical doctors who specialize in mental health. They diagnose and treat mental illnesses, prescribe medication, and provide psychotherapy.",
+                            subjects: "11th/12th with PCB. Requires MBBS followed by MD in Psychiatry.",
+                            colleges: "AIIMS, NIMHANS Bangalore, various medical colleges.",
+                            scope: "Growing demand due to increasing awareness of mental health. Opportunities in hospitals, private clinics, and government health services.",
+                            challenges: "Emotionally demanding work. Requires strong diagnostic skills and empathy. Long period of study and residency."
+                        },
+                        hi: { // Placeholder for Hindi translation
+                            title: "मनोचिकित्सक",
+                            description: "मनोचिकित्सक मानसिक स्वास्थ्य में विशेषज्ञता रखने वाले मेडिकल डॉक्टर होते हैं। वे मानसिक बीमारियों का निदान और उपचार करते हैं, दवाएं लिखते हैं और मनोचिकित्सा प्रदान करते हैं।",
+                            subjects: "पीसीबी के साथ 11वीं/12वीं। एमबीबीएस के बाद मनोचिकित्सा में एमडी की आवश्यकता है।",
+                            colleges: "एम्स, निमहंस बैंगलोर, विभिन्न मेडिकल कॉलेज।",
+                            scope: "मानसिक स्वास्थ्य के बारे में बढ़ती जागरूकता के कारण बढ़ती मांग। अस्पतालों, निजी क्लीनिकों और सरकारी स्वास्थ्य सेवाओं में अवसर।",
+                            challenges: "भावनात्मक रूप से मांग वाला काम। मजबूत नैदानिक ​​कौशल और सहानुभूति की आवश्यकता है। अध्ययन और निवास की लंबी अवधि।"
+                        }
+                    }
+                },
+                {
+                    title: "Curriculum Developer",
+                    category: "education",
+                    details: {
+                        en: {
+                            description: "Curriculum developers design and create educational materials, programs, and assessments for schools, universities, or corporate training. They ensure content is relevant and effective.",
+                            subjects: "Bachelor's or Master's degree in Education, subject-specific fields, or Instructional Design.",
+                            colleges: "IGNOU, University of Delhi, various B.Ed/M.Ed colleges.",
+                            scope: "Opportunities in educational institutions, EdTech companies, corporate training, and government education boards.",
+                            challenges: "Requires strong pedagogical knowledge, writing skills, and ability to adapt to new learning technologies. Can be project-based."
+                        },
+                        hi: { // Placeholder for Hindi translation
+                            title: "पाठ्यक्रम डेवलपर",
+                            description: "पाठ्यक्रम डेवलपर स्कूलों, विश्वविद्यालयों, या कॉर्पोरेट प्रशिक्षण के लिए शैक्षिक सामग्री, कार्यक्रम और आकलन डिजाइन और बनाते हैं। वे सुनिश्चित करते हैं कि सामग्री प्रासंगिक और प्रभावी है।",
+                            subjects: "शिक्षा, विषय-विशिष्ट क्षेत्रों, या निर्देशात्मक डिजाइन में स्नातक या मास्टर डिग्री।",
+                            colleges: "इग्नू, दिल्ली विश्वविद्यालय, विभिन्न बी.एड/एम.एड कॉलेज।",
+                            scope: "शैक्षणिक संस्थानों, एडटेक कंपनियों, कॉर्पोरेट प्रशिक्षण, और सरकारी शिक्षा बोर्डों में अवसर।",
+                            challenges: "मजबूत शैक्षणिक ज्ञान, लेखन कौशल, और नई सीखने की प्रौद्योगिकियों के अनुकूल होने की क्षमता की आवश्यकता है। परियोजना-आधारित हो सकता है।"
+                        }
+                    }
+                },
+                {
+                    title: "Instructional Designer",
+                    category: "education",
+                    details: {
+                        en: {
+                            description: "Instructional designers create engaging and effective learning experiences, whether for online courses, corporate training, or educational modules. They combine educational theory with technology.",
+                            subjects: "Bachelor's degree in any field, often followed by a Master's or certification in Instructional Design, Educational Technology, or related areas.",
+                            colleges: "IGNOU, Symbiosis Centre for Distance Learning, various universities with Educational Technology programs.",
+                            scope: "High demand in EdTech, corporate L&D (Learning & Development), e-learning companies, and universities adopting online learning.",
+                            challenges: "Requires creativity, technical skills, and understanding of adult learning principles. Keeping up with evolving learning technologies."
+                        },
+                        hi: { // Placeholder for Hindi translation
+                            title: "इंस्ट्रक्शनल डिजाइनर",
+                            description: "इंस्ट्रक्शनल डिजाइनर आकर्षक और प्रभावी सीखने के अनुभव बनाते हैं, चाहे ऑनलाइन कोर्स, कॉर्पोरेट प्रशिक्षण, या शैक्षिक मॉड्यूल के लिए। वे शैक्षिक सिद्धांत को प्रौद्योगिकी के साथ जोड़ते हैं।",
+                            subjects: "किसी भी क्षेत्र में स्नातक की डिग्री, अक्सर निर्देशात्मक डिजाइन, शैक्षिक प्रौद्योगिकी, या संबंधित क्षेत्रों में मास्टर या प्रमाणन के बाद।",
+                            colleges: "इग्नू, सिम्बायोसिस सेंटर फॉर डिस्टेंस लर्निंग, शैक्षिक प्रौद्योगिकी कार्यक्रमों वाले विभिन्न विश्वविद्यालय।",
+                            scope: "एडटेक, कॉर्पोरेट एलएंडडी (लर्निंग एंड डेवलपमेंट), ई-लर्निंग कंपनियों और ऑनलाइन सीखने को अपनाने वाले विश्वविद्यालयों में उच्च मांग।",
+                            challenges: "रचनात्मकता, तकनीकी कौशल और वयस्क सीखने के सिद्धांतों की समझ की आवश्यकता है। विकसित हो रही सीखने की प्रौद्योगिकियों के साथ तालमेल बनाए रखना।"
+                        }
+                    }
+                },
+                {
+                    title: "eLearning Developer",
+                    category: "education",
+                    details: {
+                        en: {
+                            description: "eLearning developers build and implement online learning modules and platforms. They use authoring tools and programming languages to create interactive digital content.",
+                            subjects: "Bachelor's degree in Computer Science, Multimedia, Education Technology, or related fields. Strong technical skills in relevant software/languages.",
+                            colleges: "NIIT, Aptech, various universities offering digital media or IT courses.",
+                            scope: "Booming sector with massive demand in online education platforms, corporate training, and educational content creation.",
+                            challenges: "Requires strong technical skills and attention to detail. Constant need to learn new software and platforms."
+                        },
+                        hi: { // Placeholder for Hindi translation
+                            title: "ई-लर्निंग डेवलपर",
+                            description: "ई-लर्निंग डेवलपर ऑनलाइन सीखने के मॉड्यूल और प्लेटफॉर्म का निर्माण और कार्यान्वयन करते हैं। वे इंटरैक्टिव डिजिटल सामग्री बनाने के लिए लेखक उपकरण और प्रोग्रामिंग भाषाओं का उपयोग करते हैं।",
+                            subjects: "कंप्यूटर विज्ञान, मल्टीमीडिया, शिक्षा प्रौद्योगिकी, या संबंधित क्षेत्रों में स्नातक की डिग्री। प्रासंगिक सॉफ्टवेयर/भाषाओं में मजबूत तकनीकी कौशल।",
+                            colleges: "एनआईआईटी, एप्टेक, डिजिटल मीडिया या आईटी कोर्स प्रदान करने वाले विभिन्न विश्वविद्यालय।",
+                            scope: "ऑनलाइन शिक्षा प्लेटफॉर्म, कॉर्पोरेट प्रशिक्षण और शैक्षिक सामग्री निर्माण में भारी मांग के साथ बढ़ता क्षेत्र।",
+                            challenges: "मजबूत तकनीकी कौशल और विस्तार पर ध्यान देने की आवश्यकता है। नए सॉफ्टवेयर और प्लेटफॉर्म सीखने की लगातार आवश्यकता।"
+                        }
+                    }
+                },
+                {
+                    title: "YouTube Educator / Online Tutor",
+                    category: "education",
+                    details: {
+                        en: {
+                            description: "These individuals create and deliver educational content through online platforms like YouTube or provide personalized tutoring sessions virtually. They make learning accessible to a wider audience.",
+                            subjects: "Expertise in a particular subject area is key. No formal degree is strictly required for independent tutors/educators, but strong communication and teaching skills are essential.",
+                            colleges: "N/A (Skill-based and entrepreneurial).",
+                            scope: "Highly flexible and growing field. Potential for global reach and significant income if content is popular or tutoring is in demand.",
+                            challenges: "Requires self-discipline, marketing skills, and ability to engage an online audience. Income can be inconsistent initially."
+                        },
+                        hi: { // Placeholder for Hindi translation
+                            title: "यूट्यूब शिक्षक / ऑनलाइन ट्यूटर",
+                            description: "ये व्यक्ति यूट्यूब जैसे ऑनलाइन प्लेटफॉर्म के माध्यम से शैक्षिक सामग्री बनाते और वितरित करते हैं या वस्तुतः व्यक्तिगत ट्यूशन सत्र प्रदान करते हैं। वे सीखने को व्यापक दर्शकों के लिए सुलभ बनाते हैं।",
+                            subjects: "किसी विशेष विषय क्षेत्र में विशेषज्ञता महत्वपूर्ण है। स्वतंत्र ट्यूटर्स/शिक्षकों के लिए कोई औपचारिक डिग्री सख्ती से आवश्यक नहीं है, लेकिन मजबूत संचार और शिक्षण कौशल आवश्यक हैं।",
+                            colleges: "एन/ए (कौशल-आधारित और उद्यमशील)।",
+                            scope: "अत्यधिक लचीला और बढ़ता क्षेत्र। यदि सामग्री लोकप्रिय है या ट्यूशन की मांग है तो वैश्विक पहुंच और महत्वपूर्ण आय की संभावना।",
+                            challenges: "आत्म-अनुशासन, विपणन कौशल और ऑनलाइन दर्शकों को शामिल करने की क्षमता की आवश्यकता है। शुरुआत में आय असंगत हो सकती है।"
+                        }
+                    }
+                },
+                {
+                    title: "Academic Content Writer",
+                    category: "education",
+                    details: {
+                        en: {
+                            description: "Academic content writers create educational texts, research papers, study guides, and online course materials. They synthesize complex information into clear, concise, and engaging content.",
+                            subjects: "Bachelor's or Master's degree in a subject area, strong research and writing skills. English Literature, Journalism, or specific science/arts degrees are common.",
+                            colleges: "Any university offering strong language/subject expertise.",
+                            scope: "Demand from EdTech companies, universities, publishing houses, and research organizations.",
+                            challenges: "Requires strong research, analytical, and writing skills. Adhering to academic standards and deadlines."
+                        },
+                        hi: { // Placeholder for Hindi translation
+                            title: "शैक्षणिक सामग्री लेखक",
+                            description: "शैक्षणिक सामग्री लेखक शैक्षिक ग्रंथ, शोध पत्र, अध्ययन गाइड और ऑनलाइन कोर्स सामग्री बनाते हैं। वे जटिल जानकारी को स्पष्ट, संक्षिप्त और आकर्षक सामग्री में संश्लेषित करते हैं।",
+                            subjects: "किसी विषय क्षेत्र में स्नातक या मास्टर डिग्री, मजबूत शोध और लेखन कौशल। अंग्रेजी साहित्य, पत्रकारिता, या विशिष्ट विज्ञान/कला डिग्री सामान्य हैं।",
+                            colleges: "मजबूत भाषा/विषय विशेषज्ञता प्रदान करने वाला कोई भी विश्वविद्यालय।",
+                            scope: "एडटेक कंपनियों, विश्वविद्यालयों, प्रकाशन गृहों और अनुसंधान संगठनों से मांग।",
+                            challenges: "मजबूत शोध, विश्लेषणात्मक और लेखन कौशल की आवश्यकता है। शैक्षणिक मानकों और समय सीमा का पालन करना।"
+                        }
+                    }
+                },
+                {
+                    title: "Course Manager",
+                    category: "education",
+                    details: {
+                        en: {
+                            description: "Course managers oversee the development, delivery, and quality assurance of educational courses or training programs. They coordinate content, instructors, and student experience.",
+                            subjects: "Bachelor's or Master's degree in Education, Business Administration, or a related field. Experience in educational administration or project management.",
+                            colleges: "Various universities offering Education or Management degrees.",
+                            scope: "Roles in universities, EdTech companies, corporate training departments, and coaching institutes.",
+                            challenges: "Requires strong organizational, leadership, and communication skills. Managing multiple stakeholders and projects."
+                        },
+                        hi: { // Placeholder for Hindi translation
+                            title: "पाठ्यक्रम प्रबंधक",
+                            description: "पाठ्यक्रम प्रबंधक शैक्षिक पाठ्यक्रमों या प्रशिक्षण कार्यक्रमों के विकास, वितरण और गुणवत्ता आश्वासन की देखरेख करते हैं। वे सामग्री, प्रशिक्षकों और छात्र अनुभव का समन्वय करते हैं।",
+                            subjects: "शिक्षा, व्यवसाय प्रशासन, या संबंधित क्षेत्र में स्नातक या मास्टर डिग्री। शैक्षिक प्रशासन या परियोजना प्रबंधन में अनुभव।",
+                            colleges: "शिक्षा या प्रबंधन की डिग्री प्रदान करने वाले विभिन्न विश्वविद्यालय।",
+                            scope: "विश्वविद्यालयों, एडटेक कंपनियों, कॉर्पोरेट प्रशिक्षण विभागों और कोचिंग संस्थानों में भूमिकाएँ।",
+                            challenges: "मजबूत संगठनात्मक, नेतृत्व और संचार कौशल की आवश्यकता है। कई हितधारकों और परियोजनाओं का प्रबंधन करना।"
+                        }
+                    }
+                },
+                {
+                    title: "Product Specialist (EdTech)",
+                    category: "education",
+                    details: {
+                        en: {
+                            description: "Product Specialists in EdTech companies act as a bridge between product development and users. They understand the educational market needs, provide feedback for product improvement, and support product adoption.",
+                            subjects: "Bachelor's degree in Education, Business, or Technology. Strong understanding of educational tools and trends.",
+                            colleges: "Various universities.",
+                            scope: "Growing demand in the rapidly expanding EdTech industry.",
+                            challenges: "Requires technical aptitude, market research skills, and strong communication to collaborate with diverse teams."
+                        },
+                        hi: { // Placeholder for Hindi translation
+                            title: "उत्पाद विशेषज्ञ (एडटेक)",
+                            description: "एडटेक कंपनियों में उत्पाद विशेषज्ञ उत्पाद विकास और उपयोगकर्ताओं के बीच एक पुल के रूप में कार्य करते हैं। वे शैक्षिक बाजार की जरूरतों को समझते हैं, उत्पाद सुधार के लिए प्रतिक्रिया प्रदान करते हैं, और उत्पाद अपनाने का समर्थन करते हैं।",
+                            subjects: "शिक्षा, व्यवसाय, या प्रौद्योगिकी में स्नातक की डिग्री। शैक्षिक उपकरणों और रुझानों की मजबूत समझ।",
+                            colleges: "विभिन्न विश्वविद्यालय।",
+                            scope: "तेजी से बढ़ते एडटेक उद्योग में बढ़ती मांग।",
+                            challenges: "तकनीकी योग्यता, बाजार अनुसंधान कौशल और विविध टीमों के साथ सहयोग करने के लिए मजबूत संचार की आवश्यकता है।"
+                        }
+                    }
+                },
+                {
+                    title: "Lawyer (Civil, Criminal, Corporate)",
+                    category: "public_service",
+                    details: {
+                        en: {
+                            description: "Lawyers provide legal advice, represent clients in court, and handle legal documentation. They can specialize in various fields like civil, criminal, or corporate law.",
+                            subjects: "Any Bachelor's degree followed by LLB (Bachelor of Legislative Law). LLM (Master of Legislative Law) for specialization.",
+                            colleges: "National Law Universities (NLUs), Delhi University, Symbiosis Law School, ILS Pune.",
+                            scope: "Essential in every aspect of society, high demand in private practice, law firms, corporate legal departments, and government.",
+                            challenges: "Long and rigorous study. High pressure and demanding work. Requires excellent analytical, communication, and research skills."
+                        },
+                        hi: { // Placeholder for Hindi translation
+                            title: "वकील (सिविल, आपराधिक, कॉर्पोरेट)",
+                            description: "वकील कानूनी सलाह प्रदान करते हैं, अदालत में ग्राहकों का प्रतिनिधित्व करते हैं, और कानूनी दस्तावेज संभालते हैं। वे सिविल, आपराधिक, या कॉर्पोरेट कानून जैसे विभिन्न क्षेत्रों में विशेषज्ञ हो सकते हैं।",
+                            subjects: "किसी भी स्नातक की डिग्री के बाद एलएलबी (बैचलर ऑफ लेजिस्लेटिव लॉ)। विशेषज्ञता के लिए एलएलएम (मास्टर ऑफ लेजिस्लेटिव लॉ)।",
+                            colleges: "नेशनल लॉ यूनिवर्सिटी (एनएलयू), दिल्ली विश्वविद्यालय, सिम्बायोसिस लॉ स्कूल, आईएलएस पुणे।",
+                            scope: "समाज के हर पहलू में आवश्यक, निजी अभ्यास, कानून फर्मों, कॉर्पोरेट कानूनी विभागों और सरकार में उच्च मांग।",
+                            challenges: "लंबा और कठोर अध्ययन। उच्च दबाव और मांग वाली नौकरी। उत्कृष्ट विश्लेषणात्मक, संचार और शोध कौशल की आवश्यकता है।"
+                        }
+                    }
+                },
+                {
+                    title: "Legal Analyst",
+                    category: "public_service",
+                    details: {
+                        en: {
+                            description: "Legal analysts assist lawyers and legal teams by conducting research, drafting legal documents, and preparing reports. They analyze legal information and cases.",
+                            subjects: "Law degree (LLB) or a Bachelor's degree in Legal Studies, Political Science, or related fields. Strong research skills are key.",
+                            colleges: "National Law Universities (NLUs) or other universities with strong law programs.",
+                            scope: "Opportunities in law firms, corporate legal departments, government agencies, and legal research firms.",
+                            challenges: "Requires meticulous attention to detail, strong research abilities, and understanding of legal principles. Can be demanding with strict deadlines."
+                        },
+                        hi: { // Placeholder for Hindi translation
+                            title: "कानूनी विश्लेषक",
+                            description: "कानूनी विश्लेषक शोध करके, कानूनी दस्तावेज का मसौदा तैयार करके और रिपोर्ट तैयार करके वकीलों और कानूनी टीमों की सहायता करते हैं। वे कानूनी जानकारी और मामलों का विश्लेषण करते हैं।",
+                            subjects: "कानून की डिग्री (एलएलबी) या कानूनी अध्ययन, राजनीति विज्ञान, या संबंधित क्षेत्रों में स्नातक की डिग्री। मजबूत शोध कौशल महत्वपूर्ण हैं।",
+                            colleges: "नेशनल लॉ यूनिवर्सिटी (एनएलयू) या मजबूत कानून कार्यक्रमों वाले अन्य विश्वविद्यालय।",
+                            scope: "कानून फर्मों, कॉर्पोरेट कानूनी विभागों, सरकारी एजेंसियों और कानूनी अनुसंधान फर्मों में अवसर।",
+                            challenges: "विस्तार पर सावधानीपूर्वक ध्यान, मजबूत शोध क्षमताओं और कानूनी सिद्धांतों की समझ की आवश्यकता है। सख्त समय सीमा के साथ मांग वाली हो सकती है।"
+                        }
+                    }
+                },
+                {
+                    title: "Compliance Officer",
+                    category: "public_service", // Also fits commerce, but emphasizing legal/regulatory aspect here
+                    details: {
+                        en: {
+                            description: "Compliance officers ensure that an organization adheres to external laws and regulations, as well as internal policies and procedures. They identify and mitigate legal and reputational risks.",
+                            subjects: "Bachelor's degree in Law, Commerce, Finance, or Business Administration. Certifications in compliance (e.g., CCO) are highly valued.",
+                            colleges: "Various universities for relevant degrees. Compliance institutes for certifications.",
+                            scope: "High demand across various sectors including banking, finance, healthcare, and government due to increasing regulatory scrutiny.",
+                            challenges: "Requires strong understanding of complex regulations. Can be high-pressure with responsibility for legal adherence and risk management."
+                        },
+                        hi: { // Placeholder for Hindi translation
+                            title: "अनुपालन अधिकारी",
+                            description: "अनुपालन अधिकारी यह सुनिश्चित करते हैं कि कोई संगठन बाहरी कानूनों और विनियमों, साथ ही आंतरिक नीतियों और प्रक्रियाओं का पालन करता है। वे कानूनी और प्रतिष्ठा संबंधी जोखिमों की पहचान और उन्हें कम करते हैं।",
+                            subjects: "कानून, वाणिज्य, वित्त, या व्यवसाय प्रशासन में स्नातक की डिग्री। अनुपालन में प्रमाणन (जैसे, सीसीओ) अत्यधिक मूल्यवान हैं।",
+                            colleges: "प्रासंगिक डिग्री के लिए विभिन्न विश्वविद्यालय। प्रमाणन के लिए अनुपालन संस्थान।",
+                            scope: "बढ़ती नियामक जांच के कारण बैंकिंग, वित्त, स्वास्थ्य सेवा और सरकार सहित विभिन्न क्षेत्रों में उच्च मांग।",
+                            challenges: "जटिल नियमों की मजबूत समझ की आवश्यकता है। कानूनी पालन और जोखिम प्रबंधन की जिम्मेदारी के साथ उच्च दबाव वाला हो सकता है।"
+                        }
+                    }
+                },
+                {
+                    title: "Public Sector Undertakings (PSUs) Officer",
+                    category: "public_service",
+                    details: {
+                        en: {
+                            description: "Officers in Public Sector Undertakings (PSUs) work in government-owned corporations that operate in various sectors like oil, gas, manufacturing, power, and finance. Roles vary widely from engineering to management and finance.",
+                            subjects: "Varies by PSU and role; typically Engineering degrees, Commerce degrees, or General Arts/Science degrees for management/admin roles. GATE exam is often a gateway for technical roles.",
+                            colleges: "Recruitment often through competitive exams conducted by individual PSUs or common exams like GATE.",
+                            scope: "Stable government jobs with good salaries, benefits, and job security. Opportunities for career growth within the sector.",
+                            challenges: "Highly competitive exams. Work environment can be bureaucratic compared to private sector. Postings can be in diverse locations."
+                        },
+                        hi: { // Placeholder for Hindi translation
+                            title: "सार्वजनिक क्षेत्र के उपक्रम (PSUs) अधिकारी",
+                            description: "सार्वजनिक क्षेत्र के उपक्रमों (PSUs) में अधिकारी सरकारी स्वामित्व वाले निगमों में काम करते हैं जो तेल, गैस, विनिर्माण, बिजली और वित्त जैसे विभिन्न क्षेत्रों में संचालित होते हैं। भूमिकाएं इंजीनियरिंग से लेकर प्रबंधन और वित्त तक व्यापक रूप से भिन्न होती हैं।",
+                            subjects: "पीएसयू और भूमिका के अनुसार भिन्न होता है; आमतौर पर इंजीनियरिंग की डिग्री, वाणिज्य की डिग्री, या प्रबंधन/प्रशासनिक भूमिकाओं के लिए सामान्य कला/विज्ञान की डिग्री। तकनीकी भूमिकाओं के लिए गेट परीक्षा अक्सर एक प्रवेश द्वार होती है।",
+                            colleges: "भर्ती अक्सर व्यक्तिगत पीएसयू या गेट जैसी सामान्य परीक्षाओं द्वारा आयोजित प्रतिस्पर्धी परीक्षाओं के माध्यम से होती है।",
+                            scope: "अच्छे वेतनमान, लाभ और नौकरी की सुरक्षा के साथ स्थिर सरकारी नौकरियां। क्षेत्र के भीतर करियर विकास के अवसर।",
+                            challenges: "अत्यधिक प्रतिस्पर्धी परीक्षाएँ। निजी क्षेत्र की तुलना में कार्य वातावरण नौकरशाही हो सकता है। पोस्टिंग विविध स्थानों में हो सकती है।"
+                        }
+                    }
+                },
+                {
+                    title: "Armed Forces Officer (Technical/Other Entries)",
+                    category: "public_service",
+                    details: {
+                        en: {
+                            description: "Beyond NDA, there are various paths to become an officer in the Indian Army, Navy, and Air Force. These include entries for graduates (CDS), technical graduates (TES for Army, TGC for Army, SSC Tech for Army/Navy), and specialized roles.",
+                            subjects: "Varies by entry scheme: Any graduate degree for CDS (Combined Defence Services), Engineering degrees for Technical Entries (PCM at 10+2 is a prerequisite for some).",
+                            colleges: "Indian Military Academy (IMA), Indian Naval Academy (INA), Air Force Academy (AFA), Officers Training Academy (OTA).",
+                            scope: "Highly prestigious and respected career. Offers leadership, adventurous life, job security, and significant contribution to national security.",
+                            challenges: "Rigorous selection process (SSB interview). Demanding training and disciplined lifestyle. Potential for postings in challenging environments."
+                        },
+                        hi: { // Placeholder for Hindi translation
+                            title: "सशस्त्र बल अधिकारी (तकनीकी/अन्य प्रविष्टियां)",
+                            description: "एनडीए से परे, भारतीय सेना, नौसेना और वायु सेना में अधिकारी बनने के विभिन्न रास्ते हैं। इनमें स्नातक (सीडीएस), तकनीकी स्नातक (सेना के लिए टीईएस, सेना के लिए टीजीसी, सेना/नौसेना के लिए एसएससी टेक), और विशेष भूमिकाओं के लिए प्रविष्टियां शामिल हैं।",
+                            subjects: "प्रवेश योजना के अनुसार भिन्न होता है: सीडीएस (संयुक्त रक्षा सेवा) के लिए कोई भी स्नातक डिग्री, तकनीकी प्रविष्टियों के लिए इंजीनियरिंग की डिग्री (कुछ के लिए 10+2 पर पीसीएम एक शर्त है)।",
+                            colleges: "भारतीय सैन्य अकादमी (आईएमए), भारतीय नौसेना अकादमी (आईएनए), वायु सेना अकादमी (एएफए), अधिकारी प्रशिक्षण अकादमी (ओटीए)।",
+                            scope: "अत्यधिक प्रतिष्ठित और सम्मानित करियर। नेतृत्व, साहसिक जीवन, नौकरी की सुरक्षा और राष्ट्रीय सुरक्षा में महत्वपूर्ण योगदान प्रदान करता है।",
+                            challenges: "कठोर चयन प्रक्रिया (एसएसबी साक्षात्कार)। मांग वाला प्रशिक्षण और अनुशासित जीवन शैली। चुनौतीपूर्ण वातावरण में पोस्टिंग की संभावना।"
+                        }
+                    }
+                },
+                {
+                    title: "Police / Law Enforcement Officer",
+                    category: "public_service",
+                    details: {
+                        en: {
+                            description: "Police and law enforcement officers maintain law and order, prevent and investigate crimes, and protect citizens. This includes roles in state police, central armed police forces (CRPF, BSF), and intelligence agencies.",
+                            subjects: "Varies by rank and force: 12th pass for Constables, Bachelor's degree for Sub-Inspectors and higher ranks. Competitive exams are conducted by state PSCs or central recruitment bodies (e.g., SSC CPO).",
+                            colleges: "State Police Academies, Central Police Organizations' training centers.",
+                            scope: "Essential service for public safety, offers a challenging and dynamic career. Opportunities for promotion and specialization (e.g., cybercrime, forensics).",
+                            challenges: "Physically demanding and high-stress job. Irregular hours and potential for dangerous situations. Requires strong ethical conduct."
+                        },
+                        hi: { // Placeholder for Hindi translation
+                            title: "पुलिस / कानून प्रवर्तन अधिकारी",
+                            description: "पुलिस और कानून प्रवर्तन अधिकारी कानून और व्यवस्था बनाए रखते हैं, अपराधों को रोकते और उनकी जांच करते हैं, और नागरिकों की रक्षा करते हैं। इसमें राज्य पुलिस, केंद्रीय सशस्त्र पुलिस बल (सीआरपीएफ, बीएसएफ), और खुफिया एजेंसियों में भूमिकाएँ शामिल हैं।",
+                            subjects: "रैंक और बल के अनुसार भिन्न होता है: कांस्टेबल के लिए 12वीं पास, सब-इंस्पेक्टर और उच्च रैंक के लिए स्नातक की डिग्री। राज्य पीएससी या केंद्रीय भर्ती निकायों (जैसे, एसएससी सीपीओ) द्वारा प्रतियोगी परीक्षाएँ आयोजित की जाती हैं।",
+                            colleges: "राज्य पुलिस अकादमियाँ, केंद्रीय पुलिस संगठनों के प्रशिक्षण केंद्र।",
+                            scope: "सार्वजनिक सुरक्षा के लिए आवश्यक सेवा, एक चुनौतीपूर्ण और गतिशील करियर प्रदान करती है। पदोन्नति और विशेषज्ञता के अवसर (जैसे, साइबर अपराध, फोरेंसिक)।",
+                            challenges: "शारीरिक रूप से मांग वाली और उच्च तनाव वाली नौकरी। अनियमित घंटे और खतरनाक स्थितियों की संभावना। मजबूत नैतिक आचरण की आवश्यकता है।"
+                        }
+                    }
+                },
+                {
+                    title: "Hotel Manager",
+                    category: "vocational",
+                    details: {
+                        en: {
+                            description: "Hotel managers oversee all aspects of hotel operations, including guest services, staff management, financial performance, and maintaining service quality to ensure guest satisfaction.",
+                            subjects: "Any stream. A Bachelor's degree or Diploma in Hotel Management is ideal.",
+                            colleges: "Institute of Hotel Management (IHM) chain, Welcomgroup Graduate School of Hotel Administration (WGSHA) Manipal, Army Institute of Hotel Management.",
+                            scope: "Growing hospitality sector with opportunities in hotels, resorts, cruise lines, and international chains. Potential for rapid career growth.",
+                            challenges: "Long and irregular hours. Requires strong leadership, problem-solving, and customer service skills. Demanding environment."
+                        },
+                        hi: { // Placeholder for Hindi translation
+                            title: "होटल प्रबंधक",
+                            description: "होटल प्रबंधक होटल संचालन के सभी पहलुओं की देखरेख करते हैं, जिसमें अतिथि सेवाएँ, कर्मचारी प्रबंधन, वित्तीय प्रदर्शन और अतिथि संतुष्टि सुनिश्चित करने के लिए सेवा गुणवत्ता बनाए रखना शामिल है।",
+                            subjects: "कोई भी स्ट्रीम। होटल मैनेजमेंट में स्नातक की डिग्री या डिप्लोमा आदर्श है।",
+                            colleges: "होटल मैनेजमेंट संस्थान (आईएचएम) श्रृंखला, वेलकमग्रुप ग्रेजुएट स्कूल ऑफ होटल एडमिनिस्ट्रेशन (डब्ल्यूजीएसएचए) मणिपाल, आर्मी इंस्टीट्यूट ऑफ होटल मैनेजमेंट।",
+                            scope: "होटल, रिसॉर्ट, क्रूज लाइन और अंतरराष्ट्रीय श्रृंखलाओं में अवसरों के साथ बढ़ता आतिथ्य क्षेत्र। तेजी से करियर विकास की संभावना।",
+                            challenges: "लंबे और अनियमित घंटे। मजबूत नेतृत्व, समस्या-समाधान और ग्राहक सेवा कौशल की आवश्यकता है। मांग वाला वातावरण।"
+                        }
+                    }
+                },
+                {
+                    title: "Front Office Executive",
+                    category: "vocational",
+                    details: {
+                        en: {
+                            description: "Front office executives are the first point of contact for guests in hotels. They handle check-ins, check-outs, reservations, guest inquiries, and ensure a welcoming experience.",
+                            subjects: "12th pass. Diploma or Certificate in Hotel Management or Front Office Operations is beneficial.",
+                            colleges: "Various hotel management institutes.",
+                            scope: "Entry-level role in hotels, providing a pathway to other departments or managerial roles.",
+                            challenges: "Requires excellent communication and interpersonal skills. Can be high-pressure during peak hours. Customer-facing role."
+                        },
+                        hi: { // Placeholder for Hindi translation
+                            title: "फ्रंट ऑफिस एग्जीक्यूटिव",
+                            description: "फ्रंट ऑफिस एग्जीक्यूटिव होटलों में मेहमानों के लिए पहला संपर्क बिंदु होते हैं। वे चेक-इन, चेक-आउट, आरक्षण, अतिथि पूछताछ संभालते हैं, और एक स्वागत योग्य अनुभव सुनिश्चित करते हैं।",
+                            subjects: "12वीं पास। होटल मैनेजमेंट या फ्रंट ऑफिस ऑपरेशंस में डिप्लोमा या प्रमाण पत्र फायदेमंद है।",
+                            colleges: "विभिन्न होटल मैनेजमेंट संस्थान।",
+                            scope: "होटलों में प्रवेश स्तर की भूमिका, अन्य विभागों या प्रबंधकीय भूमिकाओं के लिए एक मार्ग प्रदान करती है।",
+                            challenges: "उत्कृष्ट संचार और पारस्परिक कौशल की आवश्यकता है। व्यस्त समय के दौरान उच्च दबाव वाला हो सकता है। ग्राहक-सामना करने वाली भूमिका।"
+                        }
+                    }
+                },
+                {
+                    title: "Food & Beverage (F&B) Manager",
+                    category: "vocational",
+                    details: {
+                        en: {
+                            description: "F&B managers oversee food and beverage operations in hotels, restaurants, or catering businesses. They manage menus, staff, inventory, and ensure profitability and quality.",
+                            subjects: "Any stream. Degree or Diploma in Hotel Management with specialization in F&B or Culinary Arts.",
+                            colleges: "Institute of Hotel Management (IHM) chain, various culinary arts schools.",
+                            scope: "High demand in the ever-expanding hospitality and food service industry. Opportunities in hotels, independent restaurants, and catering.",
+                            challenges: "Long and often irregular hours. Requires strong organizational, culinary, and management skills. Fast-paced environment."
+                        },
+                        hi: { // Placeholder for Hindi translation
+                            title: "खाद्य और पेय (F&B) प्रबंधक",
+                            description: "एफ एंड बी प्रबंधक होटलों, रेस्तरां, या खानपान व्यवसायों में खाद्य और पेय संचालन की देखरेख करते हैं। वे मेनू, कर्मचारियों, इन्वेंट्री का प्रबंधन करते हैं, और लाभप्रदता और गुणवत्ता सुनिश्चित करते हैं।",
+                            subjects: "कोई भी स्ट्रीम। एफ एंड बी या पाक कला में विशेषज्ञता के साथ होटल मैनेजमेंट में डिग्री या डिप्लोमा।",
+                            colleges: "होटल मैनेजमेंट संस्थान (आईएचएम) श्रृंखला, विभिन्न पाक कला स्कूल।",
+                            scope: "तेजी से बढ़ते आतिथ्य और खाद्य सेवा उद्योग में उच्च मांग। होटल, स्वतंत्र रेस्तरां और खानपान में अवसर।",
+                            challenges: "लंबे और अक्सर अनियमित घंटे। मजबूत संगठनात्मक, पाक कला और प्रबंधन कौशल की आवश्यकता है। तेज-तर्रार वातावरण।"
+                        }
+                    }
+                },
+                {
+                    title: "Travel Consultant",
+                    category: "vocational",
+                    details: {
+                        en: {
+                            description: "Travel consultants advise clients on travel plans, book flights, accommodations, tours, and packages. They help create personalized and memorable travel experiences.",
+                            subjects: "Any stream. Diploma or Degree in Travel & Tourism Management is beneficial.",
+                            colleges: "Indian Institute of Tourism and Travel Management (IITTM), various private travel and tourism academies.",
+                            scope: "Opportunities in travel agencies, tour operators, online travel companies, and as independent consultants.",
+                            challenges: "Requires excellent communication, sales, and geographical knowledge. The industry can be impacted by global events."
+                        },
+                        hi: { // Placeholder for Hindi translation
+                            title: "यात्रा सलाहकार",
+                            description: "यात्रा सलाहकार ग्राहकों को यात्रा योजनाओं पर सलाह देते हैं, उड़ानें, आवास, दौरे और पैकेज बुक करते हैं। वे व्यक्तिगत और यादगार यात्रा अनुभव बनाने में मदद करते हैं।",
+                            subjects: "कोई भी स्ट्रीम। यात्रा और पर्यटन प्रबंधन में डिप्लोमा या डिग्री फायदेमंद है।",
+                            colleges: "भारतीय पर्यटन और यात्रा प्रबंधन संस्थान (आईआईटीएम), विभिन्न निजी यात्रा और पर्यटन अकादमियां।",
+                            scope: "यात्रा एजेंसियों, टूर ऑपरेटरों, ऑनलाइन यात्रा कंपनियों और स्वतंत्र सलाहकार के रूप में अवसर।",
+                            challenges: "उत्कृष्ट संचार, बिक्री और भौगोलिक ज्ञान की आवश्यकता है। उद्योग वैश्विक घटनाओं से प्रभावित हो सकता है।"
+                        }
+                    }
+                },
+                {
+                    title: "Tour Guide",
+                    category: "vocational",
+                    details: {
+                        en: {
+                            description: "Tour guides lead individuals or groups through attractions, historical sites, or natural landscapes, providing information, historical context, and ensuring a smooth and enjoyable experience.",
+                            subjects: "Any stream. Knowledge of history, culture, and good communication skills. Certification programs are available.",
+                            colleges: "Various tourism training institutes, often skill-based.",
+                            scope: "Opportunities in heritage sites, national parks, museums, and private tour companies. Can be freelance.",
+                            challenges: "Requires strong public speaking skills and deep knowledge of the subject matter. Can involve long hours of standing and walking."
+                        },
+                        hi: { // Placeholder for Hindi translation
+                            title: "टूर गाइड",
+                            description: "टूर गाइड व्यक्तियों या समूहों को आकर्षणों, ऐतिहासिक स्थलों, या प्राकृतिक परिदृश्यों के माध्यम से ले जाते हैं, जानकारी, ऐतिहासिक संदर्भ प्रदान करते हैं, और एक सहज और सुखद अनुभव सुनिश्चित करते हैं।",
+                            subjects: "कोई भी स्ट्रीम। इतिहास, संस्कृति का ज्ञान और अच्छे संचार कौशल। प्रमाणन कार्यक्रम उपलब्ध हैं।",
+                            colleges: "विभिन्न पर्यटन प्रशिक्षण संस्थान, अक्सर कौशल-आधारित।",
+                            scope: "विरासत स्थलों, राष्ट्रीय उद्यानों, संग्रहालयों और निजी टूर कंपनियों में अवसर। फ्रीलांस हो सकता है।",
+                            challenges: "मजबूत सार्वजनिक बोलने के कौशल और विषय वस्तु के गहन ज्ञान की आवश्यकता है। इसमें लंबे समय तक खड़े रहना और चलना शामिल हो सकता है।"
+                        }
+                    }
+                },
+                {
+                    title: "Business Development Executive",
+                    category: "commerce",
+                    details: {
+                        en: {
+                            description: "Business Development Executives identify new business opportunities, build client relationships, and negotiate deals to drive revenue growth for their company.",
+                            subjects: "Bachelor's degree in Business Administration, Marketing, Sales, or related fields. MBA is often preferred.",
+                            colleges: "Any university offering Commerce or Management degrees.",
+                            scope: "High demand across almost all industries, crucial for company growth.",
+                            challenges: "Target-driven role, requires strong sales, negotiation, and communication skills. Can be high-pressure."
+                        },
+                        hi: { // Placeholder for Hindi translation
+                            title: "बिजनेस डेवलपमेंट एग्जीक्यूटिव",
+                            description: "बिजनेस डेवलपमेंट एग्जीक्यूटिव नए व्यावसायिक अवसरों की पहचान करते हैं, ग्राहक संबंध बनाते हैं, और अपनी कंपनी के लिए राजस्व वृद्धि को बढ़ावा देने के लिए सौदों पर बातचीत करते हैं।",
+                            subjects: "व्यवसाय प्रशासन, विपणन, बिक्री, या संबंधित क्षेत्रों में स्नातक की डिग्री। एमबीए को अक्सर प्राथमिकता दी जाती है।",
+                            colleges: "कॉमर्स या मैनेजमेंट की डिग्री प्रदान करने वाला कोई भी विश्वविद्यालय।",
+                            scope: "लगभग सभी उद्योगों में उच्च मांग, कंपनी के विकास के लिए महत्वपूर्ण।",
+                            challenges: "लक्ष्य-उन्मुख भूमिका, मजबूत बिक्री, बातचीत और संचार कौशल की आवश्यकता है। उच्च दबाव वाला हो सकता है।"
+                        }
+                    }
+                },
+                {
+                    title: "Sales Engineer",
+                    category: "commerce",
+                    details: {
+                        en: {
+                            description: "Sales engineers combine technical expertise with sales skills. They sell complex scientific and technological products or services, explaining their functions and benefits to customers.",
+                            subjects: "Bachelor's degree in Engineering (e.g., Mechanical, Electrical, Computer Science) or a technical discipline.",
+                            colleges: "Various engineering colleges.",
+                            scope: "Demand in B2B (business-to-business) sectors like software, manufacturing, telecommunications, and industrial equipment.",
+                            challenges: "Requires strong technical understanding and sales aptitude. Balancing technical explanations with business needs."
+                        },
+                        hi: { // Placeholder for Hindi translation
+                            title: "सेल्स इंजीनियर",
+                            description: "सेल्स इंजीनियर तकनीकी विशेषज्ञता को बिक्री कौशल के साथ जोड़ते हैं। वे ग्राहकों को उनके कार्यों और लाभों की व्याख्या करते हुए जटिल वैज्ञानिक और तकनीकी उत्पादों या सेवाओं को बेचते हैं।",
+                            subjects: "इंजीनियरिंग (जैसे, मैकेनिकल, इलेक्ट्रिकल, कंप्यूटर विज्ञान) या एक तकनीकी विषय में स्नातक की डिग्री।",
+                            colleges: "विभिन्न इंजीनियरिंग कॉलेज।",
+                            scope: "सॉफ्टवेयर, विनिर्माण, दूरसंचार और औद्योगिक उपकरण जैसे बी2बी (बिजनेस-टू-बिजनेस) क्षेत्रों में मांग।",
+                            challenges: "मजबूत तकनीकी समझ और बिक्री योग्यता की आवश्यकता है। व्यावसायिक जरूरतों के साथ तकनीकी स्पष्टीकरणों को संतुलित करना।"
+                        }
+                    }
+                },
+                {
+                    title: "Key Account Manager",
+                    category: "commerce",
+                    details: {
+                        en: {
+                            description: "Key account managers are responsible for managing a company's most important client accounts. They build long-term relationships, ensure client satisfaction, and identify growth opportunities within those accounts.",
+                            subjects: "Bachelor's degree in Business, Marketing, or a related field. Experience in sales or client management is crucial.",
+                            colleges: "Any university offering Commerce or Management degrees.",
+                            scope: "High-level sales/relationship role in various industries, leading to senior management positions.",
+                            challenges: "Requires strong relationship-building, negotiation, and strategic thinking skills. High stakes as it involves crucial client relationships."
+                        },
+                        hi: { // Placeholder for Hindi translation
+                            title: "मुख्य खाता प्रबंधक",
+                            description: "मुख्य खाता प्रबंधक एक कंपनी के सबसे महत्वपूर्ण ग्राहक खातों का प्रबंधन करने के लिए जिम्मेदार होते हैं। वे दीर्घकालिक संबंध बनाते हैं, ग्राहक संतुष्टि सुनिश्चित करते हैं, और उन खातों के भीतर विकास के अवसरों की पहचान करते हैं।",
+                            subjects: "व्यवसाय, विपणन, या संबंधित क्षेत्र में स्नातक की डिग्री। बिक्री या ग्राहक प्रबंधन में अनुभव महत्वपूर्ण है।",
+                            colleges: "कॉमर्स या मैनेजमेंट की डिग्री प्रदान करने वाला कोई भी विश्वविद्यालय।",
+                            scope: "विभिन्न उद्योगों में उच्च-स्तरीय बिक्री/संबंध भूमिका, वरिष्ठ प्रबंधन पदों की ओर ले जाती है।",
+                            challenges: "मजबूत संबंध-निर्माण, बातचीत और रणनीतिक सोच कौशल की आवश्यकता है। महत्वपूर्ण ग्राहक संबंधों को शामिल करने के कारण उच्च दांव।"
+                        }
+                    }
+                },
+                {
+                    title: "Customer Success Manager",
+                    category: "commerce",
+                    details: {
+                        en: {
+                            description: "Customer Success Managers (CSMs) ensure customers achieve their desired outcomes using a company's product or service. They proactively engage with clients to maximize value, reduce churn, and drive retention.",
+                            subjects: "Bachelor's degree in Business, Communications, or a relevant field. Experience in customer service or account management.",
+                            colleges: "Any university for relevant degrees.",
+                            scope: "High growth area, particularly in SaaS (Software as a Service) and tech companies.",
+                            challenges: "Requires strong communication, problem-solving, and empathy. Balancing customer needs with business objectives."
+                        },
+                        hi: { // Placeholder for Hindi translation
+                            title: "ग्राहक सफलता प्रबंधक",
+                            description: "ग्राहक सफलता प्रबंधक (सीएसएम) यह सुनिश्चित करते हैं कि ग्राहक किसी कंपनी के उत्पाद या सेवा का उपयोग करके अपने वांछित परिणाम प्राप्त करें। वे मूल्य को अधिकतम करने, घर्षण को कम करने और प्रतिधारण को बढ़ावा देने के लिए ग्राहकों के साथ सक्रिय रूप से जुड़ते हैं।",
+                            subjects: "व्यवसाय, संचार, या एक प्रासंगिक क्षेत्र में स्नातक की डिग्री। ग्राहक सेवा या खाता प्रबंधन में अनुभव।",
+                            colleges: "प्रासंगिक डिग्री के लिए कोई भी विश्वविद्यालय।",
+                            scope: "विशेष रूप से सास (सेवा के रूप में सॉफ्टवेयर) और टेक कंपनियों में उच्च विकास क्षेत्र।",
+                            challenges: "मजबूत संचार, समस्या-समाधान और सहानुभूति की आवश्यकता है। व्यावसायिक उद्देश्यों के साथ ग्राहकों की जरूरतों को संतुलित करना।"
+                        }
+                    }
+                },
+                {
+                    title: "Technical Support Executive",
+                    category: "commerce",
+                    details: {
+                        en: {
+                            description: "Technical Support Executives assist customers with technical issues related to products or services. They diagnose problems, provide solutions, and ensure customer satisfaction.",
+                            subjects: "12th pass or Bachelor's degree in IT, Computer Science, or related technical fields. Strong problem-solving skills.",
+                            colleges: "Various IT/technical institutes.",
+                            scope: "Entry-level roles leading to specialized IT support, system administration, or customer success.",
+                            challenges: "Requires patience, strong technical knowledge, and good communication. Dealing with frustrated customers."
+                        },
+                        hi: { // Placeholder for Hindi translation
+                            title: "तकनीकी सहायता कार्यकारी",
+                            description: "तकनीकी सहायता कार्यकारी उत्पादों या सेवाओं से संबंधित तकनीकी मुद्दों में ग्राहकों की सहायता करते हैं। वे समस्याओं का निदान करते हैं, समाधान प्रदान करते हैं, और ग्राहक संतुष्टि सुनिश्चित करते हैं।",
+                            subjects: "12वीं पास या आईटी, कंप्यूटर विज्ञान, या संबंधित तकनीकी क्षेत्रों में स्नातक की डिग्री। मजबूत समस्या-समाधान कौशल।",
+                            colleges: "विभिन्न आईटी/तकनीकी संस्थान।",
+                            scope: "विशिष्ट आईटी समर्थन, सिस्टम प्रशासन, या ग्राहक सफलता की ओर ले जाने वाली प्रवेश स्तर की भूमिकाएँ।",
+                            challenges: "धैर्य, मजबूत तकनीकी ज्ञान और अच्छे संचार की आवश्यकता है। निराश ग्राहकों से निपटना।"
+                        }
+                    }
+                },
+                {
+                    title: "Call Center Agent",
+                    category: "commerce",
+                    details: {
+                        en: {
+                            description: "Call center agents handle incoming and outgoing customer calls, addressing inquiries, resolving issues, processing orders, or providing information for various businesses.",
+                            subjects: "12th pass. Strong communication skills (especially English).",
+                            colleges: "No specific degree required, often involves on-the-job training.",
+                            scope: "Entry-level opportunities across many industries that require customer interaction.",
+                            challenges: "Can be repetitive, high call volume, and requires patience in dealing with diverse customer queries and complaints."
+                        },
+                        hi: { // Placeholder for Hindi translation
+                            title: "कॉल सेंटर एजेंट",
+                            description: "कॉल सेंटर एजेंट आने वाली और जाने वाली ग्राहक कॉलों को संभालते हैं, पूछताछ का जवाब देते हैं, मुद्दों को हल करते हैं, ऑर्डर संसाधित करते हैं, या विभिन्न व्यवसायों के लिए जानकारी प्रदान करते हैं।",
+                            subjects: "12वीं पास। मजबूत संचार कौशल (विशेषकर अंग्रेजी)।",
+                            colleges: "कोई विशिष्ट डिग्री आवश्यक नहीं है, अक्सर ऑन-द-जॉब प्रशिक्षण शामिल होता है।",
+                            scope: "कई उद्योगों में प्रवेश स्तर के अवसर जिन्हें ग्राहक संपर्क की आवश्यकता होती है।",
+                            challenges: "दोहराव हो सकता है, उच्च कॉल वॉल्यूम, और विविध ग्राहक प्रश्नों और शिकायतों से निपटने में धैर्य की आवश्यकता होती है।"
+                        }
+                    }
+                },
+                {
+                    title: "Freelance Developer / Designer",
+                    category: "vocational", // Freelance falls under vocational as skill-based independent work
+                    details: {
+                        en: {
+                            description: "Freelance developers build software, websites, or mobile apps for various clients. Freelance designers create graphics, web designs, UI/UX, or marketing materials for businesses and individuals.",
+                            subjects: "Skill-based. Formal degrees in Computer Science, Design, or certifications are helpful but a strong portfolio and practical skills are paramount.",
+                            colleges: "N/A (often self-taught, online courses, or bootcamp-trained).",
+                            scope: "High demand in the gig economy, offering flexibility and diverse projects. Potential for high income with specialized skills.",
+                            challenges: "Requires self-discipline, client management skills, and continuous learning. Income can be inconsistent. Need to find own clients."
+                        },
+                        hi: { // Placeholder for Hindi translation
+                            title: "फ्रीलांस डेवलपर / डिजाइनर",
+                            description: "फ्रीलांस डेवलपर विभिन्न ग्राहकों के लिए सॉफ्टवेयर, वेबसाइट या मोबाइल ऐप बनाते हैं। फ्रीलांस डिजाइनर व्यवसायों और व्यक्तियों के लिए ग्राफिक्स, वेब डिजाइन, यूआई/यूएक्स, या मार्केटिंग सामग्री बनाते हैं।",
+                            subjects: "कौशल-आधारित। कंप्यूटर विज्ञान, डिजाइन में औपचारिक डिग्री, या प्रमाणन सहायक होते हैं, लेकिन एक मजबूत पोर्टफोलियो और व्यावहारिक कौशल सर्वोपरि हैं।",
+                            colleges: "एन/ए (अक्सर स्व-शिक्षित, ऑनलाइन पाठ्यक्रम, या बूटकैम्प-प्रशिक्षित)।",
+                            scope: "गिग अर्थव्यवस्था में उच्च मांग, लचीलापन और विविध परियोजनाएं प्रदान करती है। विशेष कौशल के साथ उच्च आय की संभावना।",
+                            challenges: "आत्म-अनुशासन, ग्राहक प्रबंधन कौशल और निरंतर सीखने की आवश्यकता है। आय असंगत हो सकती है। अपने स्वयं के ग्राहक खोजने की आवश्यकता है।"
+                        }
+                    }
+                },
+                {
+                    title: "Virtual Assistant",
+                    category: "vocational",
+                    details: {
+                        en: {
+                            description: "Virtual assistants provide administrative, technical, or creative assistance to clients remotely. Tasks can include scheduling, email management, content creation, or social media management.",
+                            subjects: "Skill-based. Good organizational, communication, and basic computer skills are essential. Experience in office administration is helpful.",
+                            colleges: "N/A (often self-trained or through online courses).",
+                            scope: "Growing demand as businesses seek flexible remote support. Offers flexibility and ability to work for multiple clients.",
+                            challenges: "Requires strong time management and client communication. Building a client base can take time."
+                        },
+                        hi: { // Placeholder for Hindi translation
+                            title: "वर्चुअल असिस्टेंट",
+                            description: "वर्चुअल असिस्टेंट ग्राहकों को दूरस्थ रूप से प्रशासनिक, तकनीकी, या रचनात्मक सहायता प्रदान करते हैं। कार्यों में शेड्यूलिंग, ईमेल प्रबंधन, सामग्री निर्माण, या सोशल मीडिया प्रबंधन शामिल हो सकते हैं।",
+                            subjects: "कौशल-आधारित। अच्छे संगठनात्मक, संचार और बुनियादी कंप्यूटर कौशल आवश्यक हैं। कार्यालय प्रशासन में अनुभव सहायक है।",
+                            colleges: "एन/ए (अक्सर स्व-प्रशिक्षित या ऑनलाइन पाठ्यक्रमों के माध्यम से)।",
+                            scope: "व्यवसायों द्वारा लचीले दूरस्थ समर्थन की तलाश में बढ़ती मांग। लचीलापन और कई ग्राहकों के लिए काम करने की क्षमता प्रदान करता है।",
+                            challenges: "मजबूत समय प्रबंधन और ग्राहक संचार की आवश्यकता है। ग्राहक आधार बनाने में समय लग सकता है।"
+                        }
+                    }
+                },
+                {
+                    title: "Startup Founder / Co-founder",
+                    category: "vocational", // Entrepreneurship as a skill-based venture
+                    details: {
+                        en: {
+                            description: "Startup founders or co-founders conceive, develop, and launch new businesses. They are responsible for strategy, product, funding, and building a team, driving innovation and growth.",
+                            subjects: "Any background, but business acumen, leadership, and a strong idea are crucial. Degrees in Business, Engineering, or a specialized field are common.",
+                            colleges: "N/A (often based on an idea and determination, though business schools can provide a strong foundation).",
+                            scope: "High potential for impact and financial reward, building something new and solving problems.",
+                            challenges: "Extremely high risk and failure rate. Requires immense dedication, resilience, fundraising skills, and adaptability. Long hours and significant stress."
+                        },
+                        hi: { // Placeholder for Hindi translation
+                            title: "स्टार्टअप संस्थापक / सह-संस्थापक",
+                            description: "स्टार्टअप संस्थापक या सह-संस्थापक नए व्यवसायों की कल्पना करते हैं, विकसित करते हैं और लॉन्च करते हैं। वे रणनीति, उत्पाद, धन और एक टीम बनाने, नवाचार और विकास को बढ़ावा देने के लिए जिम्मेदार होते हैं।",
+                            subjects: "कोई भी पृष्ठभूमि, लेकिन व्यावसायिक कौशल, नेतृत्व और एक मजबूत विचार महत्वपूर्ण हैं। व्यवसाय, इंजीनियरिंग, या एक विशेष क्षेत्र में डिग्री सामान्य हैं।",
+                            colleges: "एन/ए (अक्सर एक विचार और दृढ़ संकल्प पर आधारित होता है, हालांकि व्यावसायिक स्कूल एक मजबूत नींव प्रदान कर सकते हैं)।",
+                            scope: "प्रभाव और वित्तीय पुरस्कार के लिए उच्च क्षमता, कुछ नया बनाना और समस्याओं को हल करना।",
+                            challenges: "अत्यंत उच्च जोखिम और विफलता दर। अपार समर्पण, लचीलापन, धन उगाहने वाले कौशल और अनुकूलनशीलता की आवश्यकता है। लंबे घंटे और महत्वपूर्ण तनाव।"
+                        }
+                    }
+                },
+                {
+                    title: "Operations Lead (Startup)",
+                    category: "vocational",
+                    details: {
+                        en: {
+                            description: "Operations Leads in startups manage the day-to-day functions and processes, ensuring efficiency and scalability. They optimize workflows, manage resources, and oversee logistics.",
+                            subjects: "Bachelor's degree in Business, Management, Engineering, or a related field. Experience in operations or project management is valuable.",
+                            colleges: "Any university offering relevant degrees.",
+                            scope: "Critical role in growing startups, offering hands-on experience in building a company.",
+                            challenges: "Fast-paced and dynamic environment. Requires strong problem-solving, organizational, and leadership skills. Often involves wearing many hats."
+                        },
+                        hi: { // Placeholder for Hindi translation
+                            title: "संचालन लीड (स्टार्टअप)",
+                            description: "स्टार्टअप में संचालन लीड दैनिक कार्यों और प्रक्रियाओं का प्रबंधन करते हैं, दक्षता और स्केलेबिलिटी सुनिश्चित करते हैं। वे वर्कफ़्लो को अनुकूलित करते हैं, संसाधनों का प्रबंधन करते हैं, और लॉजिस्टिक्स की देखरेख करते हैं।",
+                            subjects: "व्यवसाय, प्रबंधन, इंजीनियरिंग, या संबंधित क्षेत्र में स्नातक की डिग्री। संचालन या परियोजना प्रबंधन में अनुभव मूल्यवान है।",
+                            colleges: "प्रासंगिक डिग्री प्रदान करने वाला कोई भी विश्वविद्यालय।",
+                            scope: "बढ़ते स्टार्टअप में महत्वपूर्ण भूमिका, एक कंपनी बनाने में व्यावहारिक अनुभव प्रदान करती है।",
+                            challenges: "तेज-तर्रार और गतिशील वातावरण। मजबूत समस्या-समाधान, संगठनात्मक और नेतृत्व कौशल की आवश्यकता है। अक्सर कई भूमिकाएँ निभाना शामिल होता है।"
+                        }
+                    }
+                },
+                {
+                    title: "Growth Hacker (Startup)",
+                    category: "vocational",
+                    details: {
+                        en: {
+                            description: "Growth hackers in startups use creative, low-cost marketing strategies to acquire and retain customers. They combine marketing, coding, and data analysis to achieve rapid growth.",
+                            subjects: "Any background, but strong analytical skills, marketing knowledge, and often some coding ability are key. Online courses and certifications are common.",
+                            colleges: "N/A (often self-taught or through specialized bootcamps).",
+                            scope: "High demand in the tech startup ecosystem. Offers exciting opportunities to experiment and drive tangible results.",
+                            challenges: "Requires creativity, analytical rigor, and constant experimentation. The field is constantly evolving."
+                        },
+                        hi: { // Placeholder for Hindi translation
+                            title: "ग्रोथ हैकर (स्टार्टअप)",
+                            description: "स्टार्टअप में ग्रोथ हैकर ग्राहकों को प्राप्त करने और बनाए रखने के लिए रचनात्मक, कम लागत वाली विपणन रणनीतियों का उपयोग करते हैं। वे तेजी से विकास प्राप्त करने के लिए विपणन, कोडिंग और डेटा विश्लेषण को जोड़ते हैं।",
+                            subjects: "कोई भी पृष्ठभूमि, लेकिन मजबूत विश्लेषणात्मक कौशल, विपणन ज्ञान, और अक्सर कुछ कोडिंग क्षमता महत्वपूर्ण होती है। ऑनलाइन कोर्स और प्रमाणन सामान्य हैं।",
+                            colleges: "एन/ए (अक्सर स्व-शिक्षित या विशेष बूटकैम्प के माध्यम से)।",
+                            scope: "टेक स्टार्टअप इकोसिस्टम में उच्च मांग। प्रयोग करने और मूर्त परिणाम प्राप्त करने के लिए रोमांचक अवसर प्रदान करता है।",
+                            challenges: "रचनात्मकता, विश्लेषणात्मक कठोरता और निरंतर प्रयोग की आवश्यकता है। यह क्षेत्र लगातार विकसित हो रहा है।"
+                        }
+                    }
+                }
+            ];
+
+            let careerAwarenessChartInstance = null; // To hold the chart instance
+
+            // Mobile Menu Toggle
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+            mobileMenuButton.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+            });
+            
+            // Close mobile menu on link click
+            const mobileLinks = mobileMenu.querySelectorAll('a');
+            mobileLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    mobileMenu.classList.add('hidden');
+                });
+            });
+
+            // Accordion Logic
+            const accordionHeaders = document.querySelectorAll('.accordion-header');
+            accordionHeaders.forEach(header => {
+                header.addEventListener('click', () => {
+                    const content = header.nextElementSibling;
+                    const icon = header.querySelector('.accordion-icon');
+                    
+                    if (content.style.maxHeight) {
+                        content.style.maxHeight = null;
+                        icon.style.transform = 'rotate(0deg)';
+                    } else {
+                        // Close other open accordions
+                        document.querySelectorAll('.accordion-content').forEach(c => c.style.maxHeight = null);
+                        document.querySelectorAll('.accordion-icon').forEach(i => i.style.transform = 'rotate(0deg)');
+                        
+                        content.style.maxHeight = content.scrollHeight + "px";
+                        icon.style.transform = 'rotate(180deg)';
+                    }
+                });
+            });
+
+            const careerGrid = document.getElementById('career-grid');
+            const filters = document.getElementById('career-filters');
+            const modal = document.getElementById('career-modal');
+            const modalContent = document.getElementById('modal-content');
+
+            // Function to update all text content based on the current language
+            function updateContentLanguage() {
+                // Update elements with data-lang-key attribute
+                document.querySelectorAll('[data-lang-key]').forEach(element => {
+                    const key = element.getAttribute('data-lang-key');
+                    if (translations[currentLanguage] && translations[currentLanguage][key]) {
+                        // For specific elements like lists, innerHTML might be needed
+                        if (element.tagName === 'UL' || element.tagName === 'OL' || element.tagName === 'P' && element.querySelector('strong')) {
+                            element.innerHTML = translations[currentLanguage][key];
+                        } else {
+                            element.textContent = translations[currentLanguage][key];
+                        }
+                    }
+                });
+
+                // Update filter button texts
+                document.querySelectorAll('.filter-btn').forEach(button => {
+                    const filterKey = `filter_${button.dataset.filter}`;
+                    if (translations[currentLanguage] && translations[currentLanguage][filterKey]) {
+                        button.textContent = translations[currentLanguage][filterKey];
+                    }
+                });
+
+                renderCareers(document.querySelector('.filter-btn.active-filter').dataset.filter);
+                updateChart();
+            }
+
+            function getLocalizedCareerDetail(career, key) {
+                return career.details[currentLanguage] ? career.details[currentLanguage][key] : career.details.en[key];
+            }
+
+            function renderCareers(filter = 'all') {
+                careerGrid.innerHTML = '';
+                const filteredCareers = (filter === 'all')
+                    ? careersData
+                    : careersData.filter(c => c.category === filter);
+
+                if (filteredCareers.length === 0) {
+                    const noOptionsText = currentLanguage === 'en' ? 'No career options available for this category at this time. Please check back later!' : 'इस श्रेणी के लिए वर्तमान में कोई करियर विकल्प उपलब्ध नहीं हैं। कृपया बाद में देखें!';
+                    careerGrid.innerHTML = `<p class="col-span-full text-center text-gray-500 text-lg">${noOptionsText}</p>`;
+                } else {
+                    filteredCareers.forEach((career) => {
+                        const card = document.createElement('div');
+                        card.className = 'bg-white rounded-lg shadow-lg p-6 flex flex-col items-center text-center cursor-pointer transform hover:-translate-y-2 transition-transform duration-300';
+                        // Use original index from careersData to correctly retrieve full details later
+                        card.dataset.originalIndex = careersData.indexOf(career); 
+                        card.innerHTML = `<h3 class="text-xl font-bold text-gray-800">${getLocalizedCareerDetail(career, 'title')}</h3>`;
+                        careerGrid.appendChild(card);
+                    });
+                }
+            }
+
+            filters.addEventListener('click', (e) => {
+                if (e.target.classList.contains('filter-btn')) {
+                    document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active-filter')); // Remove active from all
+                    e.target.classList.add('active-filter');
+                    renderCareers(e.target.dataset.filter);
+                }
+            });
+
+            careerGrid.addEventListener('click', e => {
+                const card = e.target.closest('div');
+                if (card && card.dataset.originalIndex !== undefined) { // Check for originalIndex
+                    const career = careersData[parseInt(card.dataset.originalIndex)];
+                    openModal(career);
+                }
+            });
+
+            function openModal(career) {
+                modalContent.innerHTML = `
+                    <div class="p-6 md:p-8">
+                        <div class="flex justify-between items-start">
+                             <h2 class="text-2xl md:text-3xl font-bold text-gray-800 mb-4">${getLocalizedCareerDetail(career, 'title')}</h2>
+                             <button id="close-modal" class="text-3xl text-gray-500 hover:text-gray-800">&times;</button>
+                        </div>
+                        <div class="space-y-4 text-left">
+                            <div>
+                                <h4 class="font-bold text-lg text-amber-700">${translations[currentLanguage].modal_what_they_do}</h4>
+                                <p class="text-gray-600">${getLocalizedCareerDetail(career, 'description')}</p>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-lg text-amber-700">${translations[currentLanguage].modal_required_subjects}</h4>
+                                <p class="text-gray-600">${getLocalizedCareerDetail(career, 'subjects')}</p>
+                            </div>
+                             <div>
+                                <h4 class="font-bold text-lg text-amber-700">${translations[currentLanguage].modal_top_institutes}</h4>
+                                <p class="text-gray-600">${getLocalizedCareerDetail(career, 'colleges')}</p>
+                            </div>
+                             <div>
+                                <h4 class="font-bold text-lg text-amber-700">${translations[currentLanguage].modal_future_scope}</h4>
+                                <p class="text-gray-600">${getLocalizedCareerDetail(career, 'scope')}</p>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-lg text-amber-700">${translations[currentLanguage].modal_challenges_expect}</h4>
+                                <p class="text-gray-600">${getLocalizedCareerDetail(career, 'challenges')}</p>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                modal.classList.remove('opacity-0', 'pointer-events-none');
+                modalContent.classList.remove('scale-95');
+                document.getElementById('close-modal').addEventListener('click', closeModal);
+            }
+            
+            function closeModal() {
+                modal.classList.add('opacity-0', 'pointer-events-none');
+                modalContent.classList.add('scale-95');
+            }
+
+            modal.addEventListener('click', e => {
+                if (e.target === modal) {
+                    closeModal();
+                }
+            });
+            
+            // Career Awareness Chart
+            function updateChart() {
+                if (careerAwarenessChartInstance) {
+                    careerAwarenessChartInstance.destroy();
+                }
+
+                const chartLabels = currentLanguage === 'en' ? 
+                    ['Known Options (Med, Engg.)', 'Science & Tech', 'Commerce & Finance', 'Arts & Humanities', 'Creative Fields', 'Vocational', 'Govt. & Public Service', 'Healthcare & Life Sciences', 'Education & Training'] :
+                    ['ज्ञात विकल्प (चिकित्सा, इंजीनियरिंग)', 'विज्ञान और तकनीक', 'वाणिज्य और वित्त', 'कला और मानविकी', 'रचनात्मक क्षेत्र', 'व्यावसायिक', 'सरकारी और लोक सेवा', 'स्वास्थ्य सेवा और जीवन विज्ञान', 'शिक्षा और प्रशिक्षण'];
+
+                const ctx = document.getElementById('careerAwarenessChart').getContext('2d');
+                careerAwarenessChartInstance = new Chart(ctx, {
+                    type: 'bar',
+                    data: {
+                        labels: chartLabels,
+                        datasets: [{
+                            label: currentLanguage === 'en' ? 'Number of Diverse Career Paths' : 'विविध करियर पथों की संख्या',
+                            data: [2, 16, 13, 19, 21, 15, 15, 10, 8], // Data remains the same, only labels change
+                            backgroundColor: [
+                                'rgba(255, 99, 132, 0.6)', /* Reddish */
+                                'rgba(54, 162, 235, 0.6)', /* Blue */
+                                'rgba(255, 206, 86, 0.6)', /* Yellow */
+                                'rgba(75, 192, 192, 0.6)', /* Green-Blue */
+                                'rgba(153, 102, 255, 0.6)', /* Purple */
+                                'rgba(255, 159, 64, 0.6)', /* Orange */
+                                'rgba(60, 179, 113, 0.6)', /* Medium Sea Green for Public Service */
+                                'rgba(255, 99, 132, 0.6)',
+                                'rgba(54, 162, 235, 0.6)'
+                            ],
+                            borderColor: [
+                                 'rgba(255, 99, 132, 1)',
+                                'rgba(54, 162, 235, 1)',
+                                'rgba(255, 206, 86, 1)',
+                                'rgba(75, 192, 192, 1)',
+                                'rgba(153, 102, 255, 1)',
+                                'rgba(255, 159, 64, 1)',
+                                'rgba(60, 179, 113, 1)',
+                                'rgba(255, 99, 132, 1)',
+                                'rgba(54, 162, 235, 1)'
+                            ],
+                            borderWidth: 1
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        indexAxis: 'y',
+                        plugins: {
+                            legend: {
+                               display: false
+                            },
+                            title: {
+                                display: true,
+                                text: currentLanguage === 'en' ? 'Broadening Horizons: The Vast World of Careers' : 'विस्तारित क्षितिज: करियर की विशाल दुनिया',
+                                font: {
+                                    size: 16
+                                }
+                            },
+                            tooltip: {
+                               callbacks: {
+                                   label: function(context) {
+                                       let label = context.dataset.label || '';
+                                       if (label) {
+                                           label += ': ';
+                                       }
+                                       label += currentLanguage === 'en' ? 'Many diverse options' : 'कई विविध विकल्प';
+                                       return label;
+                                   }
+                               }
+                            }
+                        },
+                        scales: {
+                            x: {
+                                beginAtZero: true,
+                                title: {
+                                    display: true,
+                                    text: currentLanguage === 'en' ? 'Representation of Available Options' : 'उपलब्ध विकल्पों का प्रतिनिधित्व'
+                                }
+                            }
+                        }
+                    }
+                });
+            }
+
+            // Language switcher buttons
+            document.getElementById('lang-en').addEventListener('click', () => {
+                currentLanguage = 'en';
+                document.getElementById('lang-en').classList.add('bg-amber-700', 'text-white');
+                document.getElementById('lang-en').classList.remove('bg-gray-200', 'text-gray-700', 'hover:bg-gray-300');
+                document.getElementById('lang-hi').classList.remove('bg-amber-700', 'text-white');
+                document.getElementById('lang-hi').classList.add('bg-gray-200', 'text-gray-700', 'hover:bg-gray-300');
+                updateContentLanguage();
+            });
+
+            document.getElementById('lang-hi').addEventListener('click', () => {
+                currentLanguage = 'hi';
+                document.getElementById('lang-hi').classList.add('bg-amber-700', 'text-white');
+                document.getElementById('lang-hi').classList.remove('bg-gray-200', 'text-gray-700', 'hover:bg-gray-300');
+                document.getElementById('lang-en').classList.remove('bg-amber-700', 'text-white');
+                document.getElementById('lang-en').classList.add('bg-gray-200', 'text-gray-700', 'hover:bg-gray-300');
+                updateContentLanguage();
+            });
+
+            // Initial render
+            updateContentLanguage(); // Call this initially to set default language content
+        });
+    </script>
+</body>
+</html>
