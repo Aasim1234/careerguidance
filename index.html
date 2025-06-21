@@ -101,6 +101,39 @@
         .accordion-icon.rotate {
             transform: rotate(180deg);
         }
+        /* Custom modal for messages */
+        .message-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+        }
+        .message-modal.show {
+            opacity: 1;
+            visibility: visible;
+        }
+        .message-modal-content {
+            background-color: white;
+            padding: 2rem;
+            border-radius: 0.75rem;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            max-width: 90%;
+            transform: scale(0.9);
+            transition: transform 0.3s ease;
+        }
+        .message-modal.show .message-modal-content {
+            transform: scale(1);
+        }
     </style>
 </head>
 <body class="bg-stone-50">
@@ -113,6 +146,7 @@
                     <span class="urdu-font">مستقبل نما</span> <span class="text-orange-700">| Future Compass</span>
                 </h1>
                 <p class="text-xs text-stone-600 mt-1" data-lang-key="made_by"></p>
+                <!-- Removed User ID Display -->
             </div>
             <!-- Desktop Navigation -->
             <nav class="hidden md:flex space-x-8">
@@ -120,14 +154,17 @@
                 <a href="#challenges" class="text-stone-700 nav-link font-medium" data-lang-key="nav_challenges"></a>
                 <a href="#careers" class="text-stone-700 nav-link font-medium" data-lang-key="nav_careers"></a>
                 <a href="#english-resources" class="text-stone-700 nav-link font-medium" data-lang-key="nav_english_resources"></a>
+                <a href="#advanced-resources" class="text-stone-700 nav-link font-medium" data-lang-key="nav_advanced_resources"></a>
                 <a href="#consistency-time" class="text-stone-700 nav-link font-medium" data-lang-key="nav_consistency_time"></a>
                 <a href="#parents-emotions" class="text-stone-700 nav-link font-medium" data-lang-key="nav_parents_emotions"></a>
+                <a href="#vision" class="text-stone-700 nav-link font-medium" data-lang-key="nav_vision"></a>
                 <a href="#about" class="text-stone-700 nav-link font-medium" data-lang-key="nav_about"></a>
             </nav>
             <!-- Language Buttons and Mobile Menu Button -->
             <div class="flex items-center space-x-2">
                 <button id="lang-en" class="lang-btn px-3 py-1 rounded-full text-sm font-semibold bg-orange-600 text-white transition">EN</button>
                 <button id="lang-ur" class="lang-btn px-3 py-1 rounded-full text-sm font-semibold bg-stone-200 text-stone-700 hover:bg-stone-300 transition">UR (Roman)</button>
+                <!-- Removed Save Language Button -->
                 <button id="mobile-menu-button" class="md:hidden text-stone-700 focus:outline-none">
                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
                 </button>
@@ -139,8 +176,10 @@
             <a href="#challenges" class="block text-center py-3 px-4 text-stone-700 hover:bg-stone-50" data-lang-key="nav_challenges"></a>
             <a href="#careers" class="block text-center py-3 px-4 text-stone-700 hover:bg-stone-50" data-lang-key="nav_careers"></a>
             <a href="#english-resources" class="block text-center py-3 px-4 text-stone-700 hover:bg-stone-50" data-lang-key="nav_english_resources"></a>
+            <a href="#advanced-resources" class="block text-center py-3 px-4 text-stone-700 hover:bg-stone-50" data-lang-key="nav_advanced_resources"></a>
             <a href="#consistency-time" class="block text-center py-3 px-4 text-stone-700 hover:bg-stone-50" data-lang-key="nav_consistency_time"></a>
             <a href="#parents-emotions" class="block text-center py-3 px-4 text-stone-700 hover:bg-stone-50" data-lang-key="nav_parents_emotions"></a>
+            <a href="#vision" class="block text-center py-3 px-4 text-stone-700 hover:bg-stone-50" data-lang-key="nav_vision"></a>
             <a href="#about" class="block text-center py-3 px-4 text-stone-700 hover:bg-stone-50" data-lang-key="nav_about"></a>
         </div>
     </header>
@@ -282,6 +321,35 @@
 
         <hr class="my-12 border-t-2 border-stone-200">
 
+        <!-- New Section: Advanced Resources for Deep Dive -->
+        <section id="advanced-resources" class="py-16 md:py-24 bg-blue-50 rounded-2xl">
+            <div class="text-center mb-12 px-4">
+                <h2 class="text-3xl md:text-4xl font-bold text-stone-800" data-lang-key="advanced_resources_title"></h2>
+                <p class="urdu-font text-xl md:text-2xl text-blue-700 mt-2" data-lang-key="advanced_resources_subtitle"></p>
+                <p class="max-w-3xl mx-auto text-stone-700 mt-4" data-lang-key="advanced_resources_description"></p>
+            </div>
+            <div class="max-w-4xl mx-auto space-y-8">
+                <!-- Category: Online Course Platforms -->
+                <div class="bg-white rounded-xl shadow-lg p-6">
+                    <h3 class="text-xl font-semibold text-stone-800 mb-4" data-lang-key="advanced_resources_online_courses_title"></h3>
+                    <ul class="list-disc list-inside space-y-3 text-stone-700" data-lang-key="advanced_resources_online_courses_list"></ul>
+                </div>
+                <!-- Category: Career Guidance & Competitive Exams -->
+                <div class="bg-white rounded-xl shadow-lg p-6">
+                    <h3 class="text-xl font-semibold text-stone-800 mb-4" data-lang-key="advanced_resources_career_guidance_title"></h3>
+                    <ul class="list-disc list-inside space-y-3 text-stone-700" data-lang-key="advanced_resources_career_guidance_list"></ul>
+                </div>
+                <!-- Category: Skill Development & Practical Learning -->
+                <div class="bg-white rounded-xl shadow-lg p-6">
+                    <h3 class="text-xl font-semibold text-stone-800 mb-4" data-lang-key="advanced_resources_skill_development_title"></h3>
+                    <ul class="list-disc list-inside space-y-3 text-stone-700" data-lang-key="advanced_resources_skill_development_list"></ul>
+                </div>
+            </div>
+        </section>
+
+
+        <hr class="my-12 border-t-2 border-stone-200">
+
         <!-- New Section: Consistency and Time Management -->
         <section id="consistency-time" class="py-16 md:py-24 bg-emerald-50 rounded-2xl">
             <div class="text-center mb-12 px-4">
@@ -340,6 +408,18 @@
 
         <hr class="my-12 border-t-2 border-stone-200">
 
+        <!-- New Section: Our Vision (Placeholder Graphic) -->
+        <section id="vision" class="py-16 md:py-24 bg-purple-100 rounded-2xl text-center">
+            <h2 class="text-3xl md:text-4xl font-bold text-stone-800" data-lang-key="vision_title"></h2>
+            <p class="urdu-font text-xl md:text-2xl text-purple-700 mt-2 mb-8" data-lang-key="vision_subtitle"></p>
+            <div class="max-w-2xl mx-auto">
+                <img src="https://placehold.co/800x400/9333ea/ffffff?text=Empowering+Futures" alt="Empowering Futures Graphic" class="w-full h-auto rounded-xl shadow-lg border-2 border-purple-300">
+            </div>
+            <p class="max-w-3xl mx-auto text-stone-700 mt-8 text-lg" data-lang-key="vision_description"></p>
+        </section>
+
+        <hr class="my-12 border-t-2 border-stone-200">
+
         <!-- About Section: Creator's message and prayer -->
         <section id="about" class="text-center py-16 md:py-24 bg-emerald-900 text-white rounded-2xl">
             <h2 class="text-3xl md:text-4xl font-bold" data-lang-key="about_title"></h2>
@@ -359,6 +439,15 @@
         </div>
     </div>
 
+    <!-- Custom Message Modal -->
+    <div id="message-modal" class="message-modal">
+        <div class="message-modal-content">
+            <h3 id="message-modal-title" class="text-xl font-semibold text-stone-800 mb-4"></h3>
+            <p id="message-modal-text" class="text-stone-700 mb-6"></p>
+            <button id="message-modal-close-btn" class="px-6 py-2 bg-orange-600 text-white rounded-full font-semibold hover:bg-orange-700 transition shadow-md">Close</button>
+        </div>
+    </div>
+
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             let currentLanguage = 'en'; // Default language state variable
@@ -372,8 +461,10 @@
                     nav_challenges: 'Challenges',
                     nav_careers: 'Career Paths',
                     nav_english_resources: 'English Resources',
+                    nav_advanced_resources: 'Advanced Resources', // New nav link
                     nav_consistency_time: 'Consistency & Time',
                     nav_parents_emotions: 'Parents\' Emotions',
+                    nav_vision: 'Our Vision', // New navigation link for the vision section
                     nav_about: 'About',
                     made_by: 'Efforts by Aasim Raza',
                     home_title: 'Welcome, Future Leaders!',
@@ -385,15 +476,15 @@
                     challenge1_title: 'Vocabulary and Technical Terms',
                     challenge1_challenge: 'The Challenge: Suddenly, \'Koshika\' becomes \'Cell\' and \'Gurutvakarshan\' becomes \'Gravity\'. It feels like learning a new language for every subject.',
                     challenge1_solution_intro: 'The Solution:',
-                    challenge1_solution_list: '<li>Create a bilingual dictionary for each subject. Write the English term and its Hindi/Urdu equivalent.</li><li>Use flashcards to memorize new terms daily.</li><li>Watch educational videos in English on topics you\'re studying. The visuals will help connect words to concepts.</li>',
+                    challenge1_solution_list: '<li>📖 Create a bilingual dictionary for each subject. Write the English term and its Hindi/Urdu equivalent.</li><li>💡 Use flashcards to memorize new terms daily.</li><li>▶️ Watch educational videos in English on topics you\'re studying. The visuals will help connect words to concepts.</li>',
                     challenge2_title: 'Classroom Confidence',
                     challenge2_challenge: 'The Challenge: You understand the teacher, but you\'re afraid to ask questions or answer them, fearing you\'ll make a grammatical mistake.',
                     challenge2_solution_intro: 'The Solution:',
-                    challenge2_solution_list: '<li>Practice speaking English with friends who are supportive. It\'s okay to make mistakes!</li><li>Write down your questions before asking. This helps you structure your thoughts.</li><li>Remember, your teachers want to help you. Your courage to ask is more important than perfect grammar.</li>',
+                    challenge2_solution_list: '<li>🗣️ Practice speaking English with friends who are supportive. It\'s okay to make mistakes!</li><li>📝 Write down your questions before asking. This helps you structure your thoughts.</li><li>🤝 Remember, your teachers want to help you. Your courage to ask is more important than perfect grammar.</li>',
                     challenge3_title: 'Reading Speed and Comprehension',
                     challenge3_challenge: 'The Challenge: Reading textbooks in English takes much longer, and you have to re-read paragraphs to understand them.',
                     challenge3_solution_intro: 'The Solution:',
-                    challenge3_solution_list: '<li>Start by reading simple English storybooks or news articles for 15-20 minutes daily.</li><li>Don\'t look up every single word. Try to understand the meaning from the context of the sentence.</li><li>Summarize each chapter or major section in your own simple English or even in Hindi/Urdu. This ensures you\'ve understood the core concepts.</li>',
+                    challenge3_solution_list: '<li>📚 Start by reading simple English storybooks or news articles for 15-20 minutes daily.</li><li>🧐 Don\'t look up every single word. Try to understand the meaning from the context of the sentence.</li><li>✍️ Summarize each chapter or major section in your own simple English or even in Hindi/Urdu. This ensures you\'ve understood the core concepts.</li>',
                     chart_title: 'Perception vs. Reality of Career Fields',
                     chart_subtitle: 'Unveiling Diverse Professional Paths',
                     chart_description: 'Many students believe there are only a few main career options. This chart shows the reality: the world of professions is vast and diverse. This visualization is designed to open your mind to the sheer number of opportunities that await you beyond the two most commonly discussed fields.',
@@ -413,11 +504,20 @@
                     resources_subtitle: 'Essential Resources for Language Mastery',
                     resources_description: 'Improving your English can open many doors. Here are some free and easy-to-use resources tailored for Hindi/Urdu speakers to help you along your journey. Consistency is key!',
                     resources_vocab_title: 'Vocabulary & Grammar',
-                    resources_vocab_list: '<li><strong>Duolingo / Hello English app:</strong> Fun and interactive lessons for all levels, with Hindi/Urdu support.</li><li><strong>Cambridge Dictionary (Online):</strong> Provides definitions, examples, and often pronunciation guides.</li><li><strong>Grammarly (Free version):</strong> Helps check your writing for grammatical errors and suggests improvements.</li><li><strong>"Word of the Day" apps:</strong> Build your vocabulary daily with new words and their meanings.</li>',
+                    resources_vocab_list: '<li><p>📲 <strong>Duolingo / Hello English app:</strong> Fun and interactive lessons for all levels, with Hindi/Urdu support. <a href="https://www.duolingo.com/" target="_blank" class="text-blue-600 hover:underline"> (Learn Here)</a></p></li><li><p>📚 <strong>Cambridge Dictionary (Online):</strong> Provides definitions, examples, and often pronunciation guides. <a href="https://dictionary.cambridge.org/" target="_blank" class="text-blue-600 hover:underline"> (Visit Site)</a></p></li><li><p>✍️ <strong>Grammarly (Free version):</b> Helps check your writing for grammatical errors and suggests improvements. <a href="https://www.grammarly.com/" target="_blank" class="text-blue-600 hover:underline"> (Try It)</a></p></li><li><p>💡 <strong>"Word of the Day" apps:</strong> Build your vocabulary daily with new words and their meanings. <a href="https://play.google.com/store/search?q=word%20of%20the%20day%20app&c=apps" target="_blank" class="text-blue-600 hover:underline"> (Find Apps)</a></p></li>',
                     resources_speak_title: 'Speaking & Listening',
-                    resources_speak_list: '<li><strong>YouTube Channels:</strong> Search for "Spoken English for Hindi speakers" or "Learn English through Urdu" (e.g., Learn English with Viva, BBC Learning English).</li><li><strong>TED Talks (with subtitles):</strong> Listen to inspiring speeches on various topics and use subtitles initially.</li><li><strong>English News Channels/Podcasts:</strong> Start with slower-paced news or podcasts for learners.</li><li><strong>Practice Speaking:</strong> Find a study partner or use apps like HelloTalk to practice with native speakers.</li>',
+                    resources_speak_list: '<li><p>▶️ <strong>YouTube Channels:</strong> Search for "Spoken English for Hindi speakers" or "Learn English through Urdu" (e.g., Learn English with Viva, BBC Learning English). <a href="https://www.youtube.com/" target="_blank" class="text-blue-600 hover:underline"> (Watch Now)</a></p></li><li><p>🎤 <strong>TED Talks (with subtitles):</strong> Listen to inspiring speeches on various topics and use subtitles initially. <a href="https://www.ted.com/talks" target="_blank" class="text-blue-600 hover:underline"> (Explore Talks)</a></p></li><li><p>🎧 <strong>English News Channels/Podcasts:</strong> Start with slower-paced news or podcasts for learners. <a href="https://www.bbc.co.uk/learningenglish/features/6-minute-english" target="_blank" class="text-blue-600 hover:underline"> (Listen Here)</a></p></li><li><p>🗣️ <strong>Practice Speaking:</strong> Find a study partner or use apps like HelloTalk to practice with native speakers. <a href="https://www.hellotalk.com/" target="_blank" class="text-blue-600 hover:underline"> (Practice Now)</a></p></li>',
                     resources_read_title: 'Reading & Writing',
-                    resources_read_list: '<li><strong>Simple English Wikipedia:</strong> Read articles on various subjects in simpler English.</li><li><strong>Short English Storybooks:</strong> Start with children\'s books or simplified novels.</li><li><strong>Write Daily:</strong> Maintain a short diary in English, write emails, or summarize what you\'ve read.</li><li><strong>News in Slow English:</strong> Websites that provide news articles read at a slower pace.</li>',
+                    resources_read_list: '<li><p>📖 <strong>Simple English Wikipedia:</strong> Read articles on various subjects in simpler English. <a href="https://simple.wikipedia.org/wiki/Main_Page" target="_blank" class="text-blue-600 hover:underline"> (Read Articles)</a></p></li><li><p>📚 <strong>Short English Storybooks:</strong> Start with children\'s books or simplified novels. <a href="https://www.gutenberg.org/browse/scores/top" target="_blank" class="text-blue-600 hover:underline"> (Find Books)</a></p></li><li><p>✍️ <strong>Write Daily:</strong> Maintain a short diary in English, write emails, or summarize what you\'ve read. <a href="https://www.grammarly.com/blog/how-to-start-a-journal/" target="_blank" class="text-blue-600 hover:underline"> (Learn Journaling)</a></p></li><li><p>📰 <strong>News in Slow English:</strong> Websites that provide news articles read at a slower pace. <a href="https://www.newsinlevels.com/" target="_blank" class="text-blue-600 hover:underline"> (Read News)</a></p></li>',
+                    advanced_resources_title: 'Deep Dive: Advanced Learning & Career Research',
+                    advanced_resources_subtitle: 'Expand Your Knowledge, Define Your Path',
+                    advanced_resources_description: 'For those ready to delve deeper into specific subjects, explore advanced concepts, or get detailed career insights, these platforms offer comprehensive learning and guidance.',
+                    advanced_resources_online_courses_title: 'Online Course Platforms',
+                    advanced_resources_online_courses_list: '<li><p>🎓 <strong>Coursera:</strong> Offers courses, specializations, and degrees from top universities and companies. <a href="https://www.coursera.org/" target="_blank" class="text-blue-600 hover:underline"> (Explore Courses)</a></p></li><li><p>💻 <strong>edX:</strong> Provides high-quality courses from leading institutions worldwide. <a href="https://www.edx.org/" target="_blank" class="text-blue-600 hover:underline"> (Browse Programs)</a></p></li><li><p>➕ <strong>Khan Academy:</strong> Free courses in math, science, computer programming, history, art history, economics, and more. <a href="https://www.khanacademy.org/" target="_blank" class="text-blue-600 hover:underline"> (Start Learning)</a></p></li><li><p>💡 <strong>Udemy:</strong> Thousands of courses taught by expert instructors across various subjects. <a href="https://www.udemy.com/" target="_blank" class="text-blue-600 hover:underline"> (Find a Course)</a></p></li><li><p>🔬 <strong>NPTEL (National Programme on Technology Enhanced Learning):</strong> Free online courses from IITs and IISc, primarily for engineering and science. <a href="https://nptel.ac.in/" target="_blank" class="text-blue-600 hover:underline"> (Visit NPTEL)</a></p></li>',
+                    advanced_resources_career_guidance_title: 'Career Guidance & Competitive Exam Prep',
+                    advanced_resources_career_guidance_list: '<li><p>🧭 <strong>National Career Service (India):</strong> Government portal for career information, counseling, and job listings. <a href="https://www.ncs.gov.in/" target="_blank" class="text-blue-600 hover:underline"> (Explore NCS)</a></p></li><li><p>🌐 <strong>Shiksha.com:</strong> Comprehensive Indian education portal for courses, colleges, exams, and career advice. <a href="https://www.shiksha.com/" target="_blank" class="text-blue-600 hover:underline"> (Get Advice)</a></p></li><li><p>📈 <strong>Competitive Exam Platforms (e.g., Unacademy/Byju\'s):</strong> For preparation for JEE, NEET, UPSC, and other entrance exams. <a href="https://www.google.com/search?q=top+competitive+exam+prep+platforms+india" target="_blank" class="text-blue-600 hover:underline"> (Search Platforms)</a></p></li>',
+                    advanced_resources_skill_development_title: 'Skill Development & Practical Learning',
+                    advanced_resources_skill_development_list: '<li><p>💼 <strong>LinkedIn Learning:</strong> Video courses taught by industry experts in business, creative, and technology skills. <a href="https://www.linkedin.com/learning/" target="_blank" class="text-blue-600 hover:underline"> (Develop Skills)</a></p></li><li><p>🧑‍💻 <strong>freeCodeCamp:</strong> Learn to code for free and get certifications. <a href="https://www.freecodecamp.org/" target="_blank" class="text-blue-600 hover:underline"> (Learn Coding)</a></p></li>',
                     consistency_time_title: 'Consistency & Time Management',
                     consistency_time_subtitle: 'Keys to Unlocking Your Full Potential',
                     consistency_time_description: 'Success isn\'t just about talent; it\'s about showing up consistently and managing your time wisely. These habits build momentum and resilience, crucial for any long-term goal.',
@@ -439,7 +539,15 @@
                     parents_emotions_point2_title: 'Open Communication is Key',
                     parents_emotions_point2_desc: 'Share your aspirations, fears, and academic challenges with your parents. Explain your career interests and why they align with your strengths. A calm, honest conversation can bridge gaps and build trust.',
                     parents_emotions_point3_title: 'Seeking Their Blessings and Support',
-                    parents_emotions_point3_desc: 'Even if their initial reaction isn\'t what you hoped for, remember their sacrifices and hard work. Seek their blessings, involve them in your decision-making process (where appropriate), and show appreciation for their efforts. Their emotional support is invaluable.'
+                    parents_emotions_point3_desc: 'Even if their initial reaction isn\'t what you hoped for, remember their sacrifices and hard work. Seek their blessings, involve them in your decision-making process (where appropriate), and show appreciation for their efforts. Their emotional support is invaluable.',
+                    vision_title: 'Our Vision for Your Future',
+                    vision_subtitle: 'Guiding You Towards Limitless Possibilities',
+                    vision_description: 'We envision a future where every student, regardless of their background, has access to the resources and guidance needed to make informed career choices and achieve their fullest potential. This platform is built on the belief that knowledge and opportunity should be accessible to all.',
+                    contact_title: 'Get in Touch', // Kept for reference but not used in UI
+                    contact_subtitle: 'We\'re here to help you navigate your future.', // Kept for reference but not used in UI
+                    contact_description: 'Have questions or need further guidance? Feel free to reach out to us!', // Kept for reference but not used in UI
+                    contact_email: 'Email Us', // Kept for reference but not used in UI
+                    contact_twitter: 'Connect on Twitter' // Kept for reference but not used in UI
                 },
                 // Roman Urdu translations
                 ur: {
@@ -447,8 +555,10 @@
                     nav_challenges: 'Challenges',
                     nav_careers: 'Career Paths',
                     nav_english_resources: 'English Resources',
+                    nav_advanced_resources: 'Advanced Resources', // New nav link
                     nav_consistency_time: 'Mustaqil Mizaji & Waqt',
                     nav_parents_emotions: 'Walidain ke Jazbat',
+                    nav_vision: 'Hamara Vision', // New navigation link for the vision section
                     nav_about: 'About Us',
                     made_by: 'Aasim Raza ki Koshishain',
                     home_title: 'Khush Amadid, Mustaqbil ke Rehnumaon!',
@@ -460,15 +570,15 @@
                     challenge1_title: 'Lughat aur Takniki Istilahaat',
                     challenge1_challenge: 'Challenge: Achanak, \'Koshika\' \'Cell\' ban jati hai aur \'Gurutvakarshan\' \'Gravity\'. Aisa lagta hai ke har mazmoon ke liye ek nai zubaan seekh rahe hain.',
                     challenge1_solution_intro: 'Hal:',
-                    challenge1_solution_list: '<li>Har mazmoon ke liye do-zubani lughat banaein. English term aur uska Hindi/Urdu hum-ma\'ani likhein.</li><li>Rozana naye alfaaz yaad karne ke liye flashcards istemal karein.</li><li>Aap jin mawad ka mutala kar rahe hain un par English mein taleemi videos dekhein. Basri alfaaz ko tasawwurat se jorne mein madad karenge.</li>',
+                    challenge1_solution_list: '<li>📖 Har mazmoon ke liye do-zubani lughat banaein. English term aur uska Hindi/Urdu hum-ma\'ani likhein.</li><li>💡 Rozana naye alfaaz yaad karne ke liye flashcards istemal karein.</li><li>▶️ Aap jin mawad ka mutala kar rahe hain un par English mein taleemi videos dekhein. Basri alfaaz ko tasawwuratt se jorne mein madad karenge.</li>',
                     challenge2_title: 'Classroom mein Khud Etemadi',
                     challenge2_challenge: 'Challenge: Aap ustad ko samajhte hain, lekin aap sawal poochhne ya jawab dene se darte hain, yeh soch kar ke aap grammar ki galti kar denge.',
                     challenge2_solution_intro: 'Hal:',
-                    challenge2_solution_list: '<li>Dostoun ke saath English bolne ki mashq karein jo mu\'awin hon. Ghaltiyan karna theek hai!</li><li>Sawal poochhne se pehle apne sawalat likhein. Yeh aapko apne khayalat ko munazzam karne mein madad karta hai.</li><li>Yaad rakhein, aapke ustad aapki madad karna chahte hain. Aapka sawal poochhne ka hausla behtareen grammar se ziyada aham hai.</li>',
-                    challenge3_title: 'Parrhne ki Raftar aur Samajh',
+                    challenge2_solution_list: '<li>🗣️ Dostoun ke saath English bolne ki mashq karein jo mu\'awin hon. Ghaltiyan karna theek hai!</li><li>📝 Sawal poochhne se pehle apne sawalat likhein. Yeh aapko apne khayalat ko munazzam karne mein madad karta hai.</li><li>🤝 Yaad rakhein, aapke ustad aapki madad karna chahte hain. Aapka sawal poochhne ka hausla behtareen grammar se ziyada aham hai.</li>',
+                    challenge3_title: 'Parrhna aur Samajh',
                     challenge3_challenge: 'Challenge: English mein nasabi kitabein parrhne mein bahut zyada waqt lagta hai, aur aapko unhein samajhne ke liye paragraphs ko dobara parrhna parta hai.',
                     challenge3_solution_intro: 'Hal:',
-                    challenge3_solution_list: '<li>Rozana 15-20 minute ke liye simple English kahaniyon ki kitabein ya akhbar parrhna shuru karein.</li><li>Har ek lafz ko na dekhein. Jumle ke sayaq o sabaq se ma\'ani samajhne ki koshish karein.</li><li>Har baab ya bade hisse ka khulasa apni sada English ya Hindi/Urdu mein karein. Yeh yaqeeni banata hai ke aapne bunyadi tasawwurat ko samajh liya hai.</li>',
+                    challenge3_solution_list: '<li>📚 Rozana 15-20 minute ke liye simple English kahaniyon ki kitabein ya akhbar parrhna shuru karein.</li><li>🧐 Har ek lafz ko na dekhein. Jumle ke sayaq o sabaq se ma\'ani samajhne ki koshish karein.</li><li>✍️ Har baab ya bade hisse ka khulasa apni sada English ya Hindi/Urdu mein karein. Yeh yaqeeni banata hai ke aapne bunyadi tasawwurat ko samajh liya hai.</li>',
                     chart_title: 'Career ke Sho\'bon ka Tasawwur ba Muqabla Haqeeqat',
                     chart_subtitle: 'Mukhtalif Peshawaranah Rastoun ki Naqab Kushai',
                     chart_description: 'Bohat se talba ka khayal hai ke career ke sirf chand aham options hain. Yeh chart haqeeqat ko zahir karta hai: peshon ki duniya bahut wasee aur mutanawwi hai. Yeh visualization aapke zehan ko un be-shumar mawaqe ke liye kholne ke liye design kiya gaya hai jo engineering aur medicine ke do sab se ziyada aam taur par zere-bahas shobon se hat kar aapke muntazir hain.',
@@ -488,33 +598,50 @@
                     resources_subtitle: 'Zuban ki Maharat ke liye Aham Wasail',
                     resources_description: 'Apni English mein sudhar se bahut se darwaze khul sakte hain. Hindi/Urdu bolne walon ke liye aapke safar mein madad ke liye yahan kuch muft aur aasan-ul-istemal wasail diye gaye hain. Mustaqil mizaji kunji hai!',
                     resources_vocab_title: 'Lughat aur Grammar',
-                    resources_vocab_list: '<li><strong>Duolingo / Hello English app:</strong> Fun aur interactive asbaq, Hindi/Urdu support ke saath.</li><li><strong>Cambridge Dictionary (Online):</strong> Ta\'areefein, misaalain, aur aksar talaffuz ki rehnumai faraham karta hai.</li><li><strong>Grammarly (Free version):</strong> Aapki tehreer mein grammar ki ghaltiyon ko jaanchne aur behtari ki tajawiz dene mein madad karta hai.</li><li><strong>"Word of the Day" apps:</strong> Rozana naye alfaaz aur unke ma\'ani ke saath apni lughat banaein.</li>',
+                    resources_vocab_list: '<li><p>📲 <strong>Duolingo / Hello English app:</strong> Fun aur interactive asbaq, Hindi/Urdu support ke saath. <a href="https://www.duolingo.com/" target="_blank" class="text-blue-600 hover:underline"> (Yahan Seekhein)</a></p></li><li><p>📚 <strong>Cambridge Dictionary (Online):</strong> Ta\'areefein, misaalain, aur aksar talaffuz ki rehnumai faraham karta hai. <a href="https://dictionary.cambridge.org/" target="_blank" class="text-blue-600 hover:underline"> (Site Visit Karein)</a></p></li><li><p>✍️ <strong>Grammarly (Free version):</b> Aapki tehreer mein grammar ki ghaltiyon ko jaanchne aur behtari ki tajawiz dene mein madad karta hai. <a href="https://www.grammarly.com/" target="_blank" class="text-blue-600 hover:underline"> (Azmaien)</a></p></li><li><p>💡 <strong>"Word of the Day" apps:</strong> Rozana naye alfaaz aur unke ma\'ani ke saath apni lughat banaein. <a href="https://play.google.com/store/search?q=word%20of%20the%20day%20app&c=apps" target="_blank" class="text-blue-600 hover:underline"> (Apps Talash Karein)</a></p></li>',
                     resources_speak_title: 'Bolna aur Sunna',
-                    resources_speak_list: '<li><strong>YouTube Channels:</strong> "Hindi bolne walon ke liye Spoken English" ya "Urdu ke zariye English seekhein" (misal ke taur par, Learn English with Viva, BBC Learning English) talash karein.</li><li><strong>TED Talks (subtitles ke saath):</strong> Mukhtalif mawad par mutasir kun taqreerein sunein aur ibtadai taur par subtitles istemal karein.</li><li><strong>English News Channels/Podcasts:</strong> Seekhne walon ke liye sust raftar khabron ya podcasts parhein.</li><li><strong>Bolne ki Mashq:</strong> Ek study partner talash karein ya native speakers ke saath mashq karne ke liye HelloTalk jaisi apps istemal karein.</li>',
+                    resources_speak_list: '<li><p>▶️ <strong>YouTube Channels:</strong> "Hindi bolne walon ke liye Spoken English" ya "Urdu ke zariye English seekhein" (misal ke taur par, Learn English with Viva, BBC Learning English) talash karein. <a href="https://www.youtube.com/" target="_blank" class="text-blue-600 hover:underline"> (Abhi Dekhein)</a></p></li><li><p>🎤 <strong>TED Talks (subtitles ke saath):</strong> Mukhtalif mawad par mutasir kun taqreerein sunein aur ibtadai taur par subtitles istemal karein. <a href="https://www.ted.com/talks" target="_blank" class="text-blue-600 hover:underline"> (Talks Explore Karein)</a></p></li><li><p>🎧 <strong>English News Channels/Podcasts:</strong> Seekhne walon ke liye sust raftar khabron ya podcasts parhein. <a href="https://www.bbc.co.uk/learningenglish/features/6-minute-english" target="_blank" class="text-blue-600 hover:underline"> (Yahan Sunein)</a></p></li><li><p>🗣️ <strong>Bolne ki Mashq:</strong> Ek study partner talash karein ya native speakers ke saath mashq karne ke liye HelloTalk jaisi apps istemal karein. <a href="https://www.hellotalk.com/" target="_blank" class="text-blue-600 hover:underline"> (Abhi Mashq Karein)</a></p></li>',
                     resources_read_title: 'Parrhna aur Likhna',
-                    resources_read_list: '<li><strong>Simple English Wikipedia:</strong> Simple English mein mukhtalif mawad par articles parhein.</li><li><strong>Choti English Kahaniyon ki Kitabein:</strong> Bachchon ki kitabon ya sadah navelon se shuru karein.</li><li><strong>Rozana Likhein:</strong> English mein ek choti diary rakhein, emails likhein, ya jo kuch aapne parrhha hai uska khulasa karein.</li><li><strong>Slow English mein News:</strong> Aisi websites jo sust raftar se news faraham karti hain.</li>',
-                    consistency_time_title: 'Mustaqil Mizaji aur Waqt ka Intizam',
-                    consistency_time_subtitle: 'Aapki Mukammal Salahiyat ko Kholne ki Kunji',
-                    consistency_time_description: 'Kamyabi sirf salahiyat ke barey mein nahi hai; yeh musalsal mehnat aur waqt ka samajhdari se intizam karne ke barey mein hai. Yeh aadatein raftaar aur lachak paida karti hain, jo kisi bhi taweel muddat ke maqsad ke liye zaroori hain.',
-                    consistency_point1_title: 'Mustaqil Mizaji ki Quwwat',
-                    consistency_point1_desc: 'Musalsal, choti koshishen waqt ke saath jama hoti hain. Kabhi kabhar shadeed mutale ke sessions ke bajaye, rozana, ba-zabtگی se seekhne ka hadaf rakhein. Yeh na sirf ilm ko mazboot karta hai balkay mazboot aadatein bhi paida karta hai.',
-                    consistency_point2_title: 'Raftaar banana',
-                    consistency_point2_desc: 'Mustaqil koshish ek misbet cycle banati hai. Har choti kamyabi khud-etmadi barhati hai aur agla qadam aasan banati hai, aapko mustaqil taraqqi ke saath apne ahdaf ki taraf dhakel deti hai.',
-                    time_management_title: 'Waqt ka Intizam Seekhna',
-                    time_management_desc: 'Waqt aapka sab se qeemti waseela hai. Iska asar-angez tareeqe se intizam karna tanau ko kam karega, پیداواری صلاحیت ko behtar banayega, aur aapko ziyada azadi dega.',
-                    time_management_point1_title: 'Study Schedule Banaein',
-                    time_management_point1_list: '<li><strong>Tasks ko Tarjeeh Dein:</strong> Apne sab se aham aur fouri kaam ki nishandahi karein.</li><li><strong>Goals ko Chote Hisson mein Baantein:</strong> Bare assignments ko chote, qabil-e-intizam steps mein taqseem karein.</li><li><strong>Tools Istemal Karein:</strong> Apne schedule ko track karne ke liye planners, calendars, ya apps ka istemal karein.</li><li><strong>Waqt Mukarrar Karein:</strong> Mutale, dohrai, aur breaks ke liye makhsoos waqt mukarrar karein.</li>',
-                    time_management_point2_title: 'Ghaflat se Bachein',
-                    time_management_point2_list: '<li><strong>Start Small:</strong> Mushkil kaam ke sab se aasan hisse se shuru karein.</li><li><strong>Set Deadlines:</strong> Har sub-task ke liye khud ko mini-deadlines dein.</li><li><strong>Reward Yourself:</strong> Plan small rewards after completing tasks to stay motivated.</li><li><strong>Eliminate Distractions:</strong> Notifications band karein aur mutale ke liye pur-sukoon mahol talash karein.</li>',
-                    parents_emotions_title: 'Walidain ke Jazbat ki Qadar',
-                    parents_emotions_subtitle: 'Umeedon ko Hamdardi se Samajhna',
-                    parents_emotions_description: 'Aapke walidain aapke sab se bare khair-khwah hain. Unke mustaqbil mein aapki jazbati sarmaya kari ko samajhna, aur unke saath khule dil se baat cheet karna, aik معاون aur ham-ahang safar ki kunji hai.',
-                    parents_emotions_point1_title: 'Unki Fikron ko Samajhna',
-                    parents_emotions_point1_desc: 'Aksar, walidain ki sakhti ya oonchi tawaqqoat aapke mustaqbil ki salamati ke liye unki mohabbat aur fikr se paida hoti hain. Woh hamesha ise behtareen tareeqe se zahir nahi kar sakte, lekin unki niyatain aam taur par achhi hoti hain. Cheezon ko unke nuqta nazar se dekhne ki koshish karein.',
-                    parents_emotions_point2_title: 'Khuli Baat Cheet Kunji Hai',
-                    parents_emotions_point2_desc: 'Apni khwahishat, khauf, aur taleemi mushkilat walidain ke saath share karein. Apni career ki dilchaspiyan aur woh aapki salahiyaton se kaise mel khati hain, yeh unhein samjhaein. Ek pur-sukoon, imandari se ki gai baat cheet khala ko pur kar sakti hai aur bharosa bana sakti hai.',
-                    parents_emotions_point3_title: 'Unki Duaon aur Himayat Hasil Karein',
-                    parents_emotions_point3_desc: 'Agar unka ibtidai radde amal woh na ho jo aapne ummeed ki thi, to unki qurbaniyon aur mehnat ko yaad rakhein. Unki duaen talab karein, unhein apne faisla sazi ke amal mein shamil karein (jahan munasib ho), aur unki koshishon ke liye shukriya ada karein. Unki jazbati himayat be-qimmat hai.'
+                    resources_read_list: '<li><p>📖 <strong>Simple English Wikipedia:</strong> Simple English mein mukhtalif mawad par articles parhein. <a href="https://simple.wikipedia.org/wiki/Main_Page" target="_blank" class="text-blue-600 hover:underline"> (Articles Parhein)</a></p></li><li><p>📚 <strong>Choti English Kahaniyon ki Kitabein:</strong> Bachchon ki kitabon ya sadah navelon se shuru karein. <a href="https://www.gutenberg.org/browse/scores/top" target="_blank" class="text-blue-600 hover:underline"> (Kitabein Talash Karein)</a></p></li><li><p>✍️ <strong>Rozana Likhein:</strong> English mein ek choti diary rakhein, emails likhein, ya jo kuch aapne parrhha hai uska khulasa karein. <a href="https://www.grammarly.com/blog/how-to-start-a-journal/" target="_blank" class="text-blue-600 hover:underline"> (Journaling Seekhein)</a></p></li><li><p>📰 <strong>Slow English mein News:</strong> Aisi websites jo sust raftar se news faraham karti hain. <a href="https://www.newsinlevels.com/" target="_blank" class="text-blue-600 hover:underline"> (Khabrein Parhein)</a></p></li>',
+                    advanced_resources_title: 'Deep Dive: Advanced Learning & Career Research',
+                    advanced_resources_subtitle: 'Expand Your Knowledge, Define Your Path',
+                    advanced_resources_description: 'For those ready to delve deeper into specific subjects, explore advanced concepts, or get detailed career insights, these platforms offer comprehensive learning and guidance.',
+                    advanced_resources_online_courses_title: 'Online Course Platforms',
+                    advanced_resources_online_courses_list: '<li><p>🎓 <strong>Coursera:</strong> Offers courses, specializations, and degrees from top universities and companies. <a href="https://www.coursera.org/" target="_blank" class="text-blue-600 hover:underline"> (Explore Courses)</a></p></li><li><p>💻 <strong>edX:</strong> Provides high-quality courses from leading institutions worldwide. <a href="https://www.edx.org/" target="_blank" class="text-blue-600 hover:underline"> (Browse Programs)</a></p></li><li><p>➕ <strong>Khan Academy:</strong> Free courses in math, science, computer programming, history, art history, economics, and more. <a href="https://www.khanacademy.org/" target="_blank" class="text-blue-600 hover:underline"> (Start Learning)</a></p></li><li><p>💡 <strong>Udemy:</strong> Thousands of courses taught by expert instructors across various subjects. <a href="https://www.udemy.com/" target="_blank" class="text-blue-600 hover:underline"> (Find a Course)</a></p></li><li><p>🔬 <strong>NPTEL (National Programme on Technology Enhanced Learning):</strong> Free online courses from IITs and IISc, primarily for engineering and science. <a href="https://nptel.ac.in/" target="_blank" class="text-blue-600 hover:underline"> (Visit NPTEL)</a></p></li>',
+                    advanced_resources_career_guidance_title: 'Career Guidance & Competitive Exam Prep',
+                    advanced_resources_career_guidance_list: '<li><p>🧭 <strong>National Career Service (India):</strong> Government portal for career information, counseling, and job listings. <a href="https://www.ncs.gov.in/" target="_blank" class="text-blue-600 hover:underline"> (Explore NCS)</a></p></li><li><p>🌐 <strong>Shiksha.com:</strong> Comprehensive Indian education portal for courses, colleges, exams, and career advice. <a href="https://www.shiksha.com/" target="_blank" class="text-blue-600 hover:underline"> (Get Advice)</a></p></li><li><p>📈 <strong>Competitive Exam Platforms (e.g., Unacademy/Byju\'s):</strong> For preparation for JEE, NEET, UPSC, and other entrance exams. <a href="https://www.google.com/search?q=top+competitive+exam+prep+platforms+india" target="_blank" class="text-blue-600 hover:underline"> (Search Platforms)</a></p></li>',
+                    advanced_resources_skill_development_title: 'Skill Development & Practical Learning',
+                    advanced_resources_skill_development_list: '<li><p>💼 <strong>LinkedIn Learning:</strong> Video courses taught by industry experts in business, creative, and technology skills. <a href="https://www.linkedin.com/learning/" target="_blank" class="text-blue-600 hover:underline"> (Develop Skills)</a></p></li><li><p>🧑‍💻 <strong>freeCodeCamp:</strong> Learn to code for free and get certifications. <a href="https://www.freecodecamp.org/" target="_blank" class="text-blue-600 hover:underline"> (Learn Coding)</a></p></li>',
+                    consistency_time_title: 'Consistency & Time Management',
+                    consistency_time_subtitle: 'Keys to Unlocking Your Full Potential',
+                    consistency_time_description: 'Success isn\'t just about talent; it\'s about showing up consistently and managing your time wisely. These habits build momentum and resilience, crucial for any long-term goal.',
+                    consistency_point1_title: 'The Power of Consistency',
+                    consistency_point1_desc: 'Regular, small efforts compound over time. Instead of sporadic intense study sessions, aim for daily, disciplined learning. This not only reinforces knowledge but also builds strong habits.',
+                    consistency_point2_title: 'Building Momentum',
+                    consistency_point2_desc: 'Consistent effort creates a positive cycle. Each small achievement boosts confidence and makes the next step easier, propelling you towards your goals with steady progress.',
+                    time_management_title: 'Mastering Time Management',
+                    time_management_desc: 'Time is your most valuable resource. Learning to manage it effectively will reduce stress, improve productivity, and give you more freedom.',
+                    time_management_point1_title: 'Create a Study Schedule',
+                    time_management_point1_list: '<li><strong>Prioritize Tasks:</strong> Identify your most important and urgent tasks.</li><li><strong>Break Down Goals:</strong> Divide large assignments into smaller, manageable steps.</li><li><strong>Use Tools:</strong> Utilize planners, calendars, or apps to track your schedule.</li><li><strong>Allocate Time:</strong> Dedicate specific blocks for study, revision, and breaks.</li>',
+                    time_management_point2_title: 'Avoid Procrastination',
+                    time_management_point2_list: '<li><strong>Start Small:</strong> Begin with the easiest part of a daunting task.</li><li><strong>Set Deadlines:</strong> Give yourself mini-deadlines for each sub-task.</li><li><strong>Reward Yourself:</strong> Plan small rewards after completing tasks to stay motivated.</li><li><strong>Eliminate Distractions:</strong> Turn off notifications and find a quiet study environment.</li>',
+                    parents_emotions_title: 'The Value of Parents\' Emotions',
+                    parents_emotions_subtitle: 'Navigating Expectations with Empathy',
+                    parents_emotions_description: 'Your parents are your biggest well-wishers. Understanding their emotional investment in your future, and communicating openly with them, is key to a supportive and harmonious journey.',
+                    parents_emotions_point1_title: 'Understanding Their Worries',
+                    parents_emotions_point1_desc: 'Often, parents\' strictness or high expectations stem from their love and concern for your future security. They might not always express it perfectly, but their intentions are usually good. Try to see things from their perspective.',
+                    parents_emotions_point2_title: 'Open Communication is Key',
+                    parents_emotions_point2_desc: 'Share your aspirations, fears, and academic challenges with your parents. Explain your career interests and why they align with your strengths. A calm, honest conversation can bridge gaps and build trust.',
+                    parents_emotions_point3_title: 'Seeking Their Blessings and Support',
+                    parents_emotions_point3_desc: 'Even if their initial reaction isn\'t what you hoped for, remember their sacrifices and hard work. Seek their blessings, involve them in your decision-making process (where appropriate), and show appreciation for their efforts. Their emotional support is invaluable.',
+                    vision_title: 'Our Vision for Your Future',
+                    vision_subtitle: 'Guiding You Towards Limitless Possibilities',
+                    vision_description: 'We envision a future where every student, regardless of their background, has access to the resources and guidance needed to make informed career choices and achieve their fullest potential. This platform is built on the belief that knowledge and opportunity should be accessible to all.',
+                    contact_title: 'Get in Touch', // Kept for reference but not used in UI
+                    contact_subtitle: 'We\'re here to help you navigate your future.', // Kept for reference but not used in UI
+                    contact_description: 'Have questions or need further guidance? Feel free to reach out to us!', // Kept for reference but not used in UI
+                    contact_email: 'Email Us', // Kept for reference but not used in UI
+                    contact_twitter: 'Connect on Twitter' // Kept for reference but not used in UI
                 }
             };
 
@@ -539,11 +666,11 @@
                     title_en: 'Doctor (Physician)',
                     title_ur: 'Doctor (Maalij)',
                     description_en: 'Diagnoses and treats illnesses, injuries, and other physical and mental ailments. Requires extensive education and empathy.',
-                    description_ur: 'Bimariyoon, chotoun, aur deegar jismani-o-zehni amraz ki tashkhees aur ilaaj karta hai. Wasee taleem aur hamdardi ki zaroorat hoti hai.',
+                    description_ur: 'Bimariyoon, chotoun, aur deegar jismani-o-zehni amraz ki tashkhees aur ilaaj karta hai. Wasee taleem aur hamdardi ki zaroorat hoti ہے.',
                     subjects_en: 'Biology, Chemistry, Physics',
                     subjects_ur: 'Biology, Chemistry, Physics',
                     challenges_en: 'Long study hours, high-stress environment, emotional toll of dealing with severe illnesses.',
-                    challenges_ur: 'Taweel mutaale ke auqat, ziyada tanau ka mahol, shadeed bimariyoon se nipatne ka jazbati dabao.'
+                    challenges_ur: 'Taweel mutaale ke auqat, ziyada tanau ka mahol, shadeed bimariyoon se nipatna ka jazbati dabao.'
                 },
                 {
                     id: 'accountant',
@@ -736,6 +863,37 @@
 
 
             /**
+             * Displays a custom message modal.
+             * @param {string} title - The title for the message.
+             * @param {string} message - The content of the message.
+             */
+            function showMessageModal(title, message) {
+                const modal = document.getElementById('message-modal');
+                const modalTitle = document.getElementById('message-modal-title');
+                const modalText = document.getElementById('message-modal-text');
+                const closeBtn = document.getElementById('message-modal-close-btn');
+
+                if (modal && modalTitle && modalText && closeBtn) {
+                    modalTitle.textContent = title;
+                    modalText.textContent = message;
+                    modal.classList.add('show');
+
+                    const closeHandler = () => {
+                        modal.classList.remove('show');
+                        closeBtn.removeEventListener('click', closeHandler);
+                    };
+                    closeBtn.addEventListener('click', closeHandler);
+
+                    // Allow clicking outside the modal content to close it
+                    modal.addEventListener('click', (event) => {
+                        if (event.target === modal) {
+                            closeHandler();
+                        }
+                    }, { once: true }); // Use once: true to remove listener after first use
+                }
+            }
+
+            /**
              * Updates all translatable content on the page based on the current language.
              * It uses data-lang-key attributes to find elements and populate them.
              * Special handling for elements expecting HTML content (like lists or specifically styled text).
@@ -748,7 +906,7 @@
                         // Use innerHTML for lists and specific paragraphs that contain embedded HTML (like <strong> or <span>)
                         // This ensures bolding or colored text within sentences is rendered.
                         const content = translations[currentLanguage][key];
-                        if (element.tagName === 'UL' || ['about_description', 'about_prayer', 'challenge1_solution_list', 'challenge2_solution_list', 'challenge3_solution_list', 'resources_vocab_list', 'resources_speak_list', 'resources_read_list', 'time_management_point1_list', 'time_management_point2_list'].includes(key)) {
+                        if (element.tagName === 'UL' || ['about_description', 'about_prayer', 'challenge1_solution_list', 'challenge2_solution_list', 'challenge3_solution_list', 'resources_vocab_list', 'resources_speak_list', 'resources_read_list', 'advanced_resources_online_courses_list', 'advanced_resources_career_guidance_list', 'advanced_resources_skill_development_list', 'time_management_point1_list', 'time_management_point2_list', 'vision_description'].includes(key)) {
                              element.innerHTML = content;
                         } else {
                             element.textContent = content;
@@ -793,6 +951,7 @@
                         updateContent();
                     });
                 });
+                // No save language button as backend is removed
             }
 
             /**
@@ -1058,21 +1217,22 @@
             }
 
 
-            // --- Initial Setup - Called when DOM is fully loaded ---
-            // This function orchestrates the initialization of all components.
-            function initializeApp() {
+            /**
+             * This function orchestrates the initialization of all UI components.
+             * It is called immediately when the DOM is ready.
+             */
+            function setupUI() {
                 initLanguageSwitch(); // Set up language buttons
                 initMobileMenu();     // Set up mobile menu toggle
                 initAccordions();     // Set up accordion functionality
                 initCareerFilters();  // Set up career filter buttons
-
-                // Perform initial content updates based on default language
-                updateContent();
+                updateContent();      // Perform initial content updates based on default/loaded language
                 initChart();          // Initialize the chart
                 initCareerModal();    // Set up modal functionality
             }
 
-            initializeApp(); // Call the main initialization function
+            // Call setupUI directly as there's no backend dependency now
+            setupUI();
         });
     </script>
 </body>
