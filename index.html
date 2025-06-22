@@ -134,6 +134,48 @@
         .message-modal.show .message-modal-content {
             transform: scale(1);
         }
+
+        /* Fade-in animation for sections */
+        .fade-in-section {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+
+        .fade-in-section.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Style for quiz options */
+        .quiz-option {
+            background-color: #f3f4f6; /* Gray-100 */
+            border: 1px solid #d1d5db; /* Gray-300 */
+            padding: 0.75rem 1.25rem;
+            border-radius: 0.5rem;
+            cursor: pointer;
+            transition: background-color 0.2s, border-color 0.2s, transform 0.2s;
+        }
+
+        .quiz-option:hover {
+            background-color: #e5e7eb; /* Gray-200 */
+            transform: translateY(-2px);
+        }
+
+        .quiz-option.selected {
+            background-color: #fbbf24; /* Amber-400 */
+            border-color: #fbbf24;
+            color: #78350f; /* Amber-900 */
+            font-weight: 600;
+        }
+        .quiz-option.correct {
+            background-color: #86efac; /* Green-300 */
+            border-color: #22c55e; /* Green-500 */
+        }
+        .quiz-option.incorrect {
+            background-color: #fca5a5; /* Red-300 */
+            border-color: #ef4444; /* Red-500 */
+        }
     </style>
 </head>
 <body class="bg-stone-50">
@@ -158,6 +200,10 @@
                 <a href="#consistency-time" class="text-stone-700 nav-link font-medium" data-lang-key="nav_consistency_time"></a>
                 <a href="#parents-emotions" class="text-stone-700 nav-link font-medium" data-lang-key="nav_parents_emotions"></a>
                 <a href="#hometown-guidance" class="text-stone-700 nav-link font-medium" data-lang-key="nav_hometown_guidance"></a>
+                <a href="#quiz" class="text-stone-700 nav-link font-medium" data-lang-key="nav_quiz"></a>
+                <a href="#success-stories" class="text-stone-700 nav-link font-medium" data-lang-key="nav_success_stories"></a>
+                <a href="#glossary" class="text-stone-700 nav-link font-medium" data-lang-key="nav_glossary"></a>
+                <a href="#contact" class="text-stone-700 nav-link font-medium" data-lang-key="nav_contact"></a>
                 <a href="#vision" class="text-stone-700 nav-link font-medium" data-lang-key="nav_vision"></a>
                 <a href="#about" class="text-stone-700 nav-link font-medium" data-lang-key="nav_about"></a>
             </nav>
@@ -165,7 +211,6 @@
             <div class="flex items-center space-x-2">
                 <button id="lang-en" class="lang-btn px-3 py-1 rounded-full text-sm font-semibold bg-orange-600 text-white transition">EN</button>
                 <button id="lang-ur" class="lang-btn px-3 py-1 rounded-full text-sm font-semibold bg-stone-200 text-stone-700 hover:bg-stone-300 transition">UR (Roman)</button>
-                <!-- Removed Save Language Button -->
                 <button id="mobile-menu-button" class="md:hidden text-stone-700 focus:outline-none">
                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
                 </button>
@@ -181,6 +226,10 @@
             <a href="#consistency-time" class="block text-center py-3 px-4 text-stone-700 hover:bg-stone-50" data-lang-key="nav_consistency_time"></a>
             <a href="#parents-emotions" class="block text-center py-3 px-4 text-stone-700 hover:bg-stone-50" data-lang-key="nav_parents_emotions"></a>
             <a href="#hometown-guidance" class="block text-center py-3 px-4 text-stone-700 hover:bg-stone-50" data-lang-key="nav_hometown_guidance"></a>
+            <a href="#quiz" class="block text-center py-3 px-4 text-stone-700 hover:bg-stone-50" data-lang-key="nav_quiz"></a>
+            <a href="#success-stories" class="block text-center py-3 px-4 text-stone-700 hover:bg-stone-50" data-lang-key="nav_success_stories"></a>
+            <a href="#glossary" class="block text-center py-3 px-4 text-stone-700 hover:bg-stone-50" data-lang-key="nav_glossary"></a>
+            <a href="#contact" class="block text-center py-3 px-4 text-stone-700 hover:bg-stone-50" data-lang-key="nav_contact"></a>
             <a href="#vision" class="block text-center py-3 px-4 text-stone-700 hover:bg-stone-50" data-lang-key="nav_vision"></a>
             <a href="#about" class="block text-center py-3 px-4 text-stone-700 hover:bg-stone-50" data-lang-key="nav_about"></a>
         </div>
@@ -189,7 +238,7 @@
     <main class="container mx-auto px-6 py-8 md:py-16">
 
         <!-- Home Section: Welcoming message for students -->
-        <section id="home" class="text-center min-h-[60vh] flex flex-col justify-center items-center">
+        <section id="home" class="text-center min-h-[60vh] flex flex-col justify-center items-center fade-in-section">
             <h2 class="text-3xl md:text-5xl font-bold text-stone-800 mb-4" data-lang-key="home_title"></h2>
             <p class="urdu-font text-2xl md:text-4xl text-teal-700 mb-6" data-lang-key="home_subtitle"></p>
             <p class="max-w-3xl mx-auto text-stone-700 text-lg md:text-xl leading-relaxed" data-lang-key="home_description"></p>
@@ -198,7 +247,7 @@
         <hr class="my-12 border-t-2 border-stone-200">
 
         <!-- Challenges Section: Addressing common hurdles for language transition -->
-        <section id="challenges" class="py-16 md:py-24">
+        <section id="challenges" class="py-16 md:py-24 fade-in-section">
             <div class="text-center mb-12">
                 <h2 class="text-3xl md:text-4xl font-bold text-stone-800" data-lang-key="challenges_title"></h2>
                 <p class="urdu-font text-xl md:text-2xl text-teal-700 mt-2" data-lang-key="challenges_subtitle"></p>
@@ -253,7 +302,7 @@
         <hr class="my-12 border-t-2 border-stone-200">
 
         <!-- Career Awareness Chart: Visualizing diverse career fields -->
-        <section id="career-chart-section" class="py-16 md:py-24 bg-teal-50 rounded-2xl">
+        <section id="career-chart-section" class="py-16 md:py-24 bg-teal-50 rounded-2xl fade-in-section">
             <div class="text-center mb-12 px-4">
                 <h2 class="text-3xl md:text-4xl font-bold text-stone-800" data-lang-key="chart_title"></h2>
                 <p class="urdu-font text-xl md:text-2xl text-teal-700 mt-2" data-lang-key="chart_subtitle"></p>
@@ -267,7 +316,7 @@
         <hr class="my-12 border-t-2 border-stone-200">
 
         <!-- Career Paths Section: Interactive cards for career exploration -->
-        <section id="careers" class="py-16 md:py-24">
+        <section id="careers" class="py-16 md:py-24 fade-in-section">
             <div class="text-center mb-12">
                 <h2 class="text-3xl md:text-4xl font-bold text-stone-800" data-lang-key="careers_title"></h2>
                 <p class="urdu-font text-xl md:text-2xl text-teal-700 mt-2" data-lang-key="careers_subtitle"></p>
@@ -296,25 +345,26 @@
         <hr class="my-12 border-t-2 border-stone-200">
 
         <!-- Resources for English Proficiency Section -->
-        <section id="english-resources" class="py-16 md:py-24">
+        <section id="english-resources" class="py-16 md:py-24 fade-in-section">
             <div class="text-center mb-12 px-4">
                 <h2 class="text-3xl md:text-4xl font-bold text-stone-800" data-lang-key="resources_title"></h2>
                 <p class="urdu-font text-xl md:text-2xl text-orange-700 mt-2" data-lang-key="resources_subtitle"></p>
                 <p class="max-w-3xl mx-auto text-stone-700 mt-4" data-lang-key="resources_description"></p>
+                <input type="text" id="resource-search" placeholder="Search resources..." class="w-full max-w-lg mt-6 p-3 rounded-full border-2 border-stone-300 focus:border-teal-500 outline-none transition duration-200">
             </div>
-            <div class="max-w-4xl mx-auto space-y-8">
+            <div class="max-w-4xl mx-auto space-y-8" id="english-resources-content">
                 <!-- Resource Category 1: Vocabulary & Grammar -->
-                <div class="bg-white rounded-xl shadow-lg p-6">
+                <div class="bg-white rounded-xl shadow-lg p-6 resource-category">
                     <h3 class="text-xl font-semibold text-stone-800 mb-4" data-lang-key="resources_vocab_title"></h3>
                     <ul class="list-disc list-inside space-y-3 text-stone-700" data-lang-key="resources_vocab_list"></ul>
                 </div>
                 <!-- Resource Category 2: Speaking & Listening -->
-                <div class="bg-white rounded-xl shadow-lg p-6">
+                <div class="bg-white rounded-xl shadow-lg p-6 resource-category">
                     <h3 class="text-xl font-semibold text-stone-800 mb-4" data-lang-key="resources_speak_title"></h3>
                     <ul class="list-disc list-inside space-y-3 text-stone-700" data-lang-key="resources_speak_list"></ul>
                 </div>
                 <!-- Resource Category 3: Reading & Writing -->
-                <div class="bg-white rounded-xl shadow-lg p-6">
+                <div class="bg-white rounded-xl shadow-lg p-6 resource-category">
                     <h3 class="text-xl font-semibold text-stone-800 mb-4" data-lang-key="resources_read_title"></h3>
                     <ul class="list-disc list-inside space-y-3 text-stone-700" data-lang-key="resources_read_list"></ul>
                 </div>
@@ -324,25 +374,26 @@
         <hr class="my-12 border-t-2 border-stone-200">
 
         <!-- New Section: Advanced Resources for Deep Dive -->
-        <section id="advanced-resources" class="py-16 md:py-24 bg-blue-50 rounded-2xl">
+        <section id="advanced-resources" class="py-16 md:py-24 bg-blue-50 rounded-2xl fade-in-section">
             <div class="text-center mb-12 px-4">
                 <h2 class="text-3xl md:text-4xl font-bold text-stone-800" data-lang-key="advanced_resources_title"></h2>
                 <p class="urdu-font text-xl md:text-2xl text-blue-700 mt-2" data-lang-key="advanced_resources_subtitle"></p>
                 <p class="max-w-3xl mx-auto text-stone-700 mt-4" data-lang-key="advanced_resources_description"></p>
+                 <input type="text" id="advanced-resource-search" placeholder="Search advanced resources..." class="w-full max-w-lg mt-6 p-3 rounded-full border-2 border-stone-300 focus:border-blue-500 outline-none transition duration-200">
             </div>
-            <div class="max-w-4xl mx-auto space-y-8">
+            <div class="max-w-4xl mx-auto space-y-8" id="advanced-resources-content">
                 <!-- Category: Online Course Platforms -->
-                <div class="bg-white rounded-xl shadow-lg p-6">
+                <div class="bg-white rounded-xl shadow-lg p-6 resource-category">
                     <h3 class="text-xl font-semibold text-stone-800 mb-4" data-lang-key="advanced_resources_online_courses_title"></h3>
                     <ul class="list-disc list-inside space-y-3 text-stone-700" data-lang-key="advanced_resources_online_courses_list"></ul>
                 </div>
                 <!-- Category: Career Guidance & Competitive Exams -->
-                <div class="bg-white rounded-xl shadow-lg p-6">
+                <div class="bg-white rounded-xl shadow-lg p-6 resource-category">
                     <h3 class="text-xl font-semibold text-stone-800 mb-4" data-lang-key="advanced_resources_career_guidance_title"></h3>
                     <ul class="list-disc list-inside space-y-3 text-stone-700" data-lang-key="advanced_resources_career_guidance_list"></ul>
                 </div>
                 <!-- Category: Skill Development & Practical Learning -->
-                <div class="bg-white rounded-xl shadow-lg p-6">
+                <div class="bg-white rounded-xl shadow-lg p-6 resource-category">
                     <h3 class="text-xl font-semibold text-stone-800 mb-4" data-lang-key="advanced_resources_skill_development_title"></h3>
                     <ul class="list-disc list-inside space-y-3 text-stone-700" data-lang-key="advanced_resources_skill_development_list"></ul>
                 </div>
@@ -353,7 +404,7 @@
         <hr class="my-12 border-t-2 border-stone-200">
 
         <!-- New Section: Consistency and Time Management -->
-        <section id="consistency-time" class="py-16 md:py-24 bg-emerald-50 rounded-2xl">
+        <section id="consistency-time" class="py-16 md:py-24 bg-emerald-50 rounded-2xl fade-in-section">
             <div class="text-center mb-12 px-4">
                 <h2 class="text-3xl md:text-4xl font-bold text-stone-800" data-lang-key="consistency_time_title"></h2>
                 <p class="urdu-font text-xl md:text-2xl text-emerald-700 mt-2" data-lang-key="consistency_time_subtitle"></p>
@@ -386,7 +437,7 @@
         <hr class="my-12 border-t-2 border-stone-200">
 
         <!-- New Section: Value of Parents' Emotions -->
-        <section id="parents-emotions" class="py-16 md:py-24 bg-amber-50 rounded-2xl">
+        <section id="parents-emotions" class="py-16 md:py-24 bg-amber-50 rounded-2xl fade-in-section">
             <div class="text-center mb-12 px-4">
                 <h2 class="text-3xl md:text-4xl font-bold text-stone-800" data-lang-key="parents_emotions_title"></h2>
                 <p class="urdu-font text-xl md:text-2xl text-amber-700 mt-2" data-lang-key="parents_emotions_subtitle"></p>
@@ -411,7 +462,7 @@
         <hr class="my-12 border-t-2 border-stone-200">
 
         <!-- New Section: Hometown Guidance -->
-        <section id="hometown-guidance" class="py-16 md:py-24 bg-yellow-50 rounded-2xl">
+        <section id="hometown-guidance" class="py-16 md:py-24 bg-yellow-50 rounded-2xl fade-in-section">
             <div class="text-center mb-12 px-4">
                 <h2 class="text-3xl md:text-4xl font-bold text-stone-800" data-lang-key="hometown_guidance_title"></h2>
                 <p class="urdu-font text-xl md:text-2xl text-yellow-700 mt-2" data-lang-key="hometown_guidance_subtitle"></p>
@@ -435,8 +486,101 @@
 
         <hr class="my-12 border-t-2 border-stone-200">
 
+        <!-- New Section: Interest Quiz -->
+        <section id="quiz" class="py-16 md:py-24 bg-rose-50 rounded-2xl fade-in-section">
+            <div class="text-center mb-12 px-4">
+                <h2 class="text-3xl md:text-4xl font-bold text-stone-800" data-lang-key="quiz_title"></h2>
+                <p class="urdu-font text-xl md:text-2xl text-rose-700 mt-2" data-lang-key="quiz_subtitle"></p>
+                <p class="max-w-3xl mx-auto text-stone-700 mt-4" data-lang-key="quiz_description"></p>
+            </div>
+            <div id="quiz-container" class="max-w-xl mx-auto bg-white rounded-xl shadow-lg p-6 md:p-8">
+                <div id="quiz-question-container">
+                    <p class="text-lg md:text-xl font-semibold text-stone-800 mb-6" id="quiz-question"></p>
+                    <div id="quiz-options" class="grid gap-4">
+                        <!-- Options will be injected here -->
+                    </div>
+                    <button id="quiz-next-btn" class="mt-8 px-6 py-2 bg-teal-600 text-white rounded-full font-semibold hover:bg-teal-700 transition shadow-md w-full" data-lang-key="quiz_next_btn"></button>
+                </div>
+                <div id="quiz-result-container" class="hidden text-center">
+                    <h3 class="text-2xl md:text-3xl font-bold text-teal-800 mb-4" data-lang-key="quiz_result_title"></h3>
+                    <p class="text-xl md:text-2xl text-stone-700 mb-6" id="quiz-result-text"></p>
+                    <button id="quiz-retake-btn" class="mt-4 px-6 py-2 bg-orange-600 text-white rounded-full font-semibold hover:bg-orange-700 transition shadow-md" data-lang-key="quiz_retake_btn"></button>
+                </div>
+            </div>
+        </section>
+
+        <hr class="my-12 border-t-2 border-stone-200">
+
+        <!-- New Section: Success Stories -->
+        <section id="success-stories" class="py-16 md:py-24 bg-purple-50 rounded-2xl fade-in-section">
+            <div class="text-center mb-12 px-4">
+                <h2 class="text-3xl md:text-4xl font-bold text-stone-800" data-lang-key="success_stories_title"></h2>
+                <p class="urdu-font text-xl md:text-2xl text-purple-700 mt-2" data-lang-key="success_stories_subtitle"></p>
+                <p class="max-w-3xl mx-auto text-stone-700 mt-4" data-lang-key="success_stories_description"></p>
+            </div>
+            <div class="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8">
+                <!-- Story 1 -->
+                <div class="bg-white rounded-xl shadow-lg p-6">
+                    <h3 class="text-xl font-semibold text-stone-800 mb-2" data-lang-key="story1_title"></h3>
+                    <p class="text-stone-600 text-sm mb-4" data-lang-key="story1_author"></p>
+                    <p class="text-stone-700" data-lang-key="story1_content"></p>
+                </div>
+                <!-- Story 2 -->
+                <div class="bg-white rounded-xl shadow-lg p-6">
+                    <h3 class="text-xl font-semibold text-stone-800 mb-2" data-lang-key="story2_title"></h3>
+                    <p class="text-stone-600 text-sm mb-4" data-lang-key="story2_author"></p>
+                    <p class="text-stone-700" data-lang-key="story2_content"></p>
+                </div>
+            </div>
+        </section>
+
+        <hr class="my-12 border-t-2 border-stone-200">
+
+        <!-- New Section: Glossary -->
+        <section id="glossary" class="py-16 md:py-24 bg-green-50 rounded-2xl fade-in-section">
+            <div class="text-center mb-12 px-4">
+                <h2 class="text-3xl md:text-4xl font-bold text-stone-800" data-lang-key="glossary_title"></h2>
+                <p class="urdu-font text-xl md:text-2xl text-green-700 mt-2" data-lang-key="glossary_subtitle"></p>
+                <p class="max-w-3xl mx-auto text-stone-700 mt-4" data-lang-key="glossary_description"></p>
+                <input type="text" id="glossary-search" placeholder="Search terms..." class="w-full max-w-lg mt-6 p-3 rounded-full border-2 border-stone-300 focus:border-green-500 outline-none transition duration-200">
+            </div>
+            <div id="glossary-list" class="max-w-3xl mx-auto space-y-4">
+                <!-- Glossary terms will be injected here -->
+            </div>
+        </section>
+
+        <hr class="my-12 border-t-2 border-stone-200">
+
+        <!-- New Section: Ask a Question / Contact Form -->
+        <section id="contact" class="py-16 md:py-24 bg-indigo-50 rounded-2xl fade-in-section">
+            <div class="text-center mb-12 px-4">
+                <h2 class="text-3xl md:text-4xl font-bold text-stone-800" data-lang-key="contact_title"></h2>
+                <p class="urdu-font text-xl md:text-2xl text-indigo-700 mt-2" data-lang-key="contact_subtitle"></p>
+                <p class="max-w-3xl mx-auto text-stone-700 mt-4" data-lang-key="contact_description"></p>
+            </div>
+            <div class="max-w-2xl mx-auto bg-white rounded-xl shadow-lg p-6 md:p-8">
+                <form id="contact-form" class="space-y-6">
+                    <div>
+                        <label for="contact-name" class="block text-stone-700 text-sm font-semibold mb-2" data-lang-key="contact_name_label"></label>
+                        <input type="text" id="contact-name" name="name" class="w-full p-3 border border-stone-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500" required>
+                    </div>
+                    <div>
+                        <label for="contact-email" class="block text-stone-700 text-sm font-semibold mb-2" data-lang-key="contact_email_label"></label>
+                        <input type="email" id="contact-email" name="email" class="w-full p-3 border border-stone-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500" required>
+                    </div>
+                    <div>
+                        <label for="contact-message" class="block text-stone-700 text-sm font-semibold mb-2" data-lang-key="contact_message_label"></label>
+                        <textarea id="contact-message" name="message" rows="5" class="w-full p-3 border border-stone-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500" required></textarea>
+                    </div>
+                    <button type="submit" class="w-full px-6 py-3 bg-indigo-600 text-white rounded-full font-semibold hover:bg-indigo-700 transition shadow-md" data-lang-key="contact_submit_btn"></button>
+                </form>
+            </div>
+        </section>
+
+        <hr class="my-12 border-t-2 border-stone-200">
+
         <!-- New Section: Our Vision (Placeholder Graphic) -->
-        <section id="vision" class="py-16 md:py-24 bg-purple-100 rounded-2xl text-center">
+        <section id="vision" class="py-16 md:py-24 bg-purple-100 rounded-2xl text-center fade-in-section">
             <h2 class="text-3xl md:text-4xl font-bold text-stone-800" data-lang-key="vision_title"></h2>
             <p class="urdu-font text-xl md:text-2xl text-purple-700 mt-2 mb-8" data-lang-key="vision_subtitle"></p>
             <div class="max-w-2xl mx-auto">
@@ -448,7 +592,7 @@
         <hr class="my-12 border-t-2 border-stone-200">
 
         <!-- About Section: Creator's message and prayer -->
-        <section id="about" class="text-center py-16 md:py-24 bg-emerald-900 text-white rounded-2xl">
+        <section id="about" class="text-center py-16 md:py-24 bg-emerald-900 text-white rounded-2xl fade-in-section">
             <h2 class="text-3xl md:text-4xl font-bold" data-lang-key="about_title"></h2>
             <p class="urdu-font text-xl md:text-2xl text-white mt-2" data-lang-key="about_subtitle"></p>
             <p class="max-w-2xl mx-auto mt-6 text-white text-lg" data-lang-key="about_description"></p>
@@ -477,7 +621,8 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            let currentLanguage = 'en'; // Default language state variable
+            // Retrieve language from local storage, default to 'en' if not found
+            let currentLanguage = localStorage.getItem('appLanguage') || 'en'; 
             let careerChartInstance; // Variable to hold Chart.js instance
 
             // --- Translation Data ---
@@ -488,11 +633,15 @@
                     nav_challenges: 'Challenges',
                     nav_careers: 'Career Paths',
                     nav_english_resources: 'English Resources',
-                    nav_advanced_resources: 'Advanced Resources', // New nav link
+                    nav_advanced_resources: 'Advanced Resources',
                     nav_consistency_time: 'Consistency & Time',
                     nav_parents_emotions: 'Parents\' Emotions',
-                    nav_hometown_guidance: 'Hometown Guidance', // New nav link
-                    nav_vision: 'Our Vision', // New navigation link for the vision section
+                    nav_hometown_guidance: 'Hometown Guidance',
+                    nav_quiz: 'Interest Quiz',
+                    nav_success_stories: 'Success Stories',
+                    nav_glossary: 'Glossary',
+                    nav_contact: 'Contact Us',
+                    nav_vision: 'Our Vision',
                     nav_about: 'About',
                     made_by: 'Efforts by Aasim Raza',
                     home_title: 'Welcome, Future Leaders!',
@@ -532,11 +681,11 @@
                     resources_subtitle: 'Essential Resources for Language Mastery',
                     resources_description: 'Improving your English can open many doors. Here are some free and easy-to-use resources tailored for Hindi/Urdu speakers to help you along your journey. Consistency is key!',
                     resources_vocab_title: 'Vocabulary & Grammar',
-                    resources_vocab_list: '<li><p>📲 <strong>Duolingo / Hello English app:</strong> Fun and interactive lessons for all levels, with Hindi/Urdu support. <a href="https://www.duolingo.com/" target="_blank" class="text-blue-600 hover:underline"> (Learn Here)</a></p></li><li><p>📚 <strong>Cambridge Dictionary (Online):</strong> Provides definitions, examples, and often pronunciation guides. <a href="https://dictionary.cambridge.org/" target="_blank" class="text-blue-600 hover:underline"> (Visit Site)</a></p></li><li><p>✍️ <strong>Grammarly (Free version):</b> Helps check your writing for grammatical errors and suggests improvements. <a href="https://www.grammarly.com/" target="_blank" class="text-blue-600 hover:underline"> (Try It)</a></p></li><li><p>💡 <strong>"Word of the Day" apps:</strong> Build your vocabulary daily with new words and their meanings. <a href="https://play.google.com/store/search?q=word%20of%20the%20day%20app&c=apps" target="_blank" class="text-blue-600 hover:underline"> (Find Apps)</a></p></li>',
+                    resources_vocab_list: '<li><p>📲 <strong>Duolingo / Hello English app:</strong> Fun and interactive lessons for all levels, with Hindi/Urdu support. <a href="https://www.duolingo.com/" target="_blank" class="text-blue-600 hover:underline"> (Learn Here)</a></p></li><li><p>📚 <strong>Cambridge Dictionary (Online):</strong> Provides definitions, examples, and often pronunciation guides. <a href="https://dictionary.cambridge.org/" target="_blank" class="text-blue-600 hover:underline"> (Visit Site)</a></p></li><li><p>✍️ <strong>Grammarly (Free version):</strong> Helps check your writing for grammatical errors and suggests improvements. <a href="https://www.grammarly.com/" target="_blank" class="text-blue-600 hover:underline"> (Try It)</a></p></li><li><p>💡 <strong>"Word of the Day" apps:</strong> Build your vocabulary daily with new words and their meanings. <a href="https://play.google.com/store/search?q=word%20of%20the%20day%20app&c=apps" target="_blank" class="text-blue-600 hover:underline"> (Find Apps)</a></p></li>',
                     resources_speak_title: 'Speaking & Listening',
                     resources_speak_list: '<li><p>▶️ <strong>YouTube Channels:</strong> Search for "Spoken English for Hindi speakers" or "Learn English through Urdu" (e.g., Learn English with Viva, BBC Learning English). <a href="https://www.youtube.com/" target="_blank" class="text-blue-600 hover:underline"> (Watch Now)</a></p></li><li><p>🎤 <strong>TED Talks (with subtitles):</strong> Listen to inspiring speeches on various topics and use subtitles initially. <a href="https://www.ted.com/talks" target="_blank" class="text-blue-600 hover:underline"> (Explore Talks)</a></p></li><li><p>🎧 <strong>English News Channels/Podcasts:</strong> Start with slower-paced news or podcasts for learners. <a href="https://www.bbc.co.uk/learningenglish/features/6-minute-english" target="_blank" class="text-blue-600 hover:underline"> (Listen Here)</a></p></li><li><p>🗣️ <strong>Practice Speaking:</strong> Find a study partner or use apps like HelloTalk to practice with native speakers. <a href="https://www.hellotalk.com/" target="_blank" class="text-blue-600 hover:underline"> (Practice Now)</a></p></li>',
                     resources_read_title: 'Reading & Writing',
-                    resources_read_list: '<li><p>📖 <strong>Simple English Wikipedia:</strong> Read articles on various subjects in simpler English. <a href="https://simple.wikipedia.org/wiki/Main_Page" target="_blank" class="text-blue-600 hover:underline"> (Read Articles)</a></p></li><li><p>📚 <strong>Short English Storybooks:</strong> Start with children\'s books or simplified novels. <a href="https://www.gutenberg.org/browse/scores/top" target="_blank" class="text-blue-600 hover:underline"> (Find Books)</a></p></li><li><p>✍️ <strong>Write Daily:</strong> Maintain a short diary in English, write emails, or summarize what you\'ve read. <a href="https://www.grammarly.com/blog/how-to-start-a-journal/" target="_blank" class="text-blue-600 hover:underline"> (Learn Journaling)</a></p></li><li><p>📰 <strong>News in Slow English:</strong> Websites that provide news articles read at a slower pace. <a href="https://www.newsinlevels.com/" target="_blank" class="text-blue-600 hover:underline"> (Read News)</a></p></li>',
+                    resources_read_list: '<li><p>📖 <strong>Simple English Wikipedia:</strong> Read articles on various subjects in simpler English. <a href="https://simple.wikipedia.org/wiki/Main_Page" target="_blank" class="text-blue-600 hover:underline"> (Read Articles)</a></p></li><li><p>📚 <strong>Short English Storybooks:</strong> Start with children\'s books or simplified novels. <a href="https://www.gutenberg.org/browse/scores/top" target="_blank" class="text-blue-600 hover:underline"> (Find Books)</a></p></li><li><p>✍️ <strong>Write Daily:</strong> Maintain a short diary in English, write emails, or summarize what you\'ve read. <a href="https://www.grammarly.com/blog/how-to-start-a-journal/" target="_blank" class="text-blue-600 hover:underline"> (Learn Journaling)</a></p></li><li><p>📰 <strong>News in Slow English:</strong> Websites that provide news articles read at a slower pace. <a href="https://www.newsinlevels.com/" target="_blank" class="text-blue-600 hover:underline"> (Khabrein Parhein)</a></p></li>',
                     advanced_resources_title: 'Deep Dive: Advanced Learning & Career Research',
                     advanced_resources_subtitle: 'Expand Your Knowledge, Define Your Path',
                     advanced_resources_description: 'For those ready to delve deeper into specific subjects, explore advanced concepts, or get detailed career insights, these platforms offer comprehensive learning and guidance.',
@@ -568,23 +717,47 @@
                     parents_emotions_point2_desc: 'Share your aspirations, fears, and academic challenges with your parents. Explain your career interests and why they align with your strengths. A calm, honest conversation can bridge gaps and build trust.',
                     parents_emotions_point3_title: 'Seeking Their Blessings and Support',
                     parents_emotions_point3_desc: 'Even if their initial reaction isn\'t what you hoped for, remember their sacrifices and hard work. Seek their blessings, involve them in your decision-making process (where appropriate), and show appreciation for their efforts. Their emotional support is invaluable.',
-                    hometown_guidance_title: 'Guidance from Your Hometown Heroes', // New section title
-                    hometown_guidance_subtitle: 'Learning from Local Success Stories', // New section subtitle
-                    hometown_guidance_description: 'Your own town or city likely has many individuals who have achieved success in various fields. These are your local mentors, and their experiences can be incredibly valuable. Don\'t hesitate to seek their guidance.', // New section description
-                    hometown_guidance_point1_title: 'Identify Local Role Models', // Point 1 title
-                    hometown_guidance_point1_desc: 'Look for people in your community who have excelled in careers that interest you. This could be a successful business owner, a respected teacher, a dedicated doctor, or even an artist who has made a name for themselves.', // Point 1 description
-                    hometown_guidance_point2_title: 'Approach with Respect', // Point 2 title
-                    hometown_guidance_point2_desc: 'When you approach them, do so respectfully. Explain your aspirations and politely ask if they would be willing to share some insights or advice. A short, clear request is usually best.', // Point 2 description
-                    hometown_guidance_point3_title: 'Listen and Learn', // Point 3 title
-                    hometown_guidance_point3_desc: 'Be a good listener. Ask open-ended questions about their journey, challenges, and what they learned along the way. Their practical advice, specific to your local context, can be more relevant than general guidance.', // Point 3 description
+                    hometown_guidance_title: 'Guidance from Your Hometown Heroes',
+                    hometown_guidance_subtitle: 'Learning from Local Success Stories',
+                    hometown_guidance_description: 'Your own town or city likely has many individuals who have achieved success in various fields. These are your local mentors, and their experiences can be incredibly valuable. Don\'t hesitate to seek their guidance.',
+                    hometown_guidance_point1_title: 'Identify Local Role Models',
+                    hometown_guidance_point1_desc: 'Look for people in your community who have excelled in careers that interest you. This could be a successful business owner, a respected teacher, a dedicated doctor, or even an artist who has made a name for themselves.',
+                    hometown_guidance_point2_title: 'Approach with Respect',
+                    hometown_guidance_point2_desc: 'When you approach them, do so respectfully. Explain your aspirations and politely ask if they would be willing to share some insights or advice. A short, clear request is usually best.',
+                    hometown_guidance_point3_title: 'Listen and Learn',
+                    hometown_guidance_point3_desc: 'Be a good listener. Ask open-ended questions about their journey, challenges, and what they learned along the way. Their practical advice, specific to your local context, can be more relevant than general guidance.',
+                    quiz_title: 'Identify Your Interests',
+                    quiz_subtitle: 'Find the Right Path for You',
+                    quiz_description: 'Take this short quiz to discover career areas that might align with your interests and personality. There are no right or wrong answers, just be honest with yourself!',
+                    quiz_next_btn: 'Next Question',
+                    quiz_retake_btn: 'Retake Quiz',
+                    quiz_result_title: 'Your Suggested Career Areas',
+                    quiz_result_text_intro: 'Based on your answers, you might enjoy careers in: ',
+                    story1_title: 'From Village School to Software Giant',
+                    story1_author: '— The Journey of Fatima Khan',
+                    story1_content: 'Fatima, from a small village, struggled with English in her initial days of college. Through consistent effort, online resources, and local mentorship, she not only mastered the language but also became a lead software engineer at a multinational company. Her story is a testament to perseverance and utilizing available resources.',
+                    story2_title: 'Breaking Barriers: A Doctor\'s Dedication',
+                    story2_author: '— Dr. Irfan Malik\'s Inspiring Path',
+                    story2_content: 'Dr. Irfan, despite facing financial hardships and skepticism about his English medium transition, dedicated himself to his studies. He utilized library resources and joined study groups. Today, he runs a successful clinic in his hometown, serving his community and inspiring countless others to pursue their dreams in healthcare.',
+                    glossary_title: 'Glossary of Terms',
+                    glossary_subtitle: 'Understand Key Concepts',
+                    glossary_description: 'Here you will find important terms related to education and career planning, explained in simple English and Roman Urdu.',
+                    contact_title: 'Contact Us',
+                    contact_subtitle: 'Have Questions? Reach Out!',
+                    contact_description: 'We are here to help you navigate your future. Fill out the form below with your queries, and we will get back to you as soon as possible.',
+                    contact_name_label: 'Your Name:',
+                    contact_email_label: 'Your Email:',
+                    contact_message_label: 'Your Message:',
+                    contact_submit_btn: 'Send Message',
+                    contact_whatsapp_not_possible_title: 'WhatsApp Message Not Possible',
+                    contact_whatsapp_not_possible_message: 'Directly sending messages to WhatsApp from a website is not supported due to security and privacy restrictions. You would need a backend server and WhatsApp Business API for this. If you wish to contact Aasim Raza, please use his email: {email_address} or reach out via phone: {phone_number}.',
                     vision_title: 'Our Vision for Your Future',
                     vision_subtitle: 'Guiding You Towards Limitless Possibilities',
                     vision_description: 'We envision a future where every student, regardless of their background, has access to the resources and guidance needed to make informed career choices and achieve their fullest potential. This platform is built on the belief that knowledge and opportunity should be accessible to all.',
-                    contact_title: 'Get in Touch', // Kept for reference but not used in UI
-                    contact_subtitle: 'We\'re here to help you navigate your future.', // Kept for reference but not used in UI
-                    contact_description: 'Have questions or need further guidance? Feel free to reach out to us!', // Kept for reference but not used in UI
-                    contact_email: 'Email Us', // Kept for reference but not used in UI
-                    contact_twitter: 'Connect on Twitter' // Kept for reference but not used in UI
+                    // Placeholder for search inputs
+                    search_resources_placeholder: 'Search resources...',
+                    search_advanced_resources_placeholder: 'Search advanced resources...',
+                    search_terms_placeholder: 'Search terms...'
                 },
                 // Roman Urdu translations
                 ur: {
@@ -592,11 +765,15 @@
                     nav_challenges: 'Challenges',
                     nav_careers: 'Career Paths',
                     nav_english_resources: 'English Resources',
-                    nav_advanced_resources: 'Advanced Resources', // New nav link
+                    nav_advanced_resources: 'Advanced Resources',
                     nav_consistency_time: 'Mustaqil Mizaji & Waqt',
                     nav_parents_emotions: 'Walidain ke Jazbat',
-                    nav_hometown_guidance: 'Shehar se Rehnumai', // New nav link
-                    nav_vision: 'Hamara Vision', // New navigation link for the vision section
+                    nav_hometown_guidance: 'Shehar se Rehnumai',
+                    nav_quiz: 'Apni Dilchaspi Pehchanein',
+                    nav_success_stories: 'Kamyabi ki Kahaniyan',
+                    nav_glossary: 'Alfaaz ka Khazana',
+                    nav_contact: 'Humse Rabta Karein',
+                    nav_vision: 'Hamara Vision',
                     nav_about: 'About Us',
                     made_by: 'Aasim Raza ki Koshishain',
                     home_title: 'Khush Amadid, Mustaqbil ke Rehnumaon!',
@@ -636,59 +813,80 @@
                     resources_subtitle: 'Zuban ki Maharat ke liye Aham Wasail',
                     resources_description: 'Apni English mein sudhar se bahut se darwaze khul sakte hain. Hindi/Urdu bolne walon ke liye aapke safar mein madad ke liye yahan kuch muft aur aasan-ul-istemal wasail diye gaye hain. Mustaqil mizaji kunji hai!',
                     resources_vocab_title: 'Lughat aur Grammar',
-                    resources_vocab_list: '<li><p>📲 <strong>Duolingo / Hello English app:</strong> Fun aur interactive asbaq, Hindi/Urdu support ke saath. <a href="https://www.duolingo.com/" target="_blank" class="text-blue-600 hover:underline"> (Yahan Seekhein)</a></p></li><li><p>📚 <strong>Cambridge Dictionary (Online):</strong> Ta\'areefein, misaalain, aur aksar talaffuz ki rehnumai faraham karta hai. <a href="https://dictionary.cambridge.org/" target="_blank" class="text-blue-600 hover:underline"> (Site Visit Karein)</a></p></li><li><p>✍️ <strong>Grammarly (Free version):</b> Aapki tehreer mein grammar ki ghaltiyon ko jaanchne aur behtari ki tajawiz dene mein madad karta hai. <a href="https://www.grammarly.com/" target="_blank" class="text-blue-600 hover:underline"> (Azmaien)</a></p></li><li><p>💡 <strong>"Word of the Day" apps:</strong> Rozana naye alfaaz aur unke ma\'ani ke saath apni lughat banaein. <a href="https://play.google.com/store/search?q=word%20of%20the%20day%20app&c=apps" target="_blank" class="text-blue-600 hover:underline"> (Apps Talash Karein)</a></p></li>',
+                    resources_vocab_list: '<li><p>📲 <strong>Duolingo / Hello English app:</strong> Fun aur interactive asbaq, Hindi/Urdu support ke saath. <a href="https://www.duolingo.com/" target="_blank" class="text-blue-600 hover:underline"> (Yahan Seekhein)</a></p></li><li><p>📚 <strong>Cambridge Dictionary (Online):</strong> Ta\'areefein, misaalain, aur aksar talaffuz ki rehnumai faraham karta hai. <a href="https://dictionary.cambridge.org/" target="_blank" class="text-blue-600 hover:underline"> (Site Visit Karein)</a></p></li><li><p>✍️ <strong>Grammarly (Free version):</strong> Aapki tehreer mein grammar ki ghaltiyon ko jaanchne aur behtari ki tajawiz dene mein madad karta hai. <a href="https://www.grammarly.com/" target="_blank" class="text-blue-600 hover:underline"> (Azmaien)</a></p></li><li><p>💡 <strong>"Word of the Day" apps:</strong> Rozana naye alfaaz aur unke ma\'ani ke saath apni lughat banaein. <a href="https://play.google.com/store/search?q=word%20of%20the%20day%20app&c=apps" target="_blank" class="text-blue-600 hover:underline"> (Apps Talash Karein)</a></p></li>',
                     resources_speak_title: 'Bolna aur Sunna',
                     resources_speak_list: '<li><p>▶️ <strong>YouTube Channels:</strong> "Hindi bolne walon ke liye Spoken English" ya "Urdu ke zariye English seekhein" (misal ke taur par, Learn English with Viva, BBC Learning English) talash karein. <a href="https://www.youtube.com/" target="_blank" class="text-blue-600 hover:underline"> (Abhi Dekhein)</a></p></li><li><p>🎤 <strong>TED Talks (subtitles ke saath):</strong> Mukhtalif mawad par mutasir kun taqreerein sunein aur ibtadai taur par subtitles istemal karein. <a href="https://www.ted.com/talks" target="_blank" class="text-blue-600 hover:underline"> (Talks Explore Karein)</a></p></li><li><p>🎧 <strong>English News Channels/Podcasts:</strong> Seekhne walon ke liye sust raftar khabron ya podcasts parhein. <a href="https://www.bbc.co.uk/learningenglish/features/6-minute-english" target="_blank" class="text-blue-600 hover:underline"> (Yahan Sunein)</a></p></li><li><p>🗣️ <strong>Bolne ki Mashq:</strong> Ek study partner talash karein ya native speakers ke saath mashq karne ke liye HelloTalk jaisi apps istemal karein. <a href="https://www.hellotalk.com/" target="_blank" class="text-blue-600 hover:underline"> (Abhi Mashq Karein)</a></p></li>',
                     resources_read_title: 'Parrhna aur Likhna',
                     resources_read_list: '<li><p>📖 <strong>Simple English Wikipedia:</strong> Simple English mein mukhtalif mawad par articles parhein. <a href="https://simple.wikipedia.org/wiki/Main_Page" target="_blank" class="text-blue-600 hover:underline"> (Articles Parhein)</a></p></li><li><p>📚 <strong>Choti English Kahaniyon ki Kitabein:</strong> Bachchon ki kitabon ya sadah navelon se shuru karein. <a href="https://www.gutenberg.org/browse/scores/top" target="_blank" class="text-blue-600 hover:underline"> (Kitabein Talash Karein)</a></p></li><li><p>✍️ <strong>Rozana Likhein:</strong> English mein ek choti diary rakhein, emails likhein, ya jo kuch aapne parrhha hai uska khulasa karein. <a href="https://www.grammarly.com/blog/how-to-start-a-journal/" target="_blank" class="text-blue-600 hover:underline"> (Journaling Seekhein)</a></p></li><li><p>📰 <strong>Slow English mein News:</strong> Aisi websites jo sust raftar se news faraham karti hain. <a href="https://www.newsinlevels.com/" target="_blank" class="text-blue-600 hover:underline"> (Khabrein Parhein)</a></p></li>',
                     advanced_resources_title: 'Deep Dive: Advanced Learning & Career Research',
-                    advanced_resources_subtitle: 'Expand Your Knowledge, Define Your Path',
-                    advanced_resources_description: 'For those ready to delve deeper into specific subjects, explore advanced concepts, or get detailed career insights, these platforms offer comprehensive learning and guidance.',
+                    advanced_resources_subtitle: 'Apna Ilm Barhaein, Apna Raasta Tay Karein',
+                    advanced_resources_description: 'Un logon ke liye jo khaas mawad mein gehraai se utarna chahte hain, advanced concepts explore karna chahte hain, ya mufassal career insights hasil karna chahte hain, yeh platforms comprehensive learning aur rehnumai faraham karti hain.',
                     advanced_resources_online_courses_title: 'Online Course Platforms',
-                    advanced_resources_online_courses_list: '<li><p>🎓 <strong>Coursera:</strong> Offers courses, specializations, and degrees from top universities and companies. <a href="https://www.coursera.org/" target="_blank" class="text-blue-600 hover:underline"> (Explore Courses)</a></p></li><li><p>💻 <strong>edX:</strong> Provides high-quality courses from leading institutions worldwide. <a href="https://www.edx.org/" target="_blank" class="text-blue-600 hover:underline"> (Browse Programs)</a></p></li><li><p>➕ <strong>Khan Academy:</strong> Free courses in math, science, computer programming, history, art history, economics, and more. <a href="https://www.khanacademy.org/" target="_blank" class="text-blue-600 hover:underline"> (Start Learning)</a></p></li><li><p>💡 <strong>Udemy:</strong> Thousands of courses taught by expert instructors across various subjects. <a href="https://www.udemy.com/" target="_blank" class="text-blue-600 hover:underline"> (Find a Course)</a></p></li><li><p>🔬 <strong>NPTEL (National Programme on Technology Enhanced Learning):</strong> Free online courses from IITs and IISc, primarily for engineering and science. <a href="https://nptel.ac.in/" target="_blank" class="text-blue-600 hover:underline"> (Visit NPTEL)</a></p></li>',
+                    advanced_resources_online_courses_list: '<li><p>🎓 <strong>Coursera:</strong> Top universities aur companies se courses, specializations, aur degrees faraham karta hai. <a href="https://www.coursera.org/" target="_blank" class="text-blue-600 hover:underline"> (Courses Explore Karein)</a></p></li><li><p>💻 <strong>edX:</strong> Dunya bhar ke leading institutions se high-quality courses faraham karta hai. <a href="https://www.edX.org/" target="_blank" class="text-blue-600 hover:underline"> (Programs Browse Karein)</a></p></li><li><p>➕ <strong>Khan Academy:</strong> Math, science, computer programming, history, art history, economics, aur bahut kuch mein muft courses. <a href="https://www.khanacademy.org/" target="_blank" class="text-blue-600 hover:underline"> (Seekhna Shuru Karein)</a></p></li><li><p>💡 <strong>Udemy:</strong> Mukhtalif mawad mein expert instructors ke zariye hazaron courses. <a href="https://www.udemy.com/" target="_blank" class="text-blue-600 hover:underline"> (Aik Course Talash Karein)</a></p></li><li><p>🔬 <strong>NPTEL (National Programme on Technology Enhanced Learning):</strong> IITs aur IISc se muft online courses, khaas kar engineering aur science ke liye. <a href="https://nptel.ac.in/" target="_blank" class="text-blue-600 hover:underline"> (NPTEL Visit Karein)</a></p></li>',
                     advanced_resources_career_guidance_title: 'Career Guidance & Competitive Exam Prep',
-                    advanced_resources_career_guidance_list: '<li><p>🧭 <strong>National Career Service (India):</strong> Government portal for career information, counseling, and job listings. <a href="https://www.ncs.gov.in/" target="_blank" class="text-blue-600 hover:underline"> (Explore NCS)</a></p></li><li><p>🌐 <strong>Shiksha.com:</strong> Comprehensive Indian education portal for courses, colleges, exams, and career advice. <a href="https://www.shiksha.com/" target="_blank" class="text-blue-600 hover:underline"> (Get Advice)</a></p></li><li><p>📈 <strong>Competitive Exam Platforms (e.g., Unacademy/Byju\'s):</strong> For preparation for JEE, NEET, UPSC, and other entrance exams. <a href="https://www.google.com/search?q=top+competitive+exam+prep+platforms+india" target="_blank" class="text-blue-600 hover:underline"> (Search Platforms)</a></p></li>',
+                    advanced_resources_career_guidance_list: '<li><p>🧭 <strong>National Career Service (India):</strong> Career ki maloomat, counseling, aur job listings ke liye sarkari portal. <a href="https://www.ncs.gov.in/" target="_blank" class="text-blue-600 hover:underline"> (NCS Explore Karein)</a></p></li><li><p>🌐 <strong>Shiksha.com:</strong> Comprehensive Indian education portal for courses, colleges, exams, and career advice. <a href="https://www.shiksha.com/" target="_blank" class="text-blue-600 hover:underline"> (Advice Hasil Karein)</a></p></li><li><p>📈 <strong>Competitive Exam Platforms (maslan, Unacademy/Byju\'s):</strong> JEE, NEET, UPSC, aur deegar entrance exams ki tayyari ke liye. <a href="https://www.google.com/search?q=top+competitive+exam+prep+platforms+india" target="_blank" class="text-blue-600 hover:underline"> (Platforms Talash Karein)</a></p></li>',
                     advanced_resources_skill_development_title: 'Skill Development & Practical Learning',
-                    advanced_resources_skill_development_list: '<li><p>💼 <strong>LinkedIn Learning:</strong> Video courses taught by industry experts in business, creative, and technology skills. <a href="https://www.linkedin.com/learning/" target="_blank" class="text-blue-600 hover:underline"> (Develop Skills)</a></p></li><li><p>🧑‍💻 <strong>freeCodeCamp:</strong> Learn to code for free and get certifications. <a href="https://www.freecodecamp.org/" target="_blank" class="text-blue-600 hover:underline"> (Learn Coding)</a></p></li>',
-                    consistency_time_title: 'Consistency & Time Management',
-                    consistency_time_subtitle: 'Keys to Unlocking Your Full Potential',
-                    consistency_time_description: 'Success isn\'t just about talent; it\'s about showing up consistently and managing your time wisely. These habits build momentum and resilience, crucial for any long-term goal.',
-                    consistency_point1_title: 'The Power of Consistency',
-                    consistency_point1_desc: 'Regular, small efforts compound over time. Instead of sporadic intense study sessions, aim for daily, disciplined learning. This not only reinforces knowledge but also builds strong habits.',
-                    consistency_point2_title: 'Building Momentum',
-                    consistency_point2_desc: 'Consistent effort creates a positive cycle. Each small achievement boosts confidence and makes the next step easier, propelling you towards your goals with steady progress.',
-                    time_management_title: 'Mastering Time Management',
-                    time_management_desc: 'Time is your most valuable resource. Learning to manage it effectively will reduce stress, improve productivity, and give you more freedom.',
-                    time_management_point1_title: 'Create a Study Schedule',
-                    time_management_point1_list: '<li><strong>Prioritize Tasks:</strong> Identify your most important and urgent tasks.</li><li><strong>Break Down Goals:</strong> Divide large assignments into smaller, manageable steps.</li><li><strong>Use Tools:</strong> Utilize planners, calendars, or apps to track your schedule.</li><li><strong>Allocate Time:</strong> Dedicate specific blocks for study, revision, and breaks.</li>',
-                    time_management_point2_title: 'Avoid Procrastination',
-                    time_management_point2_list: '<li><strong>Start Small:</strong> Begin with the easiest part of a daunting task.</li><li><strong>Set Deadlines:</strong> Give yourself mini-deadlines for each sub-task.</li><li><strong>Reward Yourself:</strong> Plan small rewards after completing tasks to stay motivated.</li><li><strong>Eliminate Distractions:</strong> Turn off notifications and find a quiet study environment.</li>',
-                    parents_emotions_title: 'The Value of Parents\' Emotions',
-                    parents_emotions_subtitle: 'Navigating Expectations with Empathy',
-                    parents_emotions_description: 'Your parents are your biggest well-wishers. Understanding their emotional investment in your future, and communicating openly with them, is key to a supportive and harmonious journey.',
-                    parents_emotions_point1_title: 'Understanding Their Worries',
-                    parents_emotions_point1_desc: 'Often, parents\' strictness or high expectations stem from their love and concern for your future security. They might not always express it perfectly, but their intentions are usually good. Try to see things from their perspective.',
-                    parents_emotions_point2_title: 'Open Communication is Key',
-                    parents_emotions_point2_desc: 'Share your aspirations, fears, and academic challenges with your parents. Explain your career interests and why they align with your strengths. A calm, honest conversation can bridge gaps and build trust.',
-                    parents_emotions_point3_title: 'Seeking Their Blessings and Support',
-                    parents_emotions_point3_desc: 'Even if their initial reaction isn\'t what you hoped for, remember their sacrifices and hard work. Seek their blessings, involve them in your decision-making process (where appropriate), and show appreciation for their efforts. Their emotional support is invaluable.',
-                    hometown_guidance_title: 'Apne Shehar ke Kamyaab Log', // New section title
-                    hometown_guidance_subtitle: 'Maqami Kamyabi ki Kahaniyon se Seekhna', // New section subtitle
-                    hometown_guidance_description: 'Aapke apne shehar ya gaon mein bahut se aise afraad honge jinhon ne mukhtalif shobon mein kamyabi hasil ki hai. Yeh aapke maqami mentors hain, aur unke tajrubaat be-inteha qeemti ho sakte hain. Unse rehnumai lene mein jhijhkein nahi.', // New section description
-                    hometown_guidance_point1_title: 'Maqami Role Models ki Nishandahi Karein', // Point 1 title
-                    hometown_guidance_point1_desc: 'Apni community mein aise logon ko talash karein jinhon ne un careers mein kamyabi hasil ki hai jin mein aap ki dilchaspi hai. Yeh ek kamyaab karobari, ek mohtaram ustaad, ek mukhlis doctor, ya yahan tak ke ek funkar bhi ho sakta hai jis ne apna naam banaya ho.', // Point 1 description
-                    hometown_guidance_point2_title: 'Ihtiram se Rabta Karein', // Point 2 title
-                    hometown_guidance_point2_desc: 'Jab aap unse rabta karein, to ihtiram se karein. Apni khwahishat bayan karein aur adab se poochhein ke kya woh kuch mashwaray ya tajrubaat share karne ke liye tayyar honge. Aik mukhtasar, wazeh darkhwast aam taur par behtar hoti hai.', // Point 2 description
-                    hometown_guidance_point3_title: 'Sunein aur Seekhein', // Point 3 title
-                    hometown_guidance_point3_desc: 'Achhe sunne wale banein. Unke safar, mushkilat, aur raaste mein unhon ne kya seekha, is barey mein khule sawalat poochhein. Unka amali mashwara, jo aapke maqami sayaq-o-sabaq ke mutabiq ho, aam rehnumai se ziyada mutaliqa ho sakta hai.', // Point 3 description
-                    vision_title: 'Hamara Vision Aapke Mustaqbil Ke Liye',
-                    vision_subtitle: 'Aapko Be-hud Imkanat ki Taraf Rehnumai',
-                    vision_description: 'Hamara maqsad hai ke har talib-e-ilm, chahe uski koi bhi pas-manzar ho, usay career ke mutaliq sahih faisle karne aur apni mukammal salahiyat tak pahunchne ke liye zaroori wasail aur rehnumai tak rasai hasil ho. Yeh platform is yaqeen par banaaya gaya hai ke ilm aur mawaqe sab ke liye dastiyab honi chahiye.',
-                    contact_title: 'Humse Rabta Karein', // Kept for reference but not used in UI
-                    contact_subtitle: 'Hum aapke mustaqbil ko behtar banane mein madad ke liye yahan hain.', // Kept for reference but not used in UI
-                    contact_description: 'Sawal hain ya mazeed rehnumai ki zaroorat hai? Humse rabta karne mein jhijhkein nahi!', // Kept for reference but not used in UI
-                    contact_email: 'Email Karein', // Kept for reference but not used in UI
-                    contact_twitter: 'Twitter par Judain' // Kept for reference but not used in UI
+                    advanced_resources_skill_development_list: '<li><p>💼 <strong>LinkedIn Learning:</strong> Business, creative, aur technology skills mein industry experts ke zariye video courses. <a href="https://www.linkedin.com/learning/" target="_blank" class="text-blue-600 hover:underline"> (Maharatein Paida Karein)</a></p></li><li><p>🧑‍💻 <strong>freeCodeCamp:</strong> Muft mein coding seekhein aur certifications hasil karein. <a href="https://www.freecodecamp.org/" target="_blank" class="text-blue-600 hover:underline"> (Coding Seekhein)</a></p></li>',
+                    consistency_time_title: 'Mustaqil Mizaji & Waqt ka Intizam',
+                    consistency_time_subtitle: 'Apni Mukammal Salahiyat Ko Kholne ki Kunji',
+                    consistency_time_description: 'Kamyabi sirf salahiyat ke barey mein nahi; yeh mustaqil mizaji aur waqt ka samajhdari se intizam karne ke barey mein hai. Yeh aadatein raftaar aur lachak paida karti hain, jo kisi bhi taweel muddat ke maqsad ke liye zaroori hain.',
+                    consistency_point1_title: 'Mustaqil Mizaji ki Quwwat',
+                    consistency_point1_desc: 'Mustaqil, choti koshishain waqt ke saath jama hoti hain. Kabhi kabhar ki shadeed mutaale ki nashiston ke bajaye, rozana, ba-qaida seekhne ka maqsad rakhein. Yeh na sirf ilm ko mazboot karta hai balki mazboot aadatein bhi paida karta hai.',
+                    consistency_point2_title: 'Raftaar banana',
+                    consistency_point2_desc: 'Mustaqil koshish aik misbet cycle paida karti hai. Har choti kamyabi khud-etemadi ko barhati hai aur agle qadam ko aasan banati hai, aapko mustaqil taraqqi ke saath apne maqasid ki taraf dhakelti hai.',
+                    time_management_title: 'Waqt ka Intizam',
+                    time_management_desc: 'Waqt aapka sab se qeemti waseela hai. Iska asardari se intizam karna tanau ko kam karega, پیداواری صلاحیت ko behtar banayega, aur aapko mazeed azadi dega.',
+                    time_management_point1_title: 'Mutaale ka Schedule Banaein',
+                    time_management_point1_list: '<li><strong>Kamoon ko Tarjeeh Dein:</strong> Apne sab se aham aur arjant kamoon ki nishandahi karein.</li><li><strong>Maqasid ko Chote Hissoon mein Taqseem Karein:</strong> Bade assignments ko chote, qabil-e-intizam steps mein taqseem karein.</li><li><strong>Tools Istemal Karein:</strong> Planners, calendars, ya apps ka istemal karke apna schedule track karein.</li><li><strong>Waqt Mukarrar Karein:</strong> Mutaale, dohrai, aur breaks ke liye makhsoos blocks mukarrar karein.</li>',
+                    time_management_point2_title: 'Taleem se Gurez se Bachein',
+                    time_management_point2_list: '<li><strong>Chota Shuru Karein:</strong> Aik mushkil kaam ke sab se aasan hisse se shuru karein.</li><li><strong>Set Deadlines:</strong> Har sub-task ke liye khud ko mini-deadlines dein.</li><li><strong>Khud ko Inaam Dein:</strong> Kamoon ko mukammal karne ke baad khud ko chote inaamat plan karein taake mutaharrak rahein.</li><li><strong>Dhyan hatane walay kamoon ko Khatam Karein:</strong> Notifications band karein aur mutaale ke liye pur-sukoon mahol talash karein.</li>',
+                    parents_emotions_title: 'Walidain ke Jazbat ki Qadar',
+                    parents_emotions_subtitle: 'Hamdardi se Tawaqqoat se Nipatna',
+                    parents_emotions_description: 'Aapke walidain aapke sab se bade khair-khwah hain. Unke mustaqbil mein aapki jazbati sarmayakari ko samajhna, aur unke saath khule dil se baat karna, aik mu\'awin aur ham-ahang safar ke liye kunji hai.',
+                    parents_emotions_point1_title: 'Unki Pareshaniyon ko Samajhna',
+                    parents_emotions_point1_desc: 'Aksar, walidain ki sakhti ya oonchi tawaqqoat unki mohabbat aur aapke mustaqbil ki salamati ke liye fikarmandi se paida hoti hain. Woh hamesha ise bilkul sahih tareeqe se bayan nahi kar pate, lekin unki niyat aam taur par achhi hoti hai. Cheezon ko unke nuqta nazar se dekhne ki koshish karein.',
+                    parents_emotions_point2_title: 'Khuli Baat-cheet Kunji hai',
+                    parents_emotions_point2_desc: 'Apni khwahishat, khauf, aur taleemi mushkilat apne walidain ke saath share karein. Unhein apne career ki dilchaspian aur woh aapki salahiyaton se kaise mel khati hain, samjhaein. Aik pur-sukoon, imandari ki guftagu khala ko pur kar sakti hai aur etemad paida kar sakti hai.',
+                    parents_emotions_point3_title: 'Unki Duain aur Himayat Talash Karein',
+                    parents_emotions_point3_desc: 'Agar unka ibtadai ردعمل aapki tawaqqo ke mutabiq nahi bhi ho, to unki qurbaniyon aur mehnat ko yaad rakhein. Unki duain talash karein, unhein apne faisle lene ke amal mein shamil karein (jahan munasib ho), aur unki koshishon ki qadar karein. Unki jazbati himayat be-hadd qeemti hai.',
+                    hometown_guidance_title: 'Apne Shehar ke Kamyaab Logon se Rehnumai',
+                    hometown_guidance_subtitle: 'Maqami Kamyabi ki Kahaniyon se Seekhna',
+                    hometown_guidance_description: 'Aapke apne shehar ya gaon mein bahut se aise afraad honge jinhon ne mukhtalif shobon mein kamyabi hasil ki hai. Yeh aapke maqami mentors hain, aur unke tajrubaat be-inteha qeemti ho sakte hain. Unse rehnumai lene mein jhijhkein nahi.',
+                    hometown_guidance_point1_title: 'Maqami Role Models ki Nishandahi Karein',
+                    hometown_guidance_point1_desc: 'Apni community mein aise logon ko talash karein jinhon ne un careers mein kamyabi hasil ki hai jin mein aap ki dilchaspi hai. Yeh ek kamyaab karobari, ek mohtaram ustaad, ek mukhlis doctor, ya yahan tak ke ek funkar bhi ho sakta hai jis ne apna naam banaya ho.',
+                    hometown_guidance_point2_title: 'Ihtiram se Rabta Karein',
+                    hometown_guidance_point2_desc: 'Jab aap unse rabta karein, to ihtiram se karein. Apni khwahishat bayan karein aur adab se poochhein ke kya woh kuch mashwaray ya tajrubaat share karne ke liye tayyar honge. Aik mukhtasar, wazeh darkhwast aam taur par behtar hoti hai.',
+                    hometown_guidance_point3_title: 'Sunein aur Seekhein',
+                    hometown_guidance_point3_desc: 'Achhe sunne wale banein. Unke safar, mushkilat, aur raaste mein unhon ne kya seekha, is barey mein khule sawalat poochhein. Unka amali mashwara, jo aapke maqami sayaq-o-sabaq ke mutabiq ho, aam rehnumai se ziyada mutaliqa ho sakta hai.',
+                    quiz_title: 'Apni Dilchaspi Pehchanein',
+                    quiz_subtitle: 'Apke Liye Sahi Raasta Talash Karein',
+                    quiz_description: 'Apni dilchaspiyon aur shakhsiyat ke mutabiq career ke shobon ko daryaft karne ke liye yeh mukhtasar quiz lein. Koi sahih ya ghalat jawab nahi hai, bas apne saath imandar rahein!',
+                    quiz_next_btn: 'Agla Sawal',
+                    quiz_retake_btn: 'Quiz Dobara Lein',
+                    quiz_result_title: 'Aapke Tajweez Kardah Career ke Sho\'be',
+                    quiz_result_text_intro: 'Aapke jawabat ki bunyad par, aap in careers mein lutf utha sakte hain: ',
+                    story1_title: 'Gaon ke School se Software Giant tak',
+                    story1_author: '— Fatima Khan ka Safar',
+                    story1_content: 'Fatima, aik chote gaon se, college ke ibtadai ayyam mein English se jujhti rahi. Musalsal koshish, online wasail, aur maqami rehnumai ke zariye, usne na sirf zuban par maharat hasil ki balki aik multinational company mein lead software engineer bhi ban gai. Uski kahani mustaqil mizaji aur dastiyab wasail ka istemal karne ka saboot hai.',
+                    story2_title: 'Rukawatein Tornay Wala: Aik Doctor ki Lagan',
+                    story2_author: '— Dr. Irfan Malik ka Hairat Angez Raasta',
+                    story2_content: 'Dr. Irfan, maali mushkilat aur English medium mein tabdeeli ke barey mein shakuk-o-shubahat ke bawajood, apne mutaale ke liye khud ko waqf kar diya. Usne library ke wasail ka istemal kiya aur study groups mein shamil hua. Aaj, woh apne shehar mein aik kamyaab clinic chala raha hai, apni community ki khidmat kar raha hai aur sehat ki dekhbhal mein apne khwabon ko pura karne ke liye be-shumar doosron ko mutaharrak kar raha hai.',
+                    glossary_title: 'Alfaaz ka Khazana',
+                    glossary_subtitle: 'Aham Tasawwurat ko Samjhein',
+                    glossary_description: 'Yahan aapko taleem aur career planning se mutaliq aham alfaaz milenge, jinhein sada English aur Roman Urdu mein samjhaya gaya hai.',
+                    contact_title: 'Humse Rabta Karein',
+                    contact_subtitle: 'Sawal hain? Rabta Karein!',
+                    contact_description: 'Hum aapke mustaqbil ko behtar banane mein madad ke liye yahan hain. Apne sawalat ke saath neechay diya gaya form bharain, aur hum jald hi aap se rabta karenge.',
+                    contact_name_label: 'Aapka Naam:',
+                    contact_email_label: 'Aapka Email:',
+                    contact_message_label: 'Aapka Paigham:',
+                    contact_submit_btn: 'Paigham Bhejein',
+                    contact_whatsapp_not_possible_title: 'WhatsApp Message Mumkin Nahi',
+                    contact_whatsapp_not_possible_message: 'Website se seedha WhatsApp par messages bhejna security aur privacy policies ki wajah se support nahi kiya jata. Iske liye backend server aur WhatsApp Business API ki zaroorat hoti hai. Agar aap Aasim Raza se rabta karna chahte hain, to unke email: {email_address} ya phone: {phone_number} par rabta karein.',
+                    // Placeholder for search inputs
+                    search_resources_placeholder: 'Wasail talash karein...',
+                    search_advanced_resources_placeholder: 'Advanced wasail talash karein...',
+                    search_terms_placeholder: 'Alfaaz talash karein...'
                 }
             };
 
@@ -705,7 +903,11 @@
                     subjects_en: 'Mathematics, Physics, Computer Science',
                     subjects_ur: 'Mathematics, Physics, Computer Science',
                     challenges_en: 'Constantly evolving technology, complex problem-solving, long hours during development cycles.',
-                    challenges_ur: 'Musalsal irtiqa pazeer technology, pecheeda masla hal karna, taraqqiyati chakron ke dauran taweel ghante kaam karna.'
+                    challenges_ur: 'Musalsal irtiqa pazeer technology, pecheeda masla hal karna, taraqqiyati chakron ke dauran taweel ghante kaam karna.',
+                    path_en: '1. Strong foundation in Math & Science (11th-12th). 2. Bachelor\'s degree in Computer Science/IT. 3. Internships & practical projects. 4. Continuous learning of new programming languages and frameworks.',
+                    path_ur: '1. Math aur Science mein mazboot bunyad (11th-12th). 2. Computer Science/IT mein Bachelor degree. 3. Internships aur amali projects. 4. Nayi programming languages aur frameworks ki musalsal seekh.',
+                    first_steps_en: 'Learn Python or JavaScript basics, build small projects, explore online coding platforms like Codecademy or freeCodeCamp.',
+                    first_steps_ur: 'Python ya JavaScript ki bunyadi baatein seekhein, chote projects banaein, aur Codecademy ya freeCodeCamp jaisi online coding platforms explore karein.'
                 },
                 {
                     id: 'doctor',
@@ -717,7 +919,11 @@
                     subjects_en: 'Biology, Chemistry, Physics',
                     subjects_ur: 'Biology, Chemistry, Physics',
                     challenges_en: 'Long study hours, high-stress environment, emotional toll of dealing with severe illnesses.',
-                    challenges_ur: 'Taweel mutaale ke auqat, ziyada tanau ka mahol, shadeed bimariyoon se nipatna ka jazbati dabao.'
+                    challenges_ur: 'Taweel mutaale ke auqat, ziyada tanau ka mahol, shadeed bimariyoon se nipatna ka jazbati dabao.',
+                    path_en: '1. PCB in 11th-12th. 2. Qualify NEET/other medical entrance exams. 3. MBBS degree. 4. Post-graduation for specialization (MD/MS).',
+                    path_ur: '1. 11th-12th mein PCB. 2. NEET/deegar medical entrance exams qualify karein. 3. MBBS degree. 4. Specialization ke liye post-graduation (MD/MS).',
+                    first_steps_en: 'Focus on Biology and Chemistry, solve previous year\'s NEET papers, consider coaching classes if needed, read medical journals/blogs to build interest.',
+                    first_steps_ur: 'Biology aur Chemistry par tawajjo dein, pichhle saal ke NEET papers hal karein, agar zaroorat ho to coaching classes par ghaur karein, medical journals/blogs parh kar dilchaspi paida karein.'
                 },
                 {
                     id: 'accountant',
@@ -729,7 +935,11 @@
                     subjects_en: 'Accountancy, Business Studies, Economics, Mathematics',
                     subjects_ur: 'Accountancy, Business Studies, Economics, Mathematics',
                     challenges_en: 'Strict deadlines, keeping up with changing tax laws, high responsibility for financial accuracy.',
-                    challenges_ur: 'Sakht deadlines, badalte tax qawaneen ke saath up-to-date rehna, maaliyati durustagi ki aala zimmedari.'
+                    challenges_ur: 'Sakht deadlines, badalte tax qawaneen ke saath up-to-date rehna, maaliyati durustagi ki aala zimmedari.',
+                    path_en: '1. Commerce stream in 11th-12th. 2. Bachelor\'s degree in Commerce (B.Com) or Accounting. 3. Professional certifications like CA (Chartered Accountant) or CS (Company Secretary).',
+                    path_ur: '1. Math aur Science mein mazboot bunyad (11th-12th). 2. Computer Science/IT mein Bachelor degree. 3. Internships aur amali projects. 4. Nayi programming languages aur frameworks ki musalsal seekh.',
+                    first_steps_en: 'Understand basic accounting principles, read business news, take online courses on financial literacy, practice mental math.',
+                    first_steps_ur: 'Bunyadi accounting ke usoolon ko samjhein, business news parhein, maaliyati saakhsharta par online courses karein, dimaghi hisab kitab ki mashq karein.'
                 },
                 {
                     id: 'graphic-designer',
@@ -741,7 +951,11 @@
                     subjects_en: 'Art, Design, Computer Applications',
                     subjects_ur: 'Art, Design, Computer Applications',
                     challenges_en: 'Meeting client expectations, staying updated with design trends, handling multiple projects.',
-                    challenges_ur: 'Client ki tawaqqoat par poora utarna, design ke rujhanat se ba-khabar rehna, mutaddid mansoobon ko sanbhalna.'
+                    challenges_ur: 'Client ki tawaqqoat par poora utarna, design ke rujhanat se ba-khabar rehna, mutaddid mansoobon ko sanbhalna.',
+                    path_en: '1. Develop artistic skills (drawing, digital art). 2. Diploma or Bachelor\'s degree in Graphic Design, Fine Arts, or Multimedia. 3. Build a strong portfolio. 4. Internships with design agencies.',
+                    path_ur: '1. Fun-e-takhleeqi maharatein paida karein (drawing, digital art). 2. Graphic Design, Fine Arts, ya Multimedia mein Diploma ya Bachelor degree. 3. Aik mazboot portfolio banaein. 4. Design agencies ke saath internships.',
+                    first_steps_en: 'Practice drawing, learn basic Photoshop/Illustrator, follow design blogs/channels, try recreating famous logos/designs.',
+                    first_steps_ur: 'Drawing ki mashq karein, bunyadi Photoshop/Illustrator seekhein, design blogs/channels ko follow karein, mashhoor logos/designs ko dubara banane ki koshish karein.'
                 },
                 {
                     id: 'civil-servant',
@@ -753,7 +967,11 @@
                     subjects_en: 'History, Political Science, Economics, Public Administration (for competitive exams)',
                     subjects_ur: 'History, Political Science, Economics, Public Administration (competitive exams ke liye)',
                     challenges_en: 'Highly competitive exams, demanding work, public scrutiny, slow bureaucratic processes.',
-                    challenges_ur: 'Intihai musabaqati imtihanat, mutalibati kaam, awami janch, sust bureaucratic amal.'
+                    challenges_ur: 'Intihai musabaqati imtihanat, mutalibati kaam, awami janch, sust bureaucratic amal.',
+                    path_en: '1. Any Bachelor\'s degree. 2. Extensive preparation for UPSC Civil Services Exam (CSE) - Prelims, Mains, Interview.',
+                    path_ur: '1. Koi bhi Bachelor degree. 2. UPSC Civil Services Exam (CSE) ki wasee tayyari - Prelims, Mains, Interview.',
+                    first_steps_en: 'Read daily newspapers (The Hindu/Indian Express), start with NCERT books for basics, follow current affairs, improve writing skills.',
+                    first_steps_ur: 'Rozana akhbarat (The Hindu/Indian Express) parhein, bunyadiyat ke liye NCERT kitabon se shuru karein, current affairs ko follow karein, tehreeri maharatein behtar banaein.'
                 },
                 {
                     id: 'teacher',
@@ -765,7 +983,11 @@
                     subjects_en: 'Any specific subject (e.g., Mathematics, English, History), Education Psychology',
                     subjects_ur: 'Koi bhi specific subject (maslan, Mathematics, English, History), Education Psychology',
                     challenges_en: 'Managing classroom, diverse student needs, adapting to new teaching methods, workload.',
-                    challenges_ur: 'Classroom ka intizam, talba ki mutanawwi zaruriyat, naye tadrisi tariqon ko apnana, kaam ka bojh.'
+                    challenges_ur: 'Classroom ka intizam, talba ki mutanawwi zaruriyat, naye tadrisi tariqon ko apnana, kaam ka bojh.',
+                    path_en: '1. Bachelor\'s degree in desired subject. 2. B.Ed (Bachelor of Education) or equivalent teaching qualification. 3. CTET/TET exams for government schools.',
+                    path_ur: '1. Matlooba mauzoo mein Bachelor degree. 2. B.Ed (Bachelor of Education) ya mutabiq tadrisi salahiyat. 3. Sarkari schools ke liye CTET/TET exams.',
+                    first_steps_en: 'Excel in your chosen subject, volunteer to tutor younger students, research different teaching methodologies, improve public speaking.',
+                    first_steps_ur: 'Apne pasandida mauzoo mein maharat hasil karein, chote talba ko parhane ke liye volunteer karein, mukhtalif tadrisi tariqon par tehqeeq karein, public speaking behtar banaein.'
                 },
                 {
                     id: 'chef',
@@ -777,7 +999,11 @@
                     subjects_en: 'Home Science, Culinary Arts, Nutrition',
                     subjects_ur: 'Home Science, Culinary Arts, Nutrition',
                     challenges_en: 'Long and irregular hours, high-pressure kitchen environment, physical demands, continuous learning of new recipes.',
-                    challenges_ur: 'Taweel aur be-tartib auqat, high-pressure kitchen ka mahol, jismani taqaze, nai tarkibon ki musalsal seekhna.'
+                    challenges_ur: 'Taweel aur be-tartib auqat, high-pressure kitchen ka mahol, jismani taqaze, nai tarkibon ki musalsal seekhna.',
+                    path_en: '1. Diploma or Bachelor\'s degree in Culinary Arts/Hotel Management. 2. Apprenticeships and practical training in hotels/restaurants.',
+                    path_ur: '1. Culinary Arts/Hotel Management mein Diploma ya Bachelor degree. 2. Hotels/restaurants mein apprenticeships aur amali training.',
+                    first_steps_en: 'Practice cooking at home, watch cooking shows, learn about different cuisines, assist in local eateries if possible.',
+                    first_steps_ur: 'Ghar par khana pakane ki mashq karein, cooking shows dekhein, mukhtalif cusines ke barey mein seekhein, agar mumkin ho to maqami eateries mein madad karein.'
                 },
                 {
                     id: 'journalist',
@@ -789,7 +1015,11 @@
                     subjects_en: 'English, Political Science, History, Mass Communication',
                     subjects_ur: 'English, Political Science, History, Mass Communication',
                     challenges_en: 'Tight deadlines, ethical dilemmas, risk exposure in fieldwork, adapting to digital media.',
-                    challenges_ur: 'Tight deadlines, akhlaqi mukhmise, field work mein khatre ka samna, digital media ko apnana.'
+                    challenges_ur: 'Tight deadlines, akhlaqi mukhmise, field work mein khatre ka samna, digital media ko apnana.',
+                    path_en: '1. Bachelor\'s degree in Journalism, Mass Communication, or English Literature. 2. Internships with news organizations. 3. Strong research and interview skills.',
+                    path_ur: '1. Journalism, Mass Communication, ya English Literature mein Bachelor degree. 2. News organizations ke saath internships. 3. Mazboot tehqeeq aur interview maharatein.',
+                    first_steps_en: 'Read diverse news sources, practice writing articles/blog posts, start a personal blog, join school/college newspaper/media club.',
+                    first_steps_ur: 'Mukhtalif khabron ke zariyaat parhein, articles/blog posts likhne ki mashq karein, apna personal blog shuru karein, school/college newspaper/media club mein shamil hon.'
                 },
                 {
                     id: 'lawyer',
@@ -801,7 +1031,11 @@
                     subjects_en: 'Political Science, History, Economics, Legal Studies',
                     subjects_ur: 'Political Science, History, Economics, Legal Studies',
                     challenges_en: 'Extensive legal research, high-stakes cases, long working hours, continuous learning of laws.',
-                    challenges_ur: 'Wasee qanooni tehqeeq, high-stakes cases, taweel working hours, qawaneen ki musalsal seekhna.'
+                    challenges_ur: 'Wasee qanooni tehqeeq, high-stakes cases, taweel working hours, qawaneen ki musalsal seekhna.',
+                    path_en: '1. 10+2 with any stream. 2. 5-year Integrated Law course (BA LLB, BBA LLB) after 12th or 3-year LLB after graduation. 3. Qualify CLAT or other law entrance exams.',
+                    path_ur: '1. 10+2 kisi bhi stream ke saath. 2. 12th ke baad 5 saala Integrated Law course (BA LLB, BBA LLB) ya graduation ke baad 3 saala LLB. 3. CLAT ya deegar law entrance exams qualify karein.',
+                    first_steps_en: 'Participate in debates, read about legal news/cases, improve public speaking and research skills, read books on Indian Constitution.',
+                    first_steps_ur: 'Debates mein hissa lein, qanooni khabron/cases ke barey mein parhein, public speaking aur tehqeeq maharatein behtar banaein, Indian Constitution par kitabein parhein.'
                 },
                 {
                     id: 'pharmacist',
@@ -813,7 +1047,11 @@
                     subjects_en: 'Biology, Chemistry, Physics (especially Chemistry and Biology)',
                     subjects_ur: 'Biology, Chemistry, Physics (especially Chemistry and Biology)',
                     challenges_en: 'High accuracy required, managing inventory, dealing with diverse patient needs, staying updated on drug interactions.',
-                    challenges_ur: 'Aala durustagi ki zaroorat, inventory ka intizam, mareezon ki mutanawwi zaruriyat se nipatna, drug interactions par updated rehna.'
+                    challenges_ur: 'Aala durustagi ki zaroorat, inventory ka intizam, mareezon ki mutanawwi zaruriyat se nipatna, drug interactions par updated rehna.',
+                    path_en: '1. PCB in 11th-12th. 2. Bachelor of Pharmacy (B.Pharm) degree. 3. Registration with Pharmacy Council of India.',
+                    path_ur: '1. 11th-12th mein PCB. 2. Bachelor of Pharmacy (B.Pharm) degree. 3. Pharmacy Council of India mein registration.',
+                    first_steps_en: 'Focus on Chemistry and Biology, understand basic drug classifications, visit local pharmacies to observe their work.',
+                    first_steps_ur: 'Chemistry aur Biology par tawajjo dein, bunyadi drug classifications ko samjhein, maqami pharmacies par ja kar unke kaam ka mushahida karein.'
                 },
                 {
                     id: 'banker',
@@ -821,11 +1059,15 @@
                     title_en: 'Banker',
                     title_ur: 'Banker',
                     description_en: 'Manages financial transactions, provides loans, and advises clients on investments and financial planning within a bank.',
-                    description_ur: 'Maaliyati len den ka intizam karta hai, qarze faraham karta hai, aur bank ke andar sarmayakari aur maaliyati mansuba bandi par clients ko mashwara deta hai.',
+                    description_ur: 'Maaliyati len den ka intizam karta hai, qarze faraham karta hai, aur bank ke andar sarmayakari aur maaliyati mansuba bandi par clients ko mashwara deta hai. Mazboot adadi maharaton ki zaroorat hoti hai.',
                     subjects_en: 'Economics, Business Studies, Mathematics',
                     subjects_ur: 'Economics, Business Studies, Mathematics',
                     challenges_en: 'Sales targets, strict regulations, high pressure to meet financial goals, managing client relationships.',
-                    challenges_ur: 'Sales targets, sakht regulations, high pressure to meet financial goals, client relations ka intizam.'
+                    challenges_ur: 'Sales targets, sakht regulations, high pressure to meet financial goals, client relations ka intizam.',
+                    path_en: '1. Commerce or any graduate degree. 2. Bank PO/Clerk exams or MBA in Finance for private banks. 3. JAIIB/CAIIB certifications are beneficial.',
+                    path_ur: '1. Commerce ya koi bhi graduate degree. 2. Bank PO/Clerk exams ya private banks ke liye MBA in Finance. 3. JAIIB/CAIIB certifications mufeed hain.',
+                    first_steps_en: 'Read financial news, understand basic banking terms, practice aptitude and reasoning questions, improve communication skills.',
+                    first_steps_ur: 'Maaliyati khabrein parhein, bunyadi banking ke alfaaz ko samjhein, aptitude aur reasoning ke sawalat ki mashq karein, muwasalati maharatein behtar banaein.'
                 },
                 {
                     id: 'social-worker',
@@ -837,9 +1079,13 @@
                     subjects_en: 'Sociology, Psychology, Political Science, Ethics',
                     subjects_ur: 'Sociology, Psychology, Political Science, Ethics',
                     challenges_en: 'Emotionally demanding work, limited resources, dealing with sensitive issues, advocacy for vulnerable populations.',
-                    challenges_ur: 'Jazbati taur par mutalibati kaam, mehdood wasail, hassas masail se nipatna, kamzor abadiyon ke liye wakalat.'
+                    challenges_ur: 'Jazbati taur par mutalibati kaam, mehdood wasail, hassas masail se nipatna, kamzor abadiyon ke liye wakalat.',
+                    path_en: '1. Any Bachelor\'s degree. 2. Bachelor of Social Work (BSW) or Master of Social Work (MSW) for specialized roles. 3. Practical experience through NGOs/community work.',
+                    path_ur: '1. Koi bhi Bachelor degree. 2. Makhsoos kirdaron ke liye Bachelor of Social Work (BSW) ya Master of Social Work (MSW). 3. NGOs/community work ke zariye amali tajruba.',
+                    first_steps_en: 'Volunteer for social causes, read about social issues, develop strong empathy and listening skills, engage in community discussions.',
+                    first_steps_ur: 'Samaji masail ke liye volunteer karein, samaji masail ke barey mein parhein, mazboot hamdardi aur sunne ki salahiyatein paida karein, community discussions mein shamil hon.'
                 },
-                // New Career Options
+                // New Career Options (with expanded details)
                 {
                     id: 'environmental-scientist',
                     category: ['science'],
@@ -850,7 +1096,11 @@
                     subjects_en: 'Biology, Chemistry, Environmental Science, Geography',
                     subjects_ur: 'Biology, Chemistry, Environmental Science, Geography',
                     challenges_en: 'Complex environmental issues, fieldwork, public policy influence, long-term project commitment.',
-                    challenges_ur: 'Pecheeda maholiyati masail, field work, awami policy ka asar, taweel muddat ke project commitment.'
+                    challenges_ur: 'Pecheeda maholiyati masail, field work, awami policy ka asar, taweel muddat ke project commitment.',
+                    path_en: '1. Science stream in 11th-12th. 2. Bachelor\'s degree in Environmental Science/Biology/Chemistry. 3. Master\'s or Ph.D. for research roles. 4. Internships with environmental organizations.',
+                    path_ur: '1. 11th-12th mein Science stream. 2. Environmental Science/Biology/Chemistry mein Bachelor degree. 3. Tehqeeqati kirdaron ke liye Master ya Ph.D. 4. Maholiyati tanzeemon ke saath internships.',
+                    first_steps_en: 'Read about climate change and conservation, participate in eco-clubs, visit national parks or environmental centers, learn about waste management.',
+                    first_steps_ur: 'Climate change aur tahaffuz ke barey mein parhein, eco-clubs mein hissa lein, national parks ya maholiyati مراكز ka دورہ karein, kachra intizam ke barey mein seekhein.'
                 },
                 {
                     id: 'digital-marketer',
@@ -862,7 +1112,11 @@
                     subjects_en: 'Business Studies, Marketing, Computer Applications, Mass Communication',
                     subjects_ur: 'Business Studies, Marketing, Computer Applications, Mass Communication',
                     challenges_en: 'Rapidly changing trends, data analysis, competition, proving ROI.',
-                    challenges_ur: 'Tezi se badalte rujhanat, data analysis, muqabla, ROI sabit karna.'
+                    challenges_ur: 'Tezi se badalte rujhanat, data analysis, muqabla, ROI sabit karna.',
+                    path_en: '1. Any Bachelor\'s degree (BBA, B.Com, BA Mass Comm are common). 2. Certifications in SEO, SEM, Social Media Marketing, Content Marketing. 3. Practical experience through internships/freelancing.',
+                    path_ur: '1. Koi bhi Bachelor degree (BBA, B.Com, BA Mass Comm aam hain). 2. SEO, SEM, Social Media Marketing, Content Marketing mein certifications. 3. Internships/freelancing ke zariye amali tajruba.',
+                    first_steps_en: 'Start a social media page for a hobby, learn about Google Analytics, take free online courses on digital marketing basics, read marketing blogs.',
+                    first_steps_ur: 'Kisi shauq ke liye social media page banaein, Google Analytics ke barey mein seekhein, digital marketing ke bunyadiyat par muft online courses karein, marketing blogs parhein.'
                 },
                 {
                     id: 'fashion-designer',
@@ -874,7 +1128,11 @@
                     subjects_en: 'Art, Design, Textile Technology, History of Fashion',
                     subjects_ur: 'Art, Design, Textile Technology, History of Fashion',
                     challenges_en: 'High competition, fast-paced industry, managing production, trend forecasting.',
-                    challenges_ur: 'Bari muqabla, tez raftaar industry, production ka intizam, trend forecasting.'
+                    challenges_ur: 'Bari muqabla, tez raftaar industry, production ka intizam, trend forecasting.',
+                    path_en: '1. Strong interest in art and clothing. 2. Bachelor\'s degree or Diploma in Fashion Design/Technology. 3. Develop sketching and pattern-making skills. 4. Internships with fashion houses.',
+                    path_ur: '1. Art aur kapdon mein mazboot dilchaspi. 2. Fashion Design/Technology mein Bachelor degree ya Diploma. 3. Sketching aur pattern-making maharatein paida karein. 4. Fashion houses ke saath internships.',
+                    first_steps_en: 'Practice sketching designs, learn about different fabrics, follow fashion trends, try upcycling old clothes, create a mood board of styles you like.',
+                    first_steps_ur: 'Designs sketching ki mashq karein, mukhtalif fabrics ke barey mein seekhein, fashion trends ko follow karein, purane kapdon ko upcycle karne ki koshish karein, apni pasand ke styles ka mood board banaein.'
                 },
                 {
                     id: 'counselor-therapist',
@@ -886,7 +1144,11 @@
                     subjects_en: 'Psychology, Sociology, Human Development',
                     subjects_ur: 'Psychology, Sociology, Human Development',
                     challenges_en: 'Emotionally taxing, maintaining boundaries, dealing with complex human issues, continuous professional development.',
-                    challenges_ur: 'Jazbati taur par thaka dene wala kaam, hudood barqarar rakhna, pecheeda insani masail se nipatna, musalsal peshawarana taraqqi.'
+                    challenges_ur: 'Jazbati taur par thaka dene wala kaam, hudood barqarar rakhna, pecheeda insani masail se nipatna, musalsal peshawarana taraqqi.',
+                    path_en: '1. Any Bachelor\'s degree (Psychology preferred). 2. Master\'s degree in Psychology/Counseling. 3. Supervised practical experience and licensure.',
+                    path_ur: '1. Koi bhi Bachelor degree (Psychology ko tarjeeh di jati hai). 2. Psychology/Counseling mein Master degree. 3. Nigarani mein amali tajruba aur licensure.',
+                    first_steps_en: 'Read books on psychology, volunteer for mental health helplines, practice active listening, develop strong communication and problem-solving skills.',
+                    first_steps_ur: 'Psychology par kitabein parhein, mental health helplines ke liye volunteer karein, active listening ki mashq karein, mazboot muwasalati aur masla hal karne ki salahiyatein paida karein.'
                 },
                 {
                     id: 'data-scientist',
@@ -898,7 +1160,11 @@
                     subjects_en: 'Mathematics, Statistics, Computer Science',
                     subjects_ur: 'Mathematics, Statistics, Computer Science',
                     challenges_en: 'Handling large datasets, complex algorithms, continuous learning, communication of insights to non-technical stakeholders.',
-                    challenges_ur: 'Bade datasets ko sanbhalna, pecheeda algorithms, musalsal seekhna, ghair-takniki hissadaron ko insights ki iblagh.'
+                    challenges_ur: 'Bade datasets ko sanbhalna, pecheeda algorithms, musalsal seekhna, ghair-takniki hissadaron ko insights ki iblagh.',
+                    path_en: '1. Strong foundation in Math & Statistics. 2. Bachelor\'s/Master\'s degree in Computer Science, Statistics, Mathematics, or Data Science. 3. Learn programming languages like Python/R. 4. Build projects and a portfolio.',
+                    path_ur: '1. Math aur Statistics mein mazboot bunyad. 2. Computer Science, Statistics, Mathematics, ya Data Science mein Bachelor/Master degree. 3. Python/R jaisi programming languages seekhein. 4. Projects banaein aur aik portfolio banaein.',
+                    first_steps_en: 'Learn Python/R, take online courses on statistics and data analysis, participate in data science competitions (e.g., Kaggle), analyze public datasets.',
+                    first_steps_ur: 'Python/R seekhein, statistics aur data analysis par online courses karein, data science competitions (maslan, Kaggle) mein hissa lein, public datasets ka tajziya karein.'
                 }
             ];
 
@@ -908,6 +1174,140 @@
             translations.en.about_prayer = 'May Allah grant every student the ability to succeed and make their parents proud. Ameen.';
             translations.ur.about_prayer = 'Allah har talib-e-ilm ko kamyabi ata farmaey aur unke walidain ko fakhr mehsoos karaye. Ameen.';
 
+            // Quiz data
+            const quizQuestions = [
+                {
+                    question_en: "Which type of activities do you enjoy most?",
+                    question_ur: "Aapko kis qism ki سرگرمیاں sab se ziyada pasand hain?",
+                    options_en: [
+                        { text: "Solving complex puzzles and logical problems", score: { science: 2, tech: 2 } },
+                        { text: "Helping people and understanding their feelings", score: { healthcare: 2, public_service: 2, arts: 1 } },
+                        { text: "Creating new things, drawing, or writing stories", score: { creative: 2, arts: 2 } },
+                        { text: "Managing money, planning finances, or organizing data", score: { commerce: 2, finance: 2 } }
+                    ],
+                    options_ur: [
+                        { text: "Pecheeda puzzles aur mantiqi masail hal karna", score: { science: 2, tech: 2 } },
+                        { text: "Logon ki madad karna aur unke jazbat ko samajhna", score: { healthcare: 2, public_service: 2, arts: 1 } },
+                        { text: "Nai cheezein banana, tasweerein banana, ya kahaniyan likhna", score: { creative: 2, arts: 2 } },
+                        { text: "Paison ka intizam karna, finances ki mansuba bandi karna, ya data munazzam karna", score: { commerce: 2, finance: 2 } }
+                    ]
+                },
+                {
+                    question_en: "What kind of subjects do you find most interesting?",
+                    question_ur: "Aapko kis qism ke mazameen sab se ziyada dilchasp lagte hain?",
+                    options_en: [
+                        { text: "Physics, Chemistry, Biology, or Computer Science", score: { science: 2, tech: 2, healthcare: 1 } },
+                        { text: "History, Literature, Sociology, or Political Science", score: { arts: 2, public_service: 1 } },
+                        { text: "Business Studies, Economics, or Accountancy", score: { commerce: 2, finance: 2 } },
+                        { text: "Art, Music, Drama, or Design", score: { creative: 2, arts: 2 } }
+                    ],
+                    options_ur: [
+                        { text: "Physics, Chemistry, Biology, ya Computer Science", score: { science: 2, tech: 2, healthcare: 1 } },
+                        { text: "History, Literature, Sociology, ya Political Science", score: { arts: 2, public_service: 1 } },
+                        { text: "Business Studies, Economics, ya Accountancy", score: { commerce: 2, finance: 2 } },
+                        { text: "Art, Music, Drama, ya Design", score: { creative: 2, arts: 2 } }
+                    ]
+                },
+                {
+                    question_en: "When you have free time, what do you prefer doing?",
+                    question_ur: "Jab aapke paas farigh waqt hota hai, to aap kya karna pasand karte hain?",
+                    options_en: [
+                        { text: "Experimenting, building things, or exploring how things work", score: { science: 1, tech: 2, vocational: 1 } },
+                        { text: "Reading, writing, or learning about different cultures", score: { arts: 2, education: 1 } },
+                        { text: "Planning events, organizing activities, or leading a group", score: { public_service: 1, commerce: 1 } },
+                        { text: "Engaging in artistic hobbies like painting, photography, or playing an instrument", score: { creative: 2 } }
+                    ],
+                    options_ur: [
+                        { text: "Tajrube karna, cheezein banana, ya cheezon ke kaam karne ka tareeqa daryaft karna", score: { science: 1, tech: 2, vocational: 1 } },
+                        { text: "Parrhna, likhna, ya mukhtalif saqafaton ke barey mein seekhna", score: { arts: 2, education: 1 } },
+                        { text: "Events plan karna, سرگرمیاں munazzam karna, ya aik group ki qayadat karna", score: { public_service: 1, commerce: 1 } },
+                        { text: "Painting, photography, ya koi musical instrument bajana jaise fun-e-shauq mein mashghool hona", score: { creative: 2 } }
+                    ]
+                },
+                {
+                    question_en: "What kind of work environment appeals to you?",
+                    question_ur: "Aapko kis qism ka kaam ka mahol pasand hai?",
+                    options_en: [
+                        { text: "A laboratory or research facility, solving complex problems", score: { science: 2, healthcare: 1, tech: 1 } },
+                        { text: "An office setting, dealing with numbers and reports", score: { commerce: 2, finance: 2 } },
+                        { text: "A dynamic environment, working with people directly", score: { public_service: 2, healthcare: 1, education: 2, vocational: 1 } },
+                        { text: "A studio or workshop, bringing creative ideas to life", score: { creative: 2, arts: 1 } }
+                    ],
+                    options_ur: [
+                        { text: "Aik laboratory ya tehqeeqati facility, pecheeda masail hal karna", score: { science: 2, healthcare: 1, tech: 1 } },
+                        { text: "Aik office setting, adad o shumar aur reports se nipatna", score: { commerce: 2, finance: 2 } },
+                        { text: "Aik mutaharrak mahol, logon ke saath bara-e-rast kaam karna", score: { public_service: 2, healthcare: 1, education: 2, vocational: 1 } },
+                        { text: "Aik studio ya workshop, takhleeqi khayalat ko haqeeqat banana", score: { creative: 2, arts: 1 } }
+                    ]
+                }
+            ];
+
+            // Glossary Data
+            const glossaryTerms = [
+                {
+                    term_en: "Curriculum Vitae (CV)",
+                    term_ur: "Curriculum Vitae (CV)",
+                    definition_en: "A concise document summarizing your education, skills, and experience for job applications.",
+                    definition_ur: "Naukri ki darkhwaston ke liye aapki taleem, maharaton aur tajrube ka mukhtasar dastawaz.",
+                    category: "career_planning"
+                },
+                {
+                    term_en: "Networking",
+                    term_ur: "Networking",
+                    definition_en: "Building connections with people who can help you professionally.",
+                    definition_ur: "Aise logon ke saath rabte banana jo peshawarana taur par aapki madad kar sakein.",
+                    category: "career_planning"
+                },
+                {
+                    term_en: "Internship",
+                    term_ur: "Internship",
+                    definition_en: "Temporary position providing on-the-job training in a specific field.",
+                    definition_ur: "Aik makhsoos shobay mein amali training faraham karne wali arzi position.",
+                    category: "career_planning"
+                },
+                {
+                    term_en: "Soft Skills",
+                    term_ur: "Soft Skills",
+                    definition_en: "Personal attributes that enable someone to interact effectively and harmoniously with other people (e.g., communication, teamwork).",
+                    definition_ur: "Shakhsi salahiyatein jo kisi ko doosre logon ke saath asardari aur ham-ahang tareeqe se baat-cheet karne ke qabil banati hain (maslan, muwasalat, team work).",
+                    category: "general_skills"
+                },
+                {
+                    term_en: "STEM",
+                    term_ur: "STEM",
+                    definition_en: "Acronym for Science, Technology, Engineering, and Mathematics.",
+                    definition_ur: "Science, Technology, Engineering, aur Mathematics ka mukhaffaf.",
+                    category: "education_fields"
+                },
+                 {
+                    term_en: "Critical Thinking",
+                    term_ur: "Tanqeedi Soch",
+                    definition_en: "The objective analysis and evaluation of information in order to form a judgment.",
+                    definition_ur: "Kisi faisle tak pahochnay ke liye maloomat ka maqsad par mabni tajziya aur tajweez.",
+                    category: "general_skills"
+                },
+                {
+                    term_en: "Resume",
+                    term_ur: "Resume",
+                    definition_en: "A brief document that provides an overview of a person's qualifications and experience, typically for job applications.",
+                    definition_ur: "Ek mukhtasar dastawaz jo kisi shakhs ki qabiliyaton aur tajrube ka mukammal jaiza faraham karta hai, aam taur par naukri ki darkhwaston ke liye.",
+                    category: "career_planning"
+                },
+                {
+                    term_en: "Mentorship",
+                    term_ur: "Mentorship",
+                    definition_en: "A relationship in which an experienced person (mentor) guides and supports a less experienced person (mentee).",
+                    definition_ur: "Aik aisa rishta jis mein ek tajruba-kar shakhs (mentor) kam tajruba-kar shakhs (mentee) ko rehnumai aur madad faraham karta hai.",
+                    category: "career_planning"
+                },
+                {
+                    term_en: "Scholarship",
+                    term_ur: "Scholarship",
+                    definition_en: "A grant or payment made to support a student's education, awarded on the basis of academic or other achievement.",
+                    definition_ur: "Aik imdadi raqam ya adaigi jo talib-e-ilm ki taleem ki himayat ke liye di jati hai, taleemi ya deegar kamyabiyon ki bunyad par di jati hai.",
+                    category: "education_fields"
+                }
+            ];
 
             /**
              * Displays a custom message modal.
@@ -946,6 +1346,7 @@
              * Special handling for elements expecting HTML content (like lists or specifically styled text).
              */
             function updateContent() {
+                console.log(`Updating content to language: ${currentLanguage}`);
                 document.querySelectorAll('[data-lang-key]').forEach(element => {
                     const key = element.getAttribute('data-lang-key');
                     // Check if translation exists for the current language and key
@@ -953,7 +1354,8 @@
                         // Use innerHTML for lists and specific paragraphs that contain embedded HTML (like <strong> or <span>)
                         // This ensures bolding or colored text within sentences is rendered.
                         const content = translations[currentLanguage][key];
-                        if (element.tagName === 'UL' || ['about_description', 'about_prayer', 'challenge1_solution_list', 'challenge2_solution_list', 'challenge3_solution_list', 'resources_vocab_list', 'resources_speak_list', 'resources_read_list', 'advanced_resources_online_courses_list', 'advanced_resources_career_guidance_list', 'advanced_resources_skill_development_list', 'time_management_point1_list', 'time_management_point2_list', 'vision_description', 'hometown_guidance_point1_list', 'hometown_guidance_point2_list', 'hometown_guidance_point3_list'].includes(key)) {
+                        const htmlKeys = ['about_description', 'about_prayer', 'challenge1_solution_list', 'challenge2_solution_list', 'challenge3_solution_list', 'resources_vocab_list', 'resources_speak_list', 'resources_read_list', 'advanced_resources_online_courses_list', 'advanced_resources_career_guidance_list', 'advanced_resources_skill_development_list', 'time_management_point1_list', 'time_management_point2_list', 'vision_description', 'hometown_guidance_point1_list', 'hometown_guidance_point2_list', 'hometown_guidance_point3_list'];
+                        if (element.tagName === 'UL' || htmlKeys.includes(key)) {
                              element.innerHTML = content;
                         } else {
                             element.textContent = content;
@@ -963,11 +1365,19 @@
                         element.textContent = '';
                     }
                 });
+                
+                // Update placeholder texts for search inputs
+                document.getElementById('resource-search').placeholder = translations[currentLanguage]['search_resources_placeholder'] || 'Search resources...';
+                document.getElementById('advanced-resource-search').placeholder = translations[currentLanguage]['search_advanced_resources_placeholder'] || 'Search advanced resources...';
+                document.getElementById('glossary-search').placeholder = translations[currentLanguage]['search_terms_placeholder'] || 'Search terms...';
+
                 renderCareerCards(document.querySelector('.filter-btn.active-filter')?.dataset.filter || 'all'); // Re-render cards for current language, defaulting to 'all'
                 updateLanguageButtonStyles();
                 if (careerChartInstance) { // Re-initialize chart to update labels if it exists
                     initChart();
                 }
+                renderQuizQuestion(); // Re-render quiz question for current language
+                renderGlossaryTerms(document.getElementById('glossary-search').value || ''); // Re-render glossary for current language (maintain current filter)
             }
 
             /**
@@ -989,16 +1399,23 @@
 
             /**
              * Initializes the event listeners for language switching buttons.
+             * Also saves the selected language to local storage.
              */
             function initLanguageSwitch() {
                 const langButtons = document.querySelectorAll('.lang-btn');
                 langButtons.forEach(button => {
                     button.addEventListener('click', () => {
-                        currentLanguage = button.id.includes('lang-en') ? 'en' : 'ur';
-                        updateContent();
+                        const newLang = button.id.includes('lang-en') ? 'en' : 'ur';
+                        if (newLang !== currentLanguage) {
+                            console.log(`Language changing from ${currentLanguage} to ${newLang}`);
+                            currentLanguage = newLang;
+                            localStorage.setItem('appLanguage', currentLanguage); // Save to local storage
+                            updateContent();
+                        } else {
+                            console.log(`Language is already ${currentLanguage}, no change needed.`);
+                        }
                     });
                 });
-                // No save language button as backend is removed
             }
 
             /**
@@ -1223,6 +1640,10 @@
                                     <p class="text-stone-700 mb-4">${career[`description_${currentLanguage}`]}</p>
                                     <h4 class="text-lg font-semibold text-stone-800 mt-6 mb-2">${currentLanguage === 'en' ? 'Key Subjects:' : 'Aham Mazameen:'}</h4>
                                     <p class="text-stone-700">${career[`subjects_${currentLanguage}`]}</p>
+                                    <h4 class="text-lg font-semibold text-stone-800 mt-6 mb-2">${currentLanguage === 'en' ? 'Path to this Career:' : 'Is Career Tak Pahunchnay Ka Raasta:'}</h4>
+                                    <p class="text-stone-700">${career[`path_${currentLanguage}`]}</p>
+                                    <h4 class="text-lg font-semibold text-stone-800 mt-6 mb-2">${currentLanguage === 'en' ? 'First Steps Now:' : 'Abhi Ke Pehle Qadam:'}</h4>
+                                    <p class="text-stone-700">${career[`first_steps_${currentLanguage}`]}</p>
                                     <h4 class="text-lg font-semibold text-stone-800 mt-6 mb-2">${currentLanguage === 'en' ? 'Potential Challenges:' : 'Mumkinah Challenges:'}</h4>
                                     <p class="text-stone-700">${career[`challenges_${currentLanguage}`]}</p>
                                     <button id="modal-close-btn" class="mt-8 px-6 py-2 bg-orange-600 text-white rounded-full font-semibold hover:bg-orange-700 transition shadow-md">${currentLanguage === 'en' ? 'Close' : 'Band Karein'}</button>
@@ -1263,6 +1684,277 @@
                 careerModal.classList.add('opacity-0', 'invisible');
             }
 
+            /**
+             * Initializes the search functionality for resources.
+             * Filters resource categories based on search input.
+             */
+            function initResourcesSearch() {
+                const searchInput = document.getElementById('resource-search');
+                const advancedSearchInput = document.getElementById('advanced-resource-search');
+
+                const filterResources = (inputElement, containerId) => {
+                    const searchTerm = inputElement.value.toLowerCase();
+                    const resourceCategories = document.querySelectorAll(`#${containerId} .resource-category`);
+
+                    resourceCategories.forEach(category => {
+                        const textContent = category.textContent.toLowerCase();
+                        if (textContent.includes(searchTerm)) {
+                            category.style.display = ''; // Show
+                        } else {
+                            category.style.display = 'none'; // Hide
+                        }
+                    });
+                };
+
+                if (searchInput) {
+                    searchInput.addEventListener('keyup', () => filterResources(searchInput, 'english-resources-content'));
+                }
+                if (advancedSearchInput) {
+                    advancedSearchInput.addEventListener('keyup', () => filterResources(advancedSearchInput, 'advanced-resources-content'));
+                }
+            }
+
+
+            // --- Quiz Logic ---
+            let currentQuizQuestionIndex = 0;
+            let quizScores = {}; // To store scores for different categories
+
+            /**
+             * Renders the current quiz question and its options.
+             */
+            function renderQuizQuestion() {
+                const questionElem = document.getElementById('quiz-question');
+                const optionsContainer = document.getElementById('quiz-options');
+                const quizNextBtn = document.getElementById('quiz-next-btn');
+
+                if (!questionElem || !optionsContainer || !quizNextBtn) return;
+
+                // Reset selected state for previous options
+                document.querySelectorAll('.quiz-option.selected').forEach(opt => opt.classList.remove('selected'));
+
+                if (currentQuizQuestionIndex < quizQuestions.length) {
+                    const questionData = quizQuestions[currentQuizQuestionIndex];
+                    questionElem.textContent = questionData[`question_${currentLanguage}`];
+                    optionsContainer.innerHTML = ''; // Clear previous options
+                    quizNextBtn.disabled = true; // Disable next button until an option is selected
+
+                    questionData[`options_${currentLanguage}`].forEach((option, index) => {
+                        const optionDiv = document.createElement('div');
+                        optionDiv.classList.add('quiz-option');
+                        optionDiv.textContent = option.text;
+                        optionDiv.dataset.scoreIndex = index; // Store index to retrieve score later
+                        optionsContainer.appendChild(optionDiv);
+
+                        optionDiv.addEventListener('click', () => {
+                            document.querySelectorAll('.quiz-option').forEach(opt => opt.classList.remove('selected'));
+                            optionDiv.classList.add('selected');
+                            quizNextBtn.disabled = false; // Enable next button
+                        });
+                    });
+                    quizNextBtn.textContent = translations[currentLanguage]['quiz_next_btn'];
+                    if (currentQuizQuestionIndex === quizQuestions.length - 1) {
+                        quizNextBtn.textContent = translations[currentLanguage]['quiz_retake_btn'].replace('Retake', 'Show'); // Re-use retake button text, adjust for final display
+                    }
+                } else {
+                    displayQuizResults();
+                }
+            }
+
+            /**
+             * Handles the "Next Question" button click for the quiz.
+             * Accumulates scores and moves to the next question or displays results.
+             */
+            function handleQuizNext() {
+                const selectedOption = document.querySelector('.quiz-option.selected');
+                if (!selectedOption) {
+                    showMessageModal(currentLanguage === 'en' ? 'Selection Required' : 'Intikhab Zaroori', currentLanguage === 'en' ? 'Please select an option before proceeding.' : 'Aage barhne se pehle aik option muntakhab karein.');
+                    return;
+                }
+
+                const scoreIndex = parseInt(selectedOption.dataset.scoreIndex);
+                const scoresToAdd = quizQuestions[currentQuizQuestionIndex][`options_${currentLanguage}`][scoreIndex].score;
+
+                // Accumulate scores
+                for (const category in scoresToAdd) {
+                    if (!quizScores[category]) {
+                        quizScores[category] = 0;
+                    }
+                    quizScores[category] += scoresToAdd[category];
+                }
+
+                currentQuizQuestionIndex++;
+                renderQuizQuestion();
+            }
+
+            /**
+             * Displays the quiz results based on accumulated scores.
+             * Identifies the top 2 or 3 career categories.
+             */
+            function displayQuizResults() {
+                const quizQuestionContainer = document.getElementById('quiz-question-container');
+                const quizResultContainer = document.getElementById('quiz-result-container');
+                const quizResultText = document.getElementById('quiz-result-text');
+
+                if (!quizQuestionContainer || !quizResultContainer || !quizResultText) return;
+
+                quizQuestionContainer.classList.add('hidden');
+                quizResultContainer.classList.remove('hidden');
+
+                const sortedCategories = Object.entries(quizScores).sort(([, scoreA], [, scoreB]) => scoreB - scoreA);
+                let suggestedCareers = [];
+
+                if (sortedCategories.length > 0) {
+                    const maxScore = sortedCategories[0][1];
+                    suggestedCareers = sortedCategories
+                        .filter(([, score]) => score === maxScore) // Get all top scoring categories
+                        .map(([category]) => {
+                            // Map internal category names to user-friendly names from filters
+                            const filterButton = document.querySelector(`.filter-btn[data-filter="${category}"]`);
+                            return filterButton ? filterButton.textContent : category; // Use translated filter name or raw category
+                        });
+
+                    if (suggestedCareers.length === 0) { // Fallback if no specific category scored
+                        suggestedCareers.push(currentLanguage === 'en' ? 'various fields' : 'mukhtalif shobon');
+                    }
+                } else {
+                    suggestedCareers.push(currentLanguage === 'en' ? 'no specific area, but many possibilities exist!' : 'koi makhsoos shoba nahi, lekin bohot se imkanat maujood hain!');
+                }
+
+                let resultString = translations[currentLanguage]['quiz_result_text_intro'];
+                if (suggestedCareers.length === 1) {
+                    resultString += suggestedCareers[0] + '.';
+                } else if (suggestedCareers.length === 2) {
+                    resultString += suggestedCareers.join(currentLanguage === 'en' ? ' and ' : ' aur ') + '.';
+                } else {
+                    resultString += suggestedCareers.slice(0, -1).join(', ') + (currentLanguage === 'en' ? ', and ' : ' aur ') + suggestedCareers[suggestedCareers.length - 1] + '.';
+                }
+                
+                quizResultText.textContent = resultString;
+            }
+
+            /**
+             * Resets the quiz to its initial state.
+             */
+            function resetQuiz() {
+                currentQuizQuestionIndex = 0;
+                quizScores = {};
+                document.getElementById('quiz-question-container').classList.remove('hidden');
+                document.getElementById('quiz-result-container').classList.add('hidden');
+                renderQuizQuestion(); // Start quiz again
+            }
+
+            /**
+             * Initializes quiz event listeners.
+             */
+            function initQuiz() {
+                document.getElementById('quiz-next-btn')?.addEventListener('click', handleQuizNext);
+                document.getElementById('quiz-retake-btn')?.addEventListener('click', resetQuiz);
+                renderQuizQuestion(); // Initial render
+            }
+
+            // --- Glossary Logic ---
+            /**
+             * Renders glossary terms based on a search filter.
+             * @param {string} filterText - The text to filter glossary terms by.
+             */
+            function renderGlossaryTerms(filterText) {
+                const glossaryList = document.getElementById('glossary-list');
+                if (!glossaryList) return;
+
+                glossaryList.innerHTML = '';
+                const fragment = document.createDocumentFragment();
+                const lowerCaseFilter = filterText.toLowerCase();
+
+                glossaryTerms.forEach(term => {
+                    const termTitle = term[`term_${currentLanguage}`] || term.term_en;
+                    const termDefinition = term[`definition_${currentLanguage}`] || term.definition_en;
+
+                    if (termTitle.toLowerCase().includes(lowerCaseFilter) || termDefinition.toLowerCase().includes(lowerCaseFilter)) {
+                        const termDiv = document.createElement('div');
+                        termDiv.classList.add('bg-white', 'rounded-xl', 'shadow-lg', 'p-4');
+                        termDiv.innerHTML = `
+                            <h3 class="text-lg font-semibold text-stone-800 mb-2">${termTitle}</h3>
+                            <p class="text-stone-700 text-sm">${termDefinition}</p>
+                        `;
+                        fragment.appendChild(termDiv);
+                    }
+                });
+                glossaryList.appendChild(fragment);
+            }
+
+            /**
+             * Initializes glossary search functionality.
+             */
+            function initGlossarySearch() {
+                const searchInput = document.getElementById('glossary-search');
+                if (searchInput) {
+                    searchInput.addEventListener('keyup', (event) => {
+                        renderGlossaryTerms(event.target.value);
+                    });
+                }
+            }
+
+            // --- Contact Form Logic ---
+            /**
+             * Initializes the contact form functionality.
+             * Prevents default form submission and opens mailto link.
+             */
+            function initContactForm() {
+                const contactForm = document.getElementById('contact-form');
+                if (contactForm) {
+                    contactForm.addEventListener('submit', (event) => {
+                        event.preventDefault(); // Prevent default form submission
+
+                        const name = document.getElementById('contact-name').value;
+                        const email = document.getElementById('contact-email').value;
+                        const message = document.getElementById('contact-message').value;
+
+                        // Define Aasim Raza's actual email and phone number for the message
+                        const aasimRazaEmail = 'aasimraza7470@gmail.com'; // Placeholder email
+                        const aasimRazaPhoneNumber = '9766613006'; // User's provided phone number
+
+                        let whatsappMessageText = translations[currentLanguage]['contact_whatsapp_not_possible_message'];
+                        whatsappMessageText = whatsappMessageText.replace('{email_address}', aasimRazaEmail)
+                                                                 .replace('{phone_number}', aasimRazaPhoneNumber);
+
+                        showMessageModal(
+                            translations[currentLanguage]['contact_whatsapp_not_possible_title'],
+                            whatsappMessageText
+                        );
+
+                        contactForm.reset(); // Clear the form after submission
+                    });
+                }
+            }
+
+
+            // --- Scroll Animations ---
+            /**
+             * Initializes scroll-triggered fade-in animations for sections.
+             * Uses IntersectionObserver for efficient detection.
+             */
+            function initScrollAnimations() {
+                const sections = document.querySelectorAll('.fade-in-section');
+
+                const observerOptions = {
+                    root: null, // viewport
+                    rootMargin: '0px',
+                    threshold: 0.1 // Trigger when 10% of the section is visible
+                };
+
+                const observer = new IntersectionObserver((entries, observer) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            entry.target.classList.add('is-visible');
+                            observer.unobserve(entry.target); // Stop observing once visible
+                        }
+                    });
+                }, observerOptions);
+
+                sections.forEach(section => {
+                    observer.observe(section);
+                });
+            }
 
             /**
              * This function orchestrates the initialization of all UI components.
@@ -1276,9 +1968,14 @@
                 updateContent();      // Perform initial content updates based on default/loaded language
                 initChart();          // Initialize the chart
                 initCareerModal();    // Set up modal functionality
+                initResourcesSearch(); // Set up resource search
+                initQuiz();           // Set up interest quiz
+                initGlossarySearch(); // Set up glossary search
+                initContactForm();    // Set up contact form
+                initScrollAnimations(); // Set up scroll animations
             }
 
-            // Call setupUI directly as there's no backend dependency now
+            // Call setupUI directly when DOM is ready
             setupUI();
         });
     </script>
